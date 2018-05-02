@@ -2,10 +2,12 @@ import React from 'react'
 
 function UpdateLists(props) {
     let todoList = props.listTodos.map(v => {
-            return <li key={v.id}><button onClick={props.onMarkDone(v.id)}>✅</button>{v.desc} </li>
+    return <li key={v.id}><button onClick={props.onMarkDone(v.id)}>✅</button>{v.desc} </li>
     })
     let doneList = props.listDones.map(v => {
-        return <li key={v.id}><button>❌</button> {v.desc} </li>
+        return <li key={v.id}>
+        <button>
+            ❌</button> {v.desc} </li>
     })
 
     return (
@@ -26,15 +28,6 @@ function UpdateLists(props) {
 
     )
 }
-
-
-
-// if(props.listDones.length > 0) {
-
-//     // <h2>DONE</h2>
-//     // <ul> </ul>
-
-// }
 
 
 export default UpdateLists
