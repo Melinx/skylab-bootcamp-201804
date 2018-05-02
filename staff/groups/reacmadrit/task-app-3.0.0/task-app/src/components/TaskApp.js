@@ -6,30 +6,41 @@ class TaskApp extends Component {
         super()
         this.state = {
             inputText: '',
-            listTodos: [],
-            listDones: []
+            listTasks: []
         }
 
         this.addTask = this.addTask.bind(this)
         this._handlerAddingTask = this._handlerAddingTask.bind(this)
-        this.markDone = this.markDone.bind(this)
+        this.markDone=this.markDone.bind(this)
+        this.delete=this.delete.bind(this)
     }
 
     // removed promise when removed listTasks var
     addTask(e) {
         e.preventDefault()
-        let listTodos = {
-            desc: this.state.inputText,
-            done: false,
-            id: Date.now()
+        if (this.state.inputText.length>0) {
+            let taskToAdd = { desc: this.state.inputText, done: false, id: Date.now() }
+            this.setState(prevState => {
+                return {
+                    inputText: '',
+                    listTasks: [...prevState.listTasks, taskToAdd]
+                }
+            })
         }
-        this.setState(prevState => {
-            return {
-                inputText: '',
-                listTodos
-            }
-        })
     }
+
+    delete(iden) {
+        let newTodos=this.state.listTasks.slice()
+        for (var i =0; i < newTodos.length; i++) {
+            if (newTodos[i].id === iden) {
+            newTodos.splice(i,1);
+            break;
+        }}
+        this.setState({
+            listTasks: newTodos
+        })
+
+    }  
 
     _handlerAddingTask(e) {
         let inputText = e.target.value
@@ -40,16 +51,16 @@ class TaskApp extends Component {
 
     //
     markDone(iden) {
-        let tasksDone = this.state.listTodos.map(function (v) {
-            if (v.id === iden) {
-                v.done = true
+        
+        let newTasks=this.state.listTasks.map(function(v) {
+            if (v.id===iden) {
+                v.done=true
             }
             return tasksDone // changed from v
         })
 
         this.setState({
-            listTodos: this.listTodos,
-            listDones: this.tasksDone //changes from listTodos to listDones
+            listTasks: newTasks
         })
     }
 
@@ -65,10 +76,8 @@ class TaskApp extends Component {
 
             </form>
 
-            <UpdateLists listTodos={this.state.listTodos} listDones={this.state.listDones} onMarkDone={this.markDone}>
-
-            </UpdateLists>
-        </div >
+        <UpdateLists onListTasks={this.state.listTasks} onMarkDone={this.markDone} onDelete={this.delete}/>
+        </div>
     }
 }
 
