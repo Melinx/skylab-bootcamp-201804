@@ -24,9 +24,11 @@ app.get('/', (req, res) => {
             <textarea name="task" placeholder="add your task here"></textarea>
             <button type="submit"> Add! </button>
         </form>
+        <ul>
+        ${tasks.map(task => `<li>${task}<button>"x"</button><a href="/delete-task?id_task=${count++}<button>Delete></button> </a>`)}
+        </ul>
     </body>
-    </html>
-    `)
+    </html> `)
 })
 
 app.post('/add-task', (req, res) => {
