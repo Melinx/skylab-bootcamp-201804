@@ -2,7 +2,7 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
-const logic = require('./src/logic')
+const logic = require('./src/logic.js')
 
 const app = express()
 app.use(express.static('public'))
@@ -20,18 +20,17 @@ app.post('/new-game', (req, res) => {
 
     const { body: { word } } = req
 
-    hangman = new Hangman(word)
-    let word = hangman.guessed().join(" ")
+    let hangman = new Hangman(word)
+    let wordToGuess = hangman.guessed().join(" ")
     
-
-    res.redirect('/',{word})
+    res.redirect('/',{ wordToGuess })
 })
 
 app.post('/game', (req, res) => {
-    const { body: { word } } = req
-
-    hangman.try(word)
-    let splitWord = hangman.guessed()
+    const { body: { word } } = res
+  
+    hangman.try(wordToGuess)
+    let splitwordToGuess = hangman.guessed()
 
     res.redirect('/')
 })
