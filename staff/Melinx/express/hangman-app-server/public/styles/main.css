@@ -1,5 +1,5 @@
 body {
-    background-color: palegoldenrod;
+    background-color: rgb(193, 240, 243);
 }
 
 .error {
@@ -8,4 +8,10 @@ body {
 
 .main {
     padding-top: 20px;
+    padding-right: 40px;
+    
+}
+
+.letter {
+    padding-right: 30px;
 }

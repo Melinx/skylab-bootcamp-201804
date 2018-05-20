@@ -2,40 +2,39 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
-const logic = require('./src/logic.js')
+const Hangman = require('./src/logic.js')
 
+let hangman = new Hangman('hello')
+const attemptsCounter = hangman.attempts();
 const app = express()
-app.use(express.static('public'))
+
+app.use(express.static('./public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.set('view engine', 'pug')
 
 app.get('/', (req, res) => {
 
-    const { query: { error } } = req
+    const guessed = hangman.guessed()
+    const attempts = hangman.attempts()
+    const status = hangman.status()
+    const attemptsUsed = attemptsCounter - hangman.attempts()
 
-    res.render('index')
+    res.render('index.pug', { guessed, Hangman, attempts, status, attemptsUsed })
+
 })
 
-app.post('/new-game', (req, res) => {
-
-    const { body: { word } } = req
-
-    let hangman = new Hangman(word)
-    let wordToGuess = hangman.guessed().join(" ")
-    
-    res.redirect('/',{ wordToGuess })
-})
-
-app.post('/game', (req, res) => {
-    const { body: { word } } = res
-  
-    hangman.try(wordToGuess)
-    let splitwordToGuess = hangman.guessed()
+app.post('/try', (req, res) => {
+    const { body: { text }} = req
+    hangman.try(text)
 
     res.redirect('/')
 })
 
-
+app.get('/new-game', (req, res) => {
+    hangman = new Hangman('alba');
+    res.redirect('/')
+  
+  })
 
 const port = process.argv[2] || 3000
 
