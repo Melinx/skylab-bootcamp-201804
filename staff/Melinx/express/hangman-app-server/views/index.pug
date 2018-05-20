@@ -11,7 +11,7 @@ html(lang="en")
     h1 Hangman
       form(action="/guess" method="POST")
         input(type="password" name="word")
-        button(type="submit") Word to Guess
+        button(type="submit" placeholder="write your word to be guessed") GO!
       form(action="/try" method="POST")
         input(type="text" name="text")
         button(type="submit") Submit
