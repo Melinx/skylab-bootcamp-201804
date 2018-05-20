@@ -1,5 +1,6 @@
 body {
     background-color: rgb(193, 240, 243);
+    padding-left: 40px;
 }
 
 .error {
@@ -8,10 +9,13 @@ body {
 
 .main {
     padding-top: 20px;
-    padding-right: 40px;
     
 }
 
 .letter {
     padding-right: 30px;
+}
+
+.forms{
+    float: left;
 }

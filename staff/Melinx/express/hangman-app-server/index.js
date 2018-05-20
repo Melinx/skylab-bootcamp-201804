@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const Hangman = require('./src/logic.js')
 
-let hangman = new Hangman('hello')
+let hangman = new Hangman('-')
 const attemptsCounter = hangman.attempts();
 const app = express()
 
@@ -24,17 +24,26 @@ app.get('/', (req, res) => {
 })
 
 app.post('/try', (req, res) => {
-    const { body: { text }} = req
+    const { body: { text } } = req
     hangman.try(text)
 
     res.redirect('/')
 })
 
+app.post('/guess', (req, res) => {
+    const { body: { word } } = req
+    hangman = new Hangman(word)
+
+    res.redirect('/')
+})
+
+
+
 app.get('/new-game', (req, res) => {
     hangman = new Hangman('alba');
     res.redirect('/')
-  
-  })
+
+})
 
 const port = process.argv[2] || 3000
 
