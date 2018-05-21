@@ -13,13 +13,13 @@ html(lang="en")
         input(type="password" name="word")
         button(type="submit" placeholder="write your word to be guessed") GO!
       form(action="/try" method="POST")
-        input(type="text" name="text")
+        input(type="text" name="text" autofocus)
         button(type="submit") Submit
       each letter in guessed
         span.letter #{letter}
       if status === Hangman.WIN
-        img(src=`/images/${attemptsUsed}.png`)
+        img.img-thumbnail(src=`/images/win.png` )
       else
-        img(src=`/images/${attemptsUsed}.png`)
+        img.img-thumbnail(src=`/images/${attemptsUsed}.png`)
       form(action='/new-game' method = 'GET')
         button(type='submit') Restart

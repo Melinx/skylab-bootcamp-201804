@@ -23,16 +23,16 @@ app.get('/', (req, res) => {
 
 })
 
-app.post('/try', (req, res) => {
-    const { body: { text } } = req
-    hangman.try(text)
+app.post('/guess', (req, res) => {
+    const { body: { word } } = req
+    hangman = new Hangman(word)
 
     res.redirect('/')
 })
 
-app.post('/guess', (req, res) => {
-    const { body: { word } } = req
-    hangman = new Hangman(word)
+app.post('/try', (req, res) => {
+    const { body: { text } } = req
+    hangman.try(text)
 
     res.redirect('/')
 })
