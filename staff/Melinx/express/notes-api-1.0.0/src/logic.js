@@ -18,12 +18,11 @@ const logic = {
     },
 
     listNotes() {
-        let _listNotes = this._notes
-        return _listNotes
+        return this._notes
     },
 
     removeNote(id) {
-        this._notes = this._notes.filter(n => n.id!== id)
+        this._notes = this._notes.filter(n => n.id!= id)
     }
 }
 
