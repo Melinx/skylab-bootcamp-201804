@@ -1,5 +1,26 @@
+# starting
+
+```sh
+$ npm start
+```
+
+# watching
+
+```sh
+$ npm run watch
+```
+
+# debugging
+
+```sh
+$ npm run debug
+```
+
 # testing
 
 ```sh
-$ mocha src/
+$ npm i -g mocha
+
+$ npm test
 ```
+

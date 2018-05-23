@@ -1,7 +1,7 @@
 'use strict'
 
 const expect = require('expect')
-const logic = require('./logic')
+const logic = require('.')
 
 describe('logic (notes)', () => {
     const { _notes } = logic
