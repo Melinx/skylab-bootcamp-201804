@@ -153,15 +153,18 @@ const logic = {
      * @throws
      */
     findNotes(userId, text) {
-        if (typeof userId !== 'string') throw Error('userId is not a string')
+        return Promise.resolve()
+            .then(() => {
+                if (typeof userId !== 'string') throw Error('userId is not a string')
 
-        if (!(userId = userId.trim()).length) throw Error('userId is empty or blank')
+                if (!(userId = userId.trim()).length) throw Error('userId is empty or blank')
 
-        if (typeof text !== 'string') throw Error('text is not a string')
+                if (typeof text !== 'string') throw Error('text is not a string')
 
-        if (!text.length) throw Error('text is empty')
+                if (!text.length) throw Error('text is empty')
 
-        return this._notes.filter(note => note.text.includes(text) && note.userId === userId)
+                return this._notes.find({ userId, text: { $regex: text } }).toArray()
+            })
     }
 }
 

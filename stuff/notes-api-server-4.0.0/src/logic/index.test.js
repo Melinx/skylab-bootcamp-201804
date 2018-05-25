@@ -369,82 +369,88 @@ describe('logic (notes)', () => {
         )
     })
 
-    false && describe('search notes', () => {
+    describe('find notes', () => {
         it('should return results on matching text', () => {
-            expect(_notes.length).toBe(0)
+            let additions = indexes.map(index => logic.addNote(_userId, `${noteText} ${index}`))
 
-            const id1 = logic.addNote(_userId, 'my note 1')
-            const id2 = logic.addNote(_userId, 'my note 11')
-            const id3 = logic.addNote(_userId, 'my note 111')
+            const anotherNoteText = 'another note'
 
-            let res = logic.findNotes('456', '11')
+            additions = additions.concat(indexes.map(index => logic.addNote(_userId, `${anotherNoteText} ${index + indexes.length}`)))
 
-            expect(res).toBeDefined()
-            expect(res.length).toBe(0)
+            return Promise.all(additions)
+                .then(ids => {
+                    return logic.findNotes(_userId, noteText)
+                        .then(notes => {
+                            expect(notes.length).toBe(indexes.length)
 
-            res = logic.findNotes(_userId, '11')
+                            const validIds = ids.slice(0, indexes.length)
+                            const validTexts = indexes.map(index => `${noteText} ${index}`)
 
-            expect(res).toBeDefined()
-            expect(res.length).toBe(2)
-
-            const [note1, note2] = res
-
-            expect(note1).toBeDefined()
-            expect(note1.id).toBe(id2)
-            expect(note1.text).toBe('my note 11')
-            expect(note1.userId).toBe(_userId)
-
-            expect(note2).toBeDefined()
-            expect(note2.id).toBe(id3)
-            expect(note2.text).toBe('my note 111')
-            expect(note2.userId).toBe(_userId)
+                            notes.forEach(({ _id, userId, text }) => {
+                                expect(validIds.includes(_id.toString())).toBeTruthy()
+                                expect(userId).toBe(_userId)
+                                expect(validTexts.includes(text)).toBeTruthy()
+                            })
+                        })
+                })
         })
 
         it('should return results on matching text case', () => {
-            expect(_notes.length).toBe(0)
+            const additions = []
 
-            const id1 = logic.addNote(_userId, 'my note a')
-            const id2 = logic.addNote(_userId, 'my note aA')
-            const id3 = logic.addNote(_userId, 'my note aAa')
+            additions.push(logic.addNote(_userId, 'my note a'))
+            additions.push(logic.addNote(_userId, 'my note aA'))
+            additions.push(logic.addNote(_userId, 'my note aAa'))
 
-            let res = logic.findNotes('456', '11')
+            return Promise.all(additions)
+                .then(ids => {
+                    return logic.findNotes('456', '11')
+                        .then(notes => {
+                            expect(notes).toBeDefined()
+                            expect(notes.length).toBe(0)
 
-            expect(res).toBeDefined()
-            expect(res.length).toBe(0)
+                            return logic.findNotes(_userId, 'aA')
+                        })
+                        .then(notes => {
+                            expect(notes).toBeDefined()
+                            expect(notes.length).toBe(2)
 
-            res = logic.findNotes(_userId, 'aA')
 
-            expect(res).toBeDefined()
-            expect(res.length).toBe(2)
+                            const validTexts = ['my note aA', 'my note aAa']
 
-            const [note1, note2] = res
-
-            expect(note1).toBeDefined()
-            expect(note1.id).toBe(id2)
-            expect(note1.text).toBe('my note aA')
-            expect(note1.userId).toBe(_userId)
-
-            expect(note2).toBeDefined()
-            expect(note2.id).toBe(id3)
-            expect(note2.text).toBe('my note aAa')
-            expect(note2.userId).toBe(_userId)
+                            notes.forEach(({ _id, userId, text }) => {
+                                expect(ids.includes(_id.toString())).toBeTruthy()
+                                expect(userId).toBe(_userId)
+                                expect(validTexts.includes(text)).toBeTruthy()
+                            })
+                        })
+                })
         })
 
-        it('should throw error on no text', () => {
-            expect(() => logic.findNotes(_userId)).toThrowError('text is not a string')
-        })
+        it('should throw error on non userId', () =>
+            logic.findNotes()
+                .catch(({ message }) => expect(message).toBe('userId is not a string'))
+        )
 
-        it('should throw error on empty text', () => {
-            expect(() => logic.findNotes(_userId, '')).toThrowError('text is empty')
-        })
+        it('should throw error on empty userId', () =>
+            logic.findNotes('')
+                .catch(({ message }) => expect(message).toBe('userId is empty or blank'))
+        )
 
-        it('should throw error on no text', () => {
-            expect(() => logic.findNotes(_userId)).toThrowError('text is not a string')
-        })
+        it('should throw error on blank userId', () =>
+            logic.findNotes('      ')
+                .catch(({ message }) => expect(message).toBe('userId is empty or blank'))
+        )
 
-        it('should throw error on empty text', () => {
-            expect(() => logic.findNotes(_userId, '')).toThrowError('text is empty')
-        })
+        it('should throw error on no text', () =>
+            logic.findNotes(_userId)
+                .catch(({ message }) => expect(message).toBe('text is not a string'))
+        )
+
+        it('should throw error on empty text', () =>
+            logic.findNotes(_userId, '')
+                .catch(({ message }) => expect(message).toBe('text is empty'))
+        )
     })
 })
 
