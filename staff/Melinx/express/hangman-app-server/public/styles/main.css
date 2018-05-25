@@ -1,0 +1,21 @@
+body {
+    background-color: rgb(193, 240, 243);
+    padding-left: 40px;
+}
+
+.error {
+    color: red;
+}
+
+.main {
+    padding-top: 20px;
+    
+}
+
+.letter {
+    padding-right: 30px;
+}
+
+.forms{
+    float: left;
+}
