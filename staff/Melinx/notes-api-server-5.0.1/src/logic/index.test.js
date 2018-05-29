@@ -37,11 +37,12 @@ describe('logic (notes)', () => {
                             expect(message).toBe(`user with email ${userData.email} already exists`)
                         )
                 )
-        }
+        })
 
         // TODO error cases
     })
 
+  
     describe('authenticate user', () => {
         it('should succeed on correct data', () =>
             User.create(userData)
