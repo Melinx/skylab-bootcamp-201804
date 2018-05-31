@@ -187,7 +187,7 @@ describe('logic (notes api)', () => {
         )
     })
 
-    true || describe('udpate user', () => {
+    describe('udpate user', () => {
         it('should succeed on correct data', () =>
             User.create(userData)
                 .then(({ id }) => {
