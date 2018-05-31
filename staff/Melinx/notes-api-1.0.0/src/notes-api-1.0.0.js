@@ -59,7 +59,7 @@ const notesApi = {
                     .catch(({ response: { data: { error } } }) => error)
             })
     },
-    
+
     updateUser(userId, name, surname, email, password, newEmail, newPassword) {
         return Promise.resolve()
             .then(() => {
@@ -83,40 +83,60 @@ const notesApi = {
 
                 if ((password = password.trim()).length === 0) throw Error('user password is empty or blank')
 
-                // return User.findOne({ email, password })
                 return axios.patch(`${this.url}/users/${userId}`, { name, surname, email, password, newEmail, newPassword })
-                
-                .then(({ status, data }) => status === 200 && data.status === 'OK')
-                .catch(({ response: { data: { error } } }) => error)
-                // { params: { userId }, body: { name, surname, email, password, newEmail, newPassword } }
+                    .then(({ status, data }) => {
+
+                        if (status !== 200 || data.status !== 'OK') throw Error (`unexpected response, not OK, error ${status} (${data.status})`)
+                        return true
+                    })
+                    .catch(({ response: { data: { error } } }) => error)
             })
-            .then(user => {
-                if (!user) throw Error('wrong credentials')
-
-                if (user.id !== id) throw Error(`no user found with id ${id} for given credentials`)
-
-                if (newEmail) {
-                    
-                    // return User.findOne({ email: newEmail })
-                    //     .then(_user => {
-                    //         if (_user && _user.id !== id) throw Error(`user with email ${newEmail} already exists`)
-
-                    //         return user
-                    //     })
-                }
-
-                return user
-            })
-            .then(user => {
-                user.name = name
-                user.surname = surname
-                user.email = newEmail ? newEmail : email
-                user.password = newPassword ? newPassword : password
-
-                return user.save()
-            })
-            .then(() => true)
     },
+
+    unregisterUser(userId, email, password) {
+        return Promise.resolve()
+            .then(() => {
+                if (typeof userId !== 'string') throw Error('user id is not a string')
+
+                if (!(userId = userId.trim()).length) throw Error('user id is empty or blank')
+
+                if (typeof email !== 'string') throw Error('user email is not a string')
+
+                if (!(email = email.trim()).length) throw Error('user email is empty or blank')
+
+                if (typeof password !== 'string') throw Error('user password is not a string')
+
+                if ((password = password.trim()).length === 0) throw Error('user password is empty or blank')
+
+                return axios.delete(`${this.url}/users/${userId}`, { data: {email, password} }) // email and password are inside data in axios!!
+                .then(({ status, data }) => {
+
+                    if (status !== 200 || data.status !== 'OK') throw Error (`unexpected response, error ${status} (${data.status})`)
+                    return true
+                })
+                .catch(({ response: { data: { error } } }) => error)
+            })    
+    },
+
+    addNote(userId, text) {
+        return Promise.resolve()
+            .then(() => {
+                if (typeof userId !== 'string') throw Error('user id is not a string')
+
+                if (!(userId = userId.trim()).length) throw Error('user id is empty or blank')
+
+                if (typeof text !== 'string') throw Error('text is not a string')
+
+                if ((text = text.trim()).length === 0) throw Error('text is empty or blank')
+               
+                return axios.post(`${this.url}/users/${userId}/notes`, {  text })
+                    .then(({ status, data: { data: {id}} }) => id)
+                    .catch(({ response: { data: { error } } }) => error)
+            })
+    },
+    
+
+
 }
 
 module.exports = notesApi

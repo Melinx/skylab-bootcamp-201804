@@ -300,7 +300,7 @@ describe('logic (notes api)', () => {
         )
     })
 
-    false && describe('unregister user', () => {
+    describe('unregister user', () => {
         it('should succeed on correct data', () =>
             User.create(userData)
                 .then(({ id }) => {
@@ -363,7 +363,7 @@ describe('logic (notes api)', () => {
     })
 
 
-    false && describe('add note', () => {
+    describe('add note', () => {
         it('should succeed on correct data', () =>
             User.create(userData)
                 .then(({ id }) => {
