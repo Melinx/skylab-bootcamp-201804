@@ -49,19 +49,29 @@ const notesApi = {
 
     retrieveUser(userId) {
         return Promise.resolve()
-            .then(()=> {
+            .then(() => {
                 if (typeof userId !== 'string') throw Error('user id is not a string')
 
                 if (!(userId = userId.trim()).length) throw Error('user id is empty or blank')
-                
-                return axios.get(`${this.url}/users/${userId}`)
-                    .then(({ status, data }) =>  status === 200 && data.status === 'OK' && data.data) 
-                    .catch(({ response: { data: { error } } }) => error)
-                
-            })
 
+                return axios.get(`${this.url}/users/${userId}`)
+                    .then(({ status, data }) => status === 200 && data.status === 'OK' && data.data)
+                    .catch(({ response: { data: { error } } }) => error)
+            })
     }
     
+    // updateUser(id, name, surname, email, password, newEmail, newPassword) {
+    //     return Promise.resolve()
+    //         .then(() => {
+    //             if (typeof userId !== 'string') throw Error('user id is not a string')
+
+    //             if (!(userId = userId.trim()).length) throw Error('user id is empty or blank')
+
+    //             return axios.get(`${this.url}/users/${userId}`)
+    //                 .then(({ status, data }) => status === 200 && data.status === 'OK' && data.data)
+    //                 .catch(({ response: { data: { error } } }) => error)
+    //         })
+    // }
 }
 
 module.exports = notesApi
