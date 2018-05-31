@@ -162,7 +162,8 @@ const logic = {
      * 
      * @returns {Promise<boolean>}
      */
-    unregisterUser(id, email, password) {
+    
+     unregisterUser(id, email, password) {
         return Promise.resolve()
             .then(() => {
                 if (typeof id !== 'string') throw Error('user id is not a string')
