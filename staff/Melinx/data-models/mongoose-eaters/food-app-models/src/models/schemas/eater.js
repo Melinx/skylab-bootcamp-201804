@@ -1,6 +1,5 @@
-'use strict'
 
-const { Schema } = require('mongoose')
+const { Schema, Schema: { Types: { Schema: { ObjectId } } } } = require('mongoose')
 
 module.exports = new Schema({
 
@@ -14,16 +13,34 @@ module.exports = new Schema({
         required: true
     },
 
+    email: {
+        type: String,
+        required: true
+    },
+
     yearOfBirth: {
         type: Date,
     },
 
-    paymentCard: {
-        paymentCard
+    gender: {
+        type: String,
+        enum: ['M', 'F', 'U'],
+        required: true
     },
 
-    ongoingOrder: [{ firstCourse, secondCourse }],
+    payment: {
+        type: objectID,
+        required: true
+    },
 
-    pastOrders: [ ] // historial de pedidos
+    ongoingOrder: [{
+        ref: 'Meal',
+        type: objectID
+    }],
+
+    pastOrders: [{
+        type: objectID
+    }]
+    //historial de pedidos
 
 })

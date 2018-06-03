@@ -1,4 +1,3 @@
-'use strict'
 
 const { Schema } = require('mongoose')
 
@@ -10,7 +9,7 @@ module.exports = new Schema ({
     },
 
     image: {
-        type: URL,
+        type: Buffer,
         required: true
     },
 
@@ -18,11 +17,6 @@ module.exports = new Schema ({
         type: String, // should be a short description
         required: true
     },
-
-    // firstOrSecond: {
-    //     type: String, 
-    //     enum: ['firstPlate', 'secondPlate']
-    // },
 
     temp: {
         type: String,
