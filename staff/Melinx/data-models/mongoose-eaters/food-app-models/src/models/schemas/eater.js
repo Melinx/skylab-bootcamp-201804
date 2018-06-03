@@ -3,6 +3,17 @@ const { Schema, Schema: { Types: { Schema: { ObjectId } } } } = require('mongoos
 
 module.exports = new Schema({
 
+    // role: {
+    //     type: String,
+    //     enum: ['user', 'admin'],
+    //     default: 'user'
+    // },
+
+    eaterId: {
+        type: String,
+        required: true
+    },
+    
     name: {
         type: String,
         required: true
@@ -15,7 +26,17 @@ module.exports = new Schema({
 
     email: {
         type: String,
+        lowercase: true,
+        validate: function(email) {
+            return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
+          },
         required: true
+    },
+
+    password: {
+        type: String,
+        min: 64,
+        max: 64
     },
 
     yearOfBirth: {

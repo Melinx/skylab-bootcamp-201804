@@ -1,4 +1,4 @@
 const mongoose = require('mongoose')
-const { firstCourse } = require('./schemas')
+const { FirstCourse } = require('./schemas')
 
-module.exports = mongoose.model('firstCourse', firstCourse)
+module.exports = mongoose.model('FirstCourse', FirstCourse)

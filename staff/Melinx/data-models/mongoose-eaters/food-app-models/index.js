@@ -1,7 +1,6 @@
-'use strict'
 
 const mongoose = require('mongoose')
-const { firstPlate } = require ('./src/models')
+const { Eater, Meal, FirstCourse, SecondCourse, OngoingOrder, Payment } = require ('./src/models')
 
 mongoose.connect('mongodb://localhost/skylab-bootcamp-201804-test')
 .then(()=> {

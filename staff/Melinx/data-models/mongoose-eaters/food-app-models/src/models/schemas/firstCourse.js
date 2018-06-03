@@ -3,7 +3,7 @@ const { Schema } = require('mongoose')
 
 module.exports = new Schema ({
   
-    nameId: {
+    courseId: {
         type: String, // should be the fileName of the images?
         required: true
     },
