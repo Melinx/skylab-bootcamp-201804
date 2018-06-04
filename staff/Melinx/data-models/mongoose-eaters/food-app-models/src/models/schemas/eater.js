@@ -2,17 +2,6 @@
 const { Schema, Schema: { Types: { Schema: { ObjectId } } } } = require('mongoose')
 
 module.exports = new Schema({
-
-    // role: {
-    //     type: String,
-    //     enum: ['user', 'admin'],
-    //     default: 'user'
-    // },
-
-    eaterId: {
-        type: String,
-        required: true
-    },
     
     name: {
         type: String,
@@ -35,8 +24,7 @@ module.exports = new Schema({
 
     password: {
         type: String,
-        min: 64,
-        max: 64
+        required: true        
     },
 
     yearOfBirth: {
@@ -50,17 +38,18 @@ module.exports = new Schema({
     },
 
     payment: {
-        type: objectID,
+        type: Payment,
         required: true
     },
 
-    ongoingOrder: [{
-        ref: 'Meal',
-        type: objectID
+    orders: [{
+        type: objectID,
+        ref: 'Meal'
     }],
 
     pastOrders: [{
-        type: objectID
+        type: objectID,
+        ref: 'Meal'
     }]
     //historial de pedidos
 

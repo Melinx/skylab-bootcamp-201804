@@ -1,16 +1,39 @@
 
-const { Schema, Schema: { Types: { ObjectId } } } = require('mongoose')
+const { Schema } = require('mongoose')
 
-module.exports = new Schema({
+module.exports = new Schema ({
 
-    firstCourse: [{
-        type: ObjectId,
-        ref: 'FirstCourse'
-    }],
+    image: {
+        type: String,
+        required: true
+    },
 
-    secondCourse: [{
-        type: ObjectId,
-        ref: 'SecondCourse'
-    }]
+    dishName: {
+        type: String, // should be a short description
+        required: true
+    },
+
+    temp: {
+        type: String,
+        enum: ['hot', 'cold']
+    },
+
+    baseFood: {
+        type: String, 
+        enum: ['meat', 'fish', 'green', 'pasta', 'rice', 'bean']
+    },
+    
+    daysAvail: {
+        type: String,
+        enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        required: true
+    },
+
+    category: {
+        type: String,
+        enum: [firstCourse, secondCourse],
+        required: true
+        
+    }
 
 })
