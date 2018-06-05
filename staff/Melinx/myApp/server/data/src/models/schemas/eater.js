@@ -35,7 +35,6 @@ module.exports = new Schema({
     gender: {
         type: String,
         enum: ['M', 'F', 'U'],
-        required: true
     },
 
     payment: {
