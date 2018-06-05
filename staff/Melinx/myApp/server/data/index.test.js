@@ -7,7 +7,6 @@ const { expect } = require('chai')
 
 const { env: { DB_URL } } = process
 
-
 describe('models (myApp)', () => {
 
     const firstCourse = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', daysAvail: 'Monday' }
@@ -16,7 +15,6 @@ describe('models (myApp)', () => {
 
     const timeStamp = Date.now()
     const meals = []
-    //meals.push(firstCourse, secondCourse)
 
     const eater = { name: 'John', lastName: 'Doe', email: 'johndoe@mail.com', password: '123', yearOfBirth: 1988, gender: 'M' }
 
@@ -80,9 +78,6 @@ describe('models (myApp)', () => {
                     expect(order1.pickupDay).to.equal('Monday')
                     expect(order1.pickupTime).to.equal('13:45')
                     expect(order1.status).to.equal('processing')
-
-                    // expect(order1.meals)
-                    
                 })
         })
     })
@@ -106,6 +101,21 @@ describe('models (myApp)', () => {
         })
     })
 
-    after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
+    describe('create payment', () => {
+        it('should succeed on correct payment data', ()=>{
+            const payment = new Payment({cardHolderName: 'Jane', cardHolderLastName: 'Doe', cardNumber: '1111333344445555', expirationDate: '12/2020' })
+            return payment.save()
+                .then(payment => {
+                    expect(payment._id).to.exist
+                    expect(payment.cardHolderName).to.equal('Jane')
+                    expect(payment.cardHolderLastName).to.equal('Doe')
+                    expect(payment.cardNumber).to.equal('1111333344445555')
+                    expect(payment.expirationDate).to.equal('12/2020')
+                })
+        })
+    })
+
+
+  after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
 
 })

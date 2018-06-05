@@ -13,12 +13,13 @@ module.exports = new Schema({
     },
 
     cardNumber: {
-        type: Number,
-        required: true        
+        type: String,
+        length: 16,
+        required: true
     },
     
     expirationDate: {
-        type: Date,
+        type: String,
         required: true
     }
 

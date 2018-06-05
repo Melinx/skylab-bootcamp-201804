@@ -10,7 +10,7 @@ module.exports = new Schema ({
     },
 
     image: {
-        type: String,
+        type: 'String',
         required: true
     },
 
