@@ -16,7 +16,7 @@ describe('models (myApp)', () => {
 
     const timeStamp = Date.now()
     const meals = []
-    meals.push(firstCourse, secondCourse)
+    //meals.push(firstCourse, secondCourse)
 
     const eater = { name: 'John', lastName: 'Doe', email: 'johndoe@mail.com', password: '123', yearOfBirth: 1988, gender: 'M' }
 
@@ -64,6 +64,10 @@ describe('models (myApp)', () => {
         course1.save(), course2.save()
 
         it('should succeed on correct data', () => {
+            
+            pepe.meals.push(course1._id)
+            maria.meals.push(course2._id)
+            
             const order1 = new Order(pepe)
             const order2 = new Order(maria)
 
@@ -77,7 +81,6 @@ describe('models (myApp)', () => {
                     expect(order1.pickupTime).to.equal('13:45')
                     expect(order1.status).to.equal('processing')
 
-                    console.log(orders)
                     // expect(order1.meals)
                     
                 })

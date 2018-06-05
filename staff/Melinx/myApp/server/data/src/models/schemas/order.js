@@ -12,9 +12,9 @@ module.exports = new Schema({
     timeStamp: { type: Date, default: Date.now }, // indicates when the order was placed also. If it's past 10:59 am it automatically moves to next day.
 
     meals: [{
-        type: Array, // ObjectId,
+        type: ObjectId,
         ref: 'Course',
-        required: true
+        required: true,
     }],
 
     pickupDay: {
