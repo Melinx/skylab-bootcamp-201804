@@ -1,7 +1,7 @@
 
 'use strict'
 
-const { models: {User, Booking, Service}} = require('data')
+const { models: {Eater, Booking, Service}} = require('data')
 
 const logic = {
   /**
@@ -15,27 +15,27 @@ const logic = {
   registerUser(name, surname, email, password) {
     return Promise.resolve()
       .then(() => {
-        if (typeof name !== 'string') throw Error('user name is not a string')
+        if (typeof name !== 'string') throw Error('eater name is not a string')
 
-        if (!(name = name.trim()).length) throw Error('user name is empty or blank')
+        if (!(name = name.trim()).length) throw Error('eater name is empty or blank')
 
-        if (typeof surname !== 'string') throw Error('user surname is not a string')
+        if (typeof surname !== 'string') throw Error('eater surname is not a string')
 
-        if ((surname = surname.trim()).length === 0) throw Error('user surname is empty or blank')
+        if ((surname = surname.trim()).length === 0) throw Error('eater surname is empty or blank')
 
-        if (typeof email !== 'string') throw Error('user email is not a string')
+        if (typeof email !== 'string') throw Error('eater email is not a string')
 
-        if (!(email = email.trim()).length) throw Error('user email is empty or blank')
+        if (!(email = email.trim()).length) throw Error('eater email is empty or blank')
 
-        if (typeof password !== 'string') throw Error('user password is not a string')
+        if (typeof password !== 'string') throw Error('eater password is not a string')
 
-        if ((password = password.trim()).length === 0) throw Error('user password is empty or blank')
+        if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank')
 
-        return User.findOne({email})
+        return Eater.findOne({email})
           .then((email) => {
-            if (email) throw Error(`User with email ${email} already exists`)
+            if (email) throw Error(`Eater with email ${email} already exists`)
 
-            return User.create({ name, surname, email, password})
+            return Eater.create({ name, surname, email, password})
               .then(() => true)
           })
       })
