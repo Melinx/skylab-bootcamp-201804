@@ -1,6 +1,6 @@
 'use strict'
 
-const { models: { User, Note } } = require('notes-data')
+const { models: { Eater, order } } = require('notes-data')
 
 const logic = {
     /**
@@ -12,30 +12,30 @@ const logic = {
      * 
      * @returns {Promise<boolean>}
      */
-    registerUser(name, surname, email, password) {
+    registerEater(name, surname, email, password) {
         return Promise.resolve()
             .then(() => {
-                if (typeof name !== 'string') throw Error('user name is not a string')
+                if (typeof name !== 'string') throw Error('eater name is not a string')
 
-                if (!(name = name.trim()).length) throw Error('user name is empty or blank')
+                if (!(name = name.trim()).length) throw Error('eater name is empty or blank')
 
-                if (typeof surname !== 'string') throw Error('user surname is not a string')
+                if (typeof surname !== 'string') throw Error('eater surname is not a string')
 
-                if ((surname = surname.trim()).length === 0) throw Error('user surname is empty or blank')
+                if ((surname = surname.trim()).length === 0) throw Error('eater surname is empty or blank')
 
-                if (typeof email !== 'string') throw Error('user email is not a string')
+                if (typeof email !== 'string') throw Error('eater email is not a string')
 
-                if (!(email = email.trim()).length) throw Error('user email is empty or blank')
+                if (!(email = email.trim()).length) throw Error('eater email is empty or blank')
 
-                if (typeof password !== 'string') throw Error('user password is not a string')
+                if (typeof password !== 'string') throw Error('eater password is not a string')
 
-                if ((password = password.trim()).length === 0) throw Error('user password is empty or blank')
+                if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank')
 
-                return User.findOne({ email })
-                    .then(user => {
-                        if (user) throw Error(`user with email ${email} already exists`)
+                return Eater.findOne({ email })
+                    .then(eater => {
+                        if (eater) throw Error(`eater with email ${email} already exists`)
 
-                        return User.create({ name, surname, email, password })
+                        return Eater.create({ name, surname, email, password })
                             .then(() => true)
                     })
             })
@@ -48,23 +48,23 @@ const logic = {
      * 
      * @returns {Promise<string>}
      */
-    authenticateUser(email, password) {
+    authenticateEater(email, password) {
         return Promise.resolve()
             .then(() => {
-                if (typeof email !== 'string') throw Error('user email is not a string')
+                if (typeof email !== 'string') throw Error('eater email is not a string')
 
-                if (!(email = email.trim()).length) throw Error('user email is empty or blank')
+                if (!(email = email.trim()).length) throw Error('eater email is empty or blank')
 
-                if (typeof password !== 'string') throw Error('user password is not a string')
+                if (typeof password !== 'string') throw Error('eater password is not a string')
 
-                if ((password = password.trim()).length === 0) throw Error('user password is empty or blank')
+                if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank')
 
-                return User.findOne({ email, password })
+                return Eater.findOne({ email, password })
             })
-            .then(user => {
-                if (!user) throw Error('wrong credentials')
+            .then(eater => {
+                if (!eater) throw Error('wrong credentials')
 
-                return user.id
+                return eater.id
             })
     },
 
@@ -72,21 +72,21 @@ const logic = {
      * 
      * @param {string} id
      * 
-     * @returns {Promise<User>} 
+     * @returns {Promise<Eater>} 
      */
-    retrieveUser(id) {
+    retrieveEater(id) {
         return Promise.resolve()
             .then(() => {
-                if (typeof id !== 'string') throw Error('user id is not a string')
+                if (typeof id !== 'string') throw Error('eater id is not a string')
 
-                if (!(id = id.trim()).length) throw Error('user id is empty or blank')
+                if (!(id = id.trim()).length) throw Error('eater id is empty or blank')
 
-                return User.findById(id).select({ _id: 0, name: 1, surname: 1, email: 1 })
+                return Eater.findById(id).select({ _id: 0, name: 1, surname: 1, email: 1 })
             })
-            .then(user => {
-                if (!user) throw Error(`no user found with id ${id}`)
+            .then(eater => {
+                if (!eater) throw Error(`no eater found with id ${id}`)
 
-                return user
+                return eater
             })
     },
 
@@ -102,54 +102,54 @@ const logic = {
      * 
      * @returns {Promise<boolean>}
      */
-    updateUser(id, name, surname, email, password, newEmail, newPassword) {
+    updateEater(id, name, surname, email, password, newEmail, newPassword) {
         return Promise.resolve()
             .then(() => {
-                if (typeof id !== 'string') throw Error('user id is not a string')
+                if (typeof id !== 'string') throw Error('eater id is not a string')
 
-                if (!(id = id.trim()).length) throw Error('user id is empty or blank')
+                if (!(id = id.trim()).length) throw Error('eater id is empty or blank')
 
-                if (typeof name !== 'string') throw Error('user name is not a string')
+                if (typeof name !== 'string') throw Error('eater name is not a string')
 
-                if (!(name = name.trim()).length) throw Error('user name is empty or blank')
+                if (!(name = name.trim()).length) throw Error('eater name is empty or blank')
 
-                if (typeof surname !== 'string') throw Error('user surname is not a string')
+                if (typeof surname !== 'string') throw Error('eater surname is not a string')
 
-                if ((surname = surname.trim()).length === 0) throw Error('user surname is empty or blank')
+                if ((surname = surname.trim()).length === 0) throw Error('eater surname is empty or blank')
 
-                if (typeof email !== 'string') throw Error('user email is not a string')
+                if (typeof email !== 'string') throw Error('eater email is not a string')
 
-                if (!(email = email.trim()).length) throw Error('user email is empty or blank')
+                if (!(email = email.trim()).length) throw Error('eater email is empty or blank')
 
-                if (typeof password !== 'string') throw Error('user password is not a string')
+                if (typeof password !== 'string') throw Error('eater password is not a string')
 
-                if ((password = password.trim()).length === 0) throw Error('user password is empty or blank')
+                if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank')
 
-                return User.findOne({ email, password })
+                return Eater.findOne({ email, password })
             })
-            .then(user => {
-                if (!user) throw Error('wrong credentials')
+            .then(eater => {
+                if (!eater) throw Error('wrong credentials')
 
-                if (user.id !== id) throw Error(`no user found with id ${id} for given credentials`)
+                if (eater.id !== id) throw Error(`no eater found with id ${id} for given credentials`)
 
                 if (newEmail) {
-                    return User.findOne({ email: newEmail })
+                    return Eater.findOne({ email: newEmail })
                         .then(_user => {
-                            if (_user && _user.id !== id) throw Error(`user with email ${newEmail} already exists`)
+                            if (_user && _user.id !== id) throw Error(`eater with email ${newEmail} already exists`)
 
-                            return user
+                            return eater
                         })
                 }
 
-                return user
+                return eater
             })
-            .then(user => {
-                user.name = name
-                user.surname = surname
-                user.email = newEmail ? newEmail : email
-                user.password = newPassword ? newPassword : password
+            .then(eater => {
+                eater.name = name
+                eater.surname = surname
+                eater.email = newEmail ? newEmail : email
+                eater.password = newPassword ? newPassword : password
 
-                return user.save()
+                return eater.save()
             })
             .then(() => true)
     },
@@ -162,101 +162,101 @@ const logic = {
      * 
      * @returns {Promise<boolean>}
      */
-    unregisterUser(id, email, password) {
+    unregisterEater(id, email, password) {
         return Promise.resolve()
             .then(() => {
-                if (typeof id !== 'string') throw Error('user id is not a string')
+                if (typeof id !== 'string') throw Error('eater id is not a string')
 
-                if (!(id = id.trim()).length) throw Error('user id is empty or blank')
+                if (!(id = id.trim()).length) throw Error('eater id is empty or blank')
 
-                if (typeof email !== 'string') throw Error('user email is not a string')
+                if (typeof email !== 'string') throw Error('eater email is not a string')
 
-                if (!(email = email.trim()).length) throw Error('user email is empty or blank')
+                if (!(email = email.trim()).length) throw Error('eater email is empty or blank')
 
-                if (typeof password !== 'string') throw Error('user password is not a string')
+                if (typeof password !== 'string') throw Error('eater password is not a string')
 
-                if ((password = password.trim()).length === 0) throw Error('user password is empty or blank')
+                if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank')
 
-                return User.findOne({ email, password })
+                return Eater.findOne({ email, password })
             })
-            .then(user => {
-                if (!user) throw Error('wrong credentials')
+            .then(eater => {
+                if (!eater) throw Error('wrong credentials')
 
-                if (user.id !== id) throw Error(`no user found with id ${id} for given credentials`)
+                if (eater.id !== id) throw Error(`no eater found with id ${id} for given credentials`)
 
-                return user.remove()
+                return eater.remove()
             })
             .then(() => true)
     },
 
     /**
      * 
-     * @param {string} userId
+     * @param {string} eaterId
      * @param {string} text 
      * 
      * @returns {Promise<string>}
      */
-    addNote(userId, text) {
+    addOrder(eaterId, text) {
         return Promise.resolve()
             .then(() => {
-                if (typeof userId !== 'string') throw Error('user id is not a string')
+                if (typeof eaterId !== 'string') throw Error('eater id is not a string')
 
-                if (!(userId = userId.trim()).length) throw Error('user id is empty or blank')
+                if (!(eaterId = eaterId.trim()).length) throw Error('eater id is empty or blank')
 
                 if (typeof text !== 'string') throw Error('text is not a string')
 
                 if ((text = text.trim()).length === 0) throw Error('text is empty or blank')
 
                 // way 1 (step by step)
-                // return User.findById(userId)
-                //     .then(user => {
-                //         if (!user) throw Error(`no user found with id ${userId}`)
+                // return Eater.findById(eaterId)
+                //     .then(eater => {
+                //         if (!eater) throw Error(`no eater found with id ${eaterId}`)
 
-                //         const note = new Note({ text })
+                //         const order = new order({ text })
 
-                //         user.notes.push(note)
+                //         eater.notes.push(order)
 
-                //         return user.save()
-                //             .then(() => note.id)
+                //         return eater.save()
+                //             .then(() => order.id)
                 //     })
 
                 // way 2 (1 step)
-                return User.findByIdAndUpdate(userId, { $push: { notes: { text } } }, { new: true })
-                    .then(user => {
-                        if (!user) throw Error(`no user found with id ${userId}`)
+                return Eater.findByIdAndUpdate(eaterId, { $push: { notes: { text } } }, { new: true })
+                    .then(eater => {
+                        if (!eater) throw Error(`no eater found with id ${eaterId}`)
 
-                        return user.notes[user.notes.length - 1].id
+                        return eater.notes[eater.notes.length - 1].id
                     })
             })
     },
 
     /**
      * 
-     * @param {string} userId
-     * @param {string} noteId 
+     * @param {string} eaterId
+     * @param {string} orderId 
      * 
-     * @returns {Promise<Note>}
+     * @returns {Promise<order>}
      */
-    retrieveNote(userId, noteId) {
+    retrieveNote(eaterId, orderId) {
         return Promise.resolve()
             .then(() => {
-                if (typeof userId !== 'string') throw Error('user id is not a string')
+                if (typeof eaterId !== 'string') throw Error('eater id is not a string')
 
-                if (!(userId = userId.trim()).length) throw Error('user id is empty or blank')
+                if (!(eaterId = eaterId.trim()).length) throw Error('eater id is empty or blank')
 
-                if (typeof noteId !== 'string') throw Error('note id is not a string')
+                if (typeof orderId !== 'string') throw Error('order id is not a string')
 
-                if (!(noteId = noteId.trim())) throw Error('note id is empty or blank')
+                if (!(orderId = orderId.trim())) throw Error('order id is empty or blank')
 
-                return User.findById(userId)
-                    .then(user => {
-                        if (!user) throw Error(`no user found with id ${userId}`)
+                return Eater.findById(eaterId)
+                    .then(eater => {
+                        if (!eater) throw Error(`no eater found with id ${eaterId}`)
 
-                        const note = user.notes.id(noteId)
+                        const order = eater.notes.id(orderId)
 
-                        if (!note) throw Error(`no note found with id ${noteId}`)
+                        if (!order) throw Error(`no order found with id ${orderId}`)
 
-                        const { id, text } = note
+                        const { id, text } = order
 
                         return { id, text }
                     })
@@ -264,55 +264,55 @@ const logic = {
     },
 
     /**
-     * @param {string} userId
+     * @param {string} eaterId
      * 
-     * @returns {Promise<[Note]>}
+     * @returns {Promise<[order]>}
      */
-    listNotes(userId) {
+    listNotes(eaterId) {
         return Promise.resolve()
             .then(() => {
-                if (typeof userId !== 'string') throw Error('user id is not a string')
+                if (typeof eaterId !== 'string') throw Error('eater id is not a string')
 
-                if (!(userId = userId.trim()).length) throw Error('user id is empty or blank')
+                if (!(eaterId = eaterId.trim()).length) throw Error('eater id is empty or blank')
 
-                return User.findById(userId)
-                    .then(user => {
-                        if (!user) throw Error(`no user found with id ${userId}`)
+                return Eater.findById(eaterId)
+                    .then(eater => {
+                        if (!eater) throw Error(`no eater found with id ${eaterId}`)
 
-                        return user.notes.map(({ id, text }) => ({ id, text }))
+                        return eater.notes.map(({ id, text }) => ({ id, text }))
                     })
             })
     },
 
     /**
      * 
-     * @param {string} userId
-     * @param {string} noteId 
+     * @param {string} eaterId
+     * @param {string} orderId 
      *
      * @returns {Promise<boolean>}
      */
-    removeNote(userId, noteId) {
+    removeNote(eaterId, orderId) {
         return Promise.resolve()
             .then(() => {
-                if (typeof userId !== 'string') throw Error('user id is not a string')
+                if (typeof eaterId !== 'string') throw Error('eater id is not a string')
 
-                if (!(userId = userId.trim()).length) throw Error('user id is empty or blank')
+                if (!(eaterId = eaterId.trim()).length) throw Error('eater id is empty or blank')
 
-                if (typeof noteId !== 'string') throw Error('note id is not a string')
+                if (typeof orderId !== 'string') throw Error('order id is not a string')
 
-                if (!(noteId = noteId.trim())) throw Error('note id is empty or blank')
+                if (!(orderId = orderId.trim())) throw Error('order id is empty or blank')
 
-                return User.findById(userId)
-                    .then(user => {
-                        if (!user) throw Error(`no user found with id ${userId}`)
+                return Eater.findById(eaterId)
+                    .then(eater => {
+                        if (!eater) throw Error(`no eater found with id ${eaterId}`)
 
-                        const note = user.notes.id(noteId)
+                        const order = eater.notes.id(orderId)
 
-                        if (!note) throw Error(`no note found with id ${noteId}`)
+                        if (!order) throw Error(`no order found with id ${orderId}`)
 
-                        note.remove()
+                        order.remove()
 
-                        return user.save()
+                        return eater.save()
                     })
                     .then(() => true)
             })
@@ -320,38 +320,38 @@ const logic = {
 
     /**
      * 
-     * @param {string} userId
-     * @param {string} noteId 
+     * @param {string} eaterId
+     * @param {string} orderId 
      * @param {string} text 
      * 
      * @returns {Promise<boolean>}
      */
-    updateNote(userId, noteId, text) {
+    updateNote(eaterId, orderId, text) {
         return Promise.resolve()
             .then(() => {
-                if (typeof userId !== 'string') throw Error('user id is not a string')
+                if (typeof eaterId !== 'string') throw Error('eater id is not a string')
 
-                if (!(userId = userId.trim()).length) throw Error('user id is empty or blank')
+                if (!(eaterId = eaterId.trim()).length) throw Error('eater id is empty or blank')
 
-                if (typeof noteId !== 'string') throw Error('note id is not a string')
+                if (typeof orderId !== 'string') throw Error('order id is not a string')
 
-                if (!(noteId = noteId.trim())) throw Error('note id is empty or blank')
+                if (!(orderId = orderId.trim())) throw Error('order id is empty or blank')
 
                 if (typeof text !== 'string') throw Error('text is not a string')
 
                 if ((text = text.trim()).length === 0) throw Error('text is empty or blank')
 
-                return User.findById(userId)
-                    .then(user => {
-                        if (!user) throw Error(`no user found with id ${userId}`)
+                return Eater.findById(eaterId)
+                    .then(eater => {
+                        if (!eater) throw Error(`no eater found with id ${eaterId}`)
 
-                        const note = user.notes.id(noteId)
+                        const order = eater.notes.id(orderId)
 
-                        if (!note) throw Error(`no note found with id ${noteId}`)
+                        if (!order) throw Error(`no order found with id ${orderId}`)
 
-                        note.text = text
+                        order.text = text
 
-                        return user.save()
+                        return eater.save()
                     })
                     .then(() => true)
             })
@@ -359,27 +359,27 @@ const logic = {
 
     /**
      * 
-     * @param {string} userId
+     * @param {string} eaterId
      * @param {string} text 
      * 
-     * @returns {Promise<[Note]>}
+     * @returns {Promise<[order]>}
      */
-    findNotes(userId, text) {
+    findNotes(eaterId, text) {
         return Promise.resolve()
             .then(() => {
-                if (typeof userId !== 'string') throw Error('user id is not a string')
+                if (typeof eaterId !== 'string') throw Error('eater id is not a string')
 
-                if (!(userId = userId.trim()).length) throw Error('user id is empty or blank')
+                if (!(eaterId = eaterId.trim()).length) throw Error('eater id is empty or blank')
 
                 if (typeof text !== 'string') throw Error('text is not a string')
 
                 if (!text.length) throw Error('text is empty')
 
-                return User.findById(userId)
-                    .then(user => {
-                        if (!user) throw Error(`no user found with id ${userId}`)
+                return Eater.findById(eaterId)
+                    .then(eater => {
+                        if (!eater) throw Error(`no eater found with id ${eaterId}`)
 
-                        return user.notes.filter(note => note.text.includes(text)).map(({ id, text }) => ({ id, text }))
+                        return eater.notes.filter(order => order.text.includes(text)).map(({ id, text }) => ({ id, text }))
                     })
             })
     }
