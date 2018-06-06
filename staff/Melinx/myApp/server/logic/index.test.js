@@ -365,78 +365,24 @@ describe('logic (myApp)', () => {
         it('should succeed on correct data', () => {
 
             Promise.all([Course.create(firstCourse1), Course.create(secondCourse1), Course.create(firstCourse2), Course.create(secondCourse2), Course.create(firstCourse3), Course.create(secondCourse3), Course.create(firstCourse4), Course.create(secondCourse4), Course.create(firstCourse5), Course.create(secondCourse5)])
-                .then(res => {
-                    return logic.listCoursesByDay()
-                        .then(courses => {
-                            console.log(courses)
-                        })
+            
+            logic.listCoursesByDay()
+               
+            .then(res => {
+                    logic.listCoursesByDay()
+                        // .then(courses => {
+                        //     return console.log(courses) // is an empty array
+                        // })
                 })
         })
 
-        // it('should succeed on correct data', () => {
-
-        //     Promise.all([Course.create(firstCourse), Course.create(secondCourse)])
-        //         .then(course => {
-
-        //             const { category, image, dishName, temp, baseFood, dayAvail } = course[0]
-        //             const { category: category1, image: image1, dishName: dishName1, temp: temp1, baseFood: baseFood1, dayAvail: dayAvail1 } = course[1]
-
-        //             return logic.addCourse(category, image, dishName, temp, baseFood, dayAvail)
-        //                 .then(() => {
-        //                     expect(course[0]._id).to.exist
-        //                     expect(course.length).to.equal(2)
-
-        //                     expect(category).to.be.a('string')
-        //                     expect(image).to.be.a('string')
-        //                     expect(dishName).to.be.a('string')
-        //                     expect(temp).to.be.a('string')
-        //                     expect(dayAvail).to.be.a('string')
-
-        //                     expect(course[0].category).to.equal(category)
-        //                     expect(course[0].image).to.equal(image)
-        //                     expect(course[0].dishName).to.equal(dishName)
-        //                     expect(course[0].temp).to.equal(temp)
-        //                     expect(course[0].dayAvail).to.equal(dayAvail)
-
-        //                     expect(course[1]._id).to.exist
-        //                     expect(course.length).to.equal(2)
-
-        //                     expect(category1).to.be.a('string')
-        //                     expect(image1).to.be.a('string')
-        //                     expect(dishName1).to.be.a('string')
-        //                     expect(temp1).to.be.a('string')
-        //                     expect(dayAvail1).to.be.a('string')
-
-        //                     expect(course[1].category).to.equal(category1)
-        //                     expect(course[1].image).to.equal(image1)
-        //                     expect(course[1].dishName).to.equal(dishName1)
-        //                     expect(course[1].temp).to.equal(temp1)
-        //                     expect(course[1].dayAvail).to.equal(dayAvail1)
-        //                 })
-        //         })
-        // })
-
-        it('should fail on empty course category', () =>
-            logic.addCourse('', image, dishName, temp, baseFood, dayAvail)
-                .catch(({ message }) => expect(message).to.equal('category is empty or blank'))
-        )
-
-        it('should fail on blank course category', () =>
-            logic.addCourse('     ', image, dishName, temp, baseFood, dayAvail)
-                .catch(({ message }) => expect(message).to.equal('category is empty or blank'))
-        )
-
-        it('should fail on empty course image', () =>
-            logic.addCourse(category, '', dishName, temp, baseFood, dayAvail)
-                .catch(({ message }) => expect(message).to.equal('category is empty or blank'))
-        )
-        it('should fail on blank course image', () =>
-            logic.addCourse(category, '     ', dishName, temp, baseFood, dayAvail)
-                .catch(({ message }) => expect(message).to.equal('category is empty or blank'))
-        )
+        // it('should fail on caca de la vaca', () =>
+        //         // .catch(({ message }) => expect(message).to.equal('category is empty or blank'))
+        // )
 
     })
 
+    
     true || describe('retrieve order', () => {
         it('should succeed on correct data', () => {
             const course = new course(eaterData)
@@ -633,147 +579,6 @@ describe('logic (myApp)', () => {
                 })
         })
     })
-
-    // true || describe('remove order', () => {
-    //     it('should succeed on correct data', () => {
-    //         const eater = new Eater(eaterData)
-    //         const order = new Note({ text: noteText })
-
-    //         eater.orders.push(order)
-
-    //         return eater.save()
-    //             .then(({ id: userId, orders: [{ id: orderId }] }) => {
-    //                 return logic.removeNote(userId, orderId)
-    //                     .then(res => {
-    //                         expect(res).to.be.true
-
-    //                         return Eater.findById(userId)
-    //                     })
-    //                     .then(({ orders }) => {
-    //                         expect(orders).to.exist
-    //                         expect(orders.length).to.equal(0)
-    //                     })
-    //             })
-    //     })
-
-    //     it('should fail on non eater id', () =>
-    //         logic.removeNote()
-    //             .catch(({ message }) => expect(message).to.equal('eater id is not a string'))
-    //     )
-
-    //     it('should fail on empty eater id', () =>
-    //         logic.removeNote('')
-    //             .catch(({ message }) => expect(message).to.equal('eater id is empty or blank'))
-    //     )
-
-    //     it('should fail on blank eater id', () =>
-    //         logic.removeNote('      ')
-    //             .catch(({ message }) => expect(message).to.equal('eater id is empty or blank'))
-    //     )
-
-    //     it('should fail on wrong eater id', () => {
-    //         const eater = new Eater(eaterData)
-    //         const order = new Note({ text: noteText })
-
-    //         eater.orders.push(order)
-
-    //         return eater.save()
-    //             .then(({ orders: [{ id: orderId }] }) => {
-    //                 return logic.removeNote(dummyUserId, orderId)
-    //                     .catch(({ message }) => expect(message).to.equal(`no eater found with id ${dummyUserId}`))
-    //             })
-    //     })
-
-    //     it('should fail on no order id', () =>
-    //         logic.removeNote(dummyUserId)
-    //             .catch(({ message }) => expect(message).to.equal('order id is not a string'))
-    //     )
-
-    //     it('should fail on empty order id', () =>
-    //         logic.removeNote(dummyUserId, '')
-    //             .catch(({ message }) => expect(message).to.equal('order id is empty or blank'))
-    //     )
-
-    //     it('should fail on blank order id', () =>
-    //         logic.removeNote(dummyUserId, '       ')
-    //             .catch(({ message }) => expect(message).to.equal('order id is empty or blank'))
-    //     )
-
-    //     it('should fail on wrong order id', () => {
-    //         const eater = new Eater(eaterData)
-    //         const order = new Note({ text: noteText })
-
-    //         eater.orders.push(order)
-
-    //         return eater.save()
-    //             .then(({ id: userId }) => {
-    //                 return logic.removeNote(userId, dummyNoteId)
-    //                     .catch(({ message }) => expect(message).to.equal(`no order found with id ${dummyNoteId}`))
-    //             })
-    //     })
-    // })
-
-    // true || describe('find orders', () => {
-    //     it('should succeed on correct data', () => {
-    //         const eater = new Eater(eaterData)
-
-    //         eater.orders.push(new Note({ text: `${noteText} a` }))
-    //         eater.orders.push(new Note({ text: `${noteText} ab` }))
-    //         eater.orders.push(new Note({ text: `${noteText} abc` }))
-    //         eater.orders.push(new Note({ text: `${noteText} bc` }))
-    //         eater.orders.push(new Note({ text: `${noteText} c` }))
-
-    //         const text = 'ab'
-
-    //         return eater.save()
-    //             .then(({ id: userId, orders }) => {
-    //                 const matchingNotes = orders.filter(order => order.text.includes(text))
-
-    //                 const validNoteIds = _.map(matchingNotes, 'id')
-    //                 const validNoteTexts = _.map(matchingNotes, 'text')
-
-    //                 return logic.findNotes(userId, text)
-    //                     .then(orders => {
-    //                         expect(orders).to.exist
-    //                         expect(orders.length).to.equal(matchingNotes.length)
-
-    //                         orders.forEach(({ id, text, _id }) => {
-    //                             // expect(validNoteIds.includes(id)).to.be.true
-    //                             // expect(validNoteTexts.includes(text)).to.be.true
-    //                             // or
-    //                             expect(validNoteIds).to.include(id)
-    //                             expect(validNoteTexts).to.include(text)
-    //                             expect(_id).not.to.exist
-    //                         })
-    //                     })
-    //             })
-    //     })
-
-    //     it('should fail on non eater id', () =>
-    //         logic.findNotes()
-    //             .catch(({ message }) => expect(message).to.equal('eater id is not a string'))
-    //     )
-
-    //     it('should fail on empty eater id', () =>
-    //         logic.findNotes('')
-    //             .catch(({ message }) => expect(message).to.equal('eater id is empty or blank'))
-    //     )
-
-    //     it('should fail on blank eater id', () =>
-    //         logic.findNotes('      ')
-    //             .catch(({ message }) => expect(message).to.equal('eater id is empty or blank'))
-    //     )
-
-    //     it('should fail on no text', () =>
-    //         logic.findNotes(dummyUserId)
-    //             .catch(({ message }) => expect(message).to.equal('text is not a string'))
-    //     )
-
-    //     it('should fail on empty text', () =>
-    //         logic.findNotes(dummyUserId, '')
-    //             .catch(({ message }) => expect(message).to.equal('text is empty'))
-    //     )
-    // })
 
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
 
