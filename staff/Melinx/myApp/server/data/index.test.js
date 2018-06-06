@@ -87,11 +87,22 @@ describe('models (myApp)', () => {
                             expect(order1.status).to.equal(pepeOrder.status)
                             expect(order1.meals.length).to.equal(1)
 
-                            const [{ firstCourse: course1Order1, secondCourse: course2Order1 }] = order1.meals
+                            expect(order2._id).to.exist
+                            expect(order2.date).to.exist
+                            expect(order2.pickupDate.toString()).to.equal(mariaOrder.pickupDate.toString())
+                            expect(order2.status).to.equal(mariaOrder.status)
+                            expect(order2.meals.length).to.equal(1)
 
-                            // TODO check course 1 and 2 fields match firstCourse and secondCourse
-
-                            // TODO repeat for order2
+                            const [{ firstCourse: course1order1, secondCourse: course2order1 }] = order1.meals
+                            const [{ firstCourse: course1order2, secondCourse: course2order2 }] = order2.meals
+                            
+                            //  check course 1 and 2 fields match firstCourse and secondCourse 
+                            expect(order1.meals[0].firstCourse).to.equal(course1order1)
+                            expect(order1.meals[0].secondCourse).to.equal(course2order1)
+                            
+                            expect(order2.meals[0].firstCourse).to.equal(course1order2)
+                            expect(order2.meals[0].secondCourse).to.equal(course2order2)
+            
                         })
                 })
 

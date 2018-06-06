@@ -9,7 +9,7 @@ module.exports = new Schema({
         ref: 'Eater'
     },
 
-    date: { type: Date }, // indicates when the order was placed also. If it's past 10:59 am it automatically moves to next day.
+    date: { type: Date }, 
 
     meals: [{
         firstCourse: {
