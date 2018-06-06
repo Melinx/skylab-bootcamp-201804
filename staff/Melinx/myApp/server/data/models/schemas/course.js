@@ -31,7 +31,7 @@ module.exports = new Schema ({
     
     dayAvail: {
         type: String,
-        enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        enum: ['1', '2', '3', '4', '5'],
         required: true
     }
 })

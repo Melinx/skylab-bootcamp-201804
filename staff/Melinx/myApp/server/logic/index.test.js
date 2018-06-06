@@ -115,8 +115,7 @@ describe('logic (myApp)', () => {
                 .then(eater => {
                     return logic.authenticateUser('jd@mail.com', '123')
                         .then(id => expect(id).to.exist)
-                }
-                )
+                })
         })
 
         it('should fail on no eater email', () =>

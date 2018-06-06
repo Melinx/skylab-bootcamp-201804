@@ -194,9 +194,9 @@ const logic = {
     },
 
     /**
+     * DOCUM:
      * 
-     * @param {string} eaterId
-     * @param {string} course 
+     * Should list courses each day of the week; Monday through Friday. 
      * 
      * @returns {Promise<string>}
      */
