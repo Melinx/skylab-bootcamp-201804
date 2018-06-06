@@ -1,3 +1,9 @@
+'use strict'
+require('dotenv').config()
+const { mongoose, models: { Course } } = require('data')
+
+elsgerds.courses.insert()
+
 
 let dish = Course.create({
     category: 'secondCourse',
@@ -298,70 +304,35 @@ let dish = Course.create({
 
 let dish = Course.create({
     category: 'firstCourse',
-    image: '',
-    dishName: '',
-    temp: 'cold',
-    baseFood: 'pasta',
-    dayAvail: '',
+    image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-3_canelons.jpg',
+    dishName: 'Canelonni',
+    temp: 'hot',
+    baseFood: 'meat',
+    dayAvail: 'Thursday',
 })
 let dish = Course.create({
     category: 'firstCourse',
-    image: '',
-    dishName: '',
-    temp: 'cold',
-    baseFood: 'pasta',
-    dayAvail: '',
-})
-let dish = Course.create({
-    category: 'firstCourse',
-    image: '',
-    dishName: '',
-    temp: 'cold',
-    baseFood: 'pasta',
-    dayAvail: '',
-})
-let dish = Course.create({
-    category: 'firstCourse',
-    image: '',
-    dishName: '',
-    temp: 'cold',
-    baseFood: 'pasta',
-    dayAvail: '',
-})
-let dish = Course.create({
-    category: 'firstCourse',
-    image: '',
-    dishName: '',
-    temp: 'cold',
-    baseFood: 'pasta',
-    dayAvail: '',
-})
-let dish = Course.create({
-    category: 'firstCourse',
-    image: '',
-    dishName: '',
-    temp: 'cold',
-    baseFood: 'pasta',
-    dayAvail: '',
-})
-let dish = Course.create({
-    category: 'firstCourse',
-    image: '',
-    dishName: '',
-    temp: 'cold',
-    baseFood: 'pasta',
-    dayAvail: '',
-})
-let dish = Course.create({
-    category: 'firstCourse',
-    image: '',
-    dishName: '',
+    image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-7_escudella-carn-olla.jpg',
+    dishName: 'Escudella',
     temp: 'hot',
     baseFood: 'pasta',
-    dayAvail: '',
+    dayAvail: 'Friday',
+})
+let dish = Course.create({
+    category: 'firstCourse',
+    image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204552/1-1_basmati-salad.jpg',
+    dishName: 'Basmati rice salad',
+    temp: 'cold',
+    baseFood: 'rice',
+    dayAvail: 'Monday',
+})
+let dish = Course.create({
+    category: 'firstCourse',
+    image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204552/1-2_beetroot-salad.jpg',
+    dishName: 'Beetroot salad',
+    temp: 'cold',
+    baseFood: 'green',
+    dayAvail: 'Wednesday',
 })
 
 
-
-
-// https://cloudinary.com/console/media_library/folders/images/
