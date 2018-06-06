@@ -203,19 +203,21 @@ const logic = {
 
     listCoursesByDay() {
         return Promise.resolve()
-            .then(res => {
+            .then(() => {
 
-                Course.findById()
+                const today = new Date()
 
-
-                const firstCourse = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: 'Monday' }
-
-                return Course.find(firstCourse)
-                    .then((email) => {
-                        if (email) throw Error(`Eater with email ${email} already exists`)
+                let currentDay = today.getDay()
+                
+                return Course.find()
+                    .then(courses => {
+                        console.log(courses)
+                        if (!courses) throw Error(`no courses were found on ${currentDay}`)
+                        return courses
+                        .filter(({ dayAvail }) => dayAvail == currentDay  )
                     })
             })
     }
 }
-    module.exports = logic
+module.exports = logic
 

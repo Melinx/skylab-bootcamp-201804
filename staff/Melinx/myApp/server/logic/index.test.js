@@ -15,8 +15,16 @@ describe('logic (myApp)', () => {
     const dummyUserId = '123456781234567812345678'
     const dummyOrderId = '123456781234567812345678'
 
-    const firstCourse = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: 'Monday' }
-    const secondCourse = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: 'Monday' }
+    const firstCourse1 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '1' }
+    const secondCourse1 = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: '1' }
+    const firstCourse2 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '2' }
+    const secondCourse2 = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: '2' }
+    const firstCourse3 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '3' }
+    const secondCourse3 = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: '3' }
+    const firstCourse4 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '4' }
+    const secondCourse4 = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: '4' }
+    const firstCourse5 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '5' }
+    const secondCourse5 = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: '5' }
 
     before(() => mongoose.connect(DB_URL))
 
@@ -354,49 +362,60 @@ describe('logic (myApp)', () => {
         )
     })
 
-    describe('add course', () => {
+    describe('list courses', () => {
         it('should succeed on correct data', () => {
 
-            Promise.all([Course.create(firstCourse), Course.create(secondCourse)])
-                .then(course => {
-
-                    const { category, image, dishName, temp, baseFood, dayAvail } = course[0]
-                    const { category: category1, image: image1, dishName: dishName1, temp: temp1, baseFood: baseFood1, dayAvail: dayAvail1 } = course[1]
-
-                    return logic.addCourse(category, image, dishName, temp, baseFood, dayAvail)
-                        .then(() => {
-                            expect(course[0]._id).to.exist
-                            expect(course.length).to.equal(2)
-
-                            expect(category).to.be.a('string')
-                            expect(image).to.be.a('string')
-                            expect(dishName).to.be.a('string')
-                            expect(temp).to.be.a('string')
-                            expect(dayAvail).to.be.a('string')
-
-                            expect(course[0].category).to.equal(category)
-                            expect(course[0].image).to.equal(image)
-                            expect(course[0].dishName).to.equal(dishName)
-                            expect(course[0].temp).to.equal(temp)
-                            expect(course[0].dayAvail).to.equal(dayAvail)
-
-                            expect(course[1]._id).to.exist
-                            expect(course.length).to.equal(2)
-
-                            expect(category1).to.be.a('string')
-                            expect(image1).to.be.a('string')
-                            expect(dishName1).to.be.a('string')
-                            expect(temp1).to.be.a('string')
-                            expect(dayAvail1).to.be.a('string')
-
-                            expect(course[1].category).to.equal(category1)
-                            expect(course[1].image).to.equal(image1)
-                            expect(course[1].dishName).to.equal(dishName1)
-                            expect(course[1].temp).to.equal(temp1)
-                            expect(course[1].dayAvail).to.equal(dayAvail1)
+            Promise.all([Course.create(firstCourse1), Course.create(secondCourse1), Course.create(firstCourse2), Course.create(secondCourse2), Course.create(firstCourse3), Course.create(secondCourse3), Course.create(firstCourse4), Course.create(secondCourse4), Course.create(firstCourse5), Course.create(secondCourse5)])
+                .then(res => {
+                    return logic.listCoursesByDay()
+                        .then(courses => {
+                            console.log(courses)
                         })
                 })
         })
+
+        // it('should succeed on correct data', () => {
+
+        //     Promise.all([Course.create(firstCourse), Course.create(secondCourse)])
+        //         .then(course => {
+
+        //             const { category, image, dishName, temp, baseFood, dayAvail } = course[0]
+        //             const { category: category1, image: image1, dishName: dishName1, temp: temp1, baseFood: baseFood1, dayAvail: dayAvail1 } = course[1]
+
+        //             return logic.addCourse(category, image, dishName, temp, baseFood, dayAvail)
+        //                 .then(() => {
+        //                     expect(course[0]._id).to.exist
+        //                     expect(course.length).to.equal(2)
+
+        //                     expect(category).to.be.a('string')
+        //                     expect(image).to.be.a('string')
+        //                     expect(dishName).to.be.a('string')
+        //                     expect(temp).to.be.a('string')
+        //                     expect(dayAvail).to.be.a('string')
+
+        //                     expect(course[0].category).to.equal(category)
+        //                     expect(course[0].image).to.equal(image)
+        //                     expect(course[0].dishName).to.equal(dishName)
+        //                     expect(course[0].temp).to.equal(temp)
+        //                     expect(course[0].dayAvail).to.equal(dayAvail)
+
+        //                     expect(course[1]._id).to.exist
+        //                     expect(course.length).to.equal(2)
+
+        //                     expect(category1).to.be.a('string')
+        //                     expect(image1).to.be.a('string')
+        //                     expect(dishName1).to.be.a('string')
+        //                     expect(temp1).to.be.a('string')
+        //                     expect(dayAvail1).to.be.a('string')
+
+        //                     expect(course[1].category).to.equal(category1)
+        //                     expect(course[1].image).to.equal(image1)
+        //                     expect(course[1].dishName).to.equal(dishName1)
+        //                     expect(course[1].temp).to.equal(temp1)
+        //                     expect(course[1].dayAvail).to.equal(dayAvail1)
+        //                 })
+        //         })
+        // })
 
         it('should fail on empty course category', () =>
             logic.addCourse('', image, dishName, temp, baseFood, dayAvail)
