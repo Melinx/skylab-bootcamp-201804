@@ -5,7 +5,7 @@ let dish = Course.create({
     dishName: 'Tuna Tataki',
     temp: 'cold',
     baseFood: 'fish',
-    daysAvail: 'Monday',
+    dayAvail: 'Monday',
 })
 
 let dish = Course.create({
@@ -14,7 +14,7 @@ let dish = Course.create({
     dishName: 'Trinxat',
     temp: 'hot',
     baseFood: 'green',
-    daysAvail: 'Wednesday',
+    dayAvail: 'Wednesday',
 })
 
 let dish = Course.create({
@@ -23,7 +23,7 @@ let dish = Course.create({
     dishName: 'Paella',
     temp: 'hot',
     baseFood: 'rice',
-    daysAvail: 'Thurssday',
+    dayAvail: 'Thurssday',
 })
 
 let dish = Course.create({
@@ -32,7 +32,7 @@ let dish = Course.create({
     dishName: 'Salmon Teryaki',
     temp: 'hot',
     baseFood: 'fish',
-    daysAvail: 'Wednesday',
+    dayAvail: 'Wednesday',
 })
 
 let dish = Course.create({
@@ -41,7 +41,7 @@ let dish = Course.create({
     dishName: 'Chicken',
     temp: 'hot',
     baseFood: 'meat',
-    daysAvail: 'Friday',
+    dayAvail: 'Friday',
 })
 
 let dish = Course.create({
@@ -50,7 +50,7 @@ let dish = Course.create({
     dishName: 'Pasta tomato',
     temp: 'hot',
     baseFood: 'pasta',
-    daysAvail: 'Tuesday',
+    dayAvail: 'Tuesday',
 })
 
 let dish = Course.create({
@@ -59,7 +59,7 @@ let dish = Course.create({
     dishName: 'Rabbit romesco',
     temp: 'hot',
     baseFood: 'meat',
-    daysAvail: 'Thursday',
+    dayAvail: 'Thursday',
 })
 
 let dish = Course.create({
@@ -68,7 +68,7 @@ let dish = Course.create({
     dishName: 'Garbanzos & meatballs ',
     temp: 'hot',
     baseFood: 'bean',
-    daysAvail: 'Tuesday',
+    dayAvail: 'Tuesday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -76,7 +76,7 @@ let dish = Course.create({
     dishName: 'Pork feet',
     temp: 'hot',
     baseFood: 'meat',
-    daysAvail: 'Tuesday',
+    dayAvail: 'Tuesday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -84,7 +84,7 @@ let dish = Course.create({
     dishName: 'Truffle carbonara',
     temp: 'hot',
     baseFood: 'pasta',
-    daysAvail: 'Thursday',
+    dayAvail: 'Thursday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -92,7 +92,7 @@ let dish = Course.create({
     dishName: 'Meatballs & peas',
     temp: 'hot',
     baseFood: 'meat',
-    daysAvail: 'Monday',
+    dayAvail: 'Monday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -100,7 +100,7 @@ let dish = Course.create({
     dishName: 'Fricandó',
     temp: 'hot',
     baseFood: 'meat',
-    daysAvail: 'Thursday',
+    dayAvail: 'Thursday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -108,7 +108,7 @@ let dish = Course.create({
     dishName: 'Fideuà',
     temp: 'hot',
     baseFood: 'pasta',
-    daysAvail: 'Wednesday',
+    dayAvail: 'Wednesday',
 })
 
 let dish = Course.create({
@@ -117,7 +117,7 @@ let dish = Course.create({
     dishName: '"Canned" snails',
     temp: 'hot',
     baseFood: 'pasta',
-    daysAvail: 'Friday',
+    dayAvail: 'Friday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -125,7 +125,7 @@ let dish = Course.create({
     dishName: 'Black rice',
     temp: 'hot',
     baseFood: 'rice',
-    daysAvail: 'Monday',
+    dayAvail: 'Monday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -133,7 +133,7 @@ let dish = Course.create({
     dishName: 'Rabbit & snails',
     temp: 'hot',
     baseFood: 'meat',
-    daysAvail: 'Friday',
+    dayAvail: 'Friday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -141,7 +141,7 @@ let dish = Course.create({
     dishName: 'Coat fish',
     temp: 'hot',
     baseFood: 'fish',
-    daysAvail: 'Tuesday',
+    dayAvail: 'Tuesday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -149,7 +149,7 @@ let dish = Course.create({
     dishName: 'Botifarra & white beans',
     temp: 'hot',
     baseFood: 'meat',
-    daysAvail: 'Friday',
+    dayAvail: 'Friday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -157,7 +157,7 @@ let dish = Course.create({
     dishName: 'Coat fish & veggies',
     temp: 'hot',
     baseFood: 'fish',
-    daysAvail: 'Wednesday',
+    dayAvail: 'Wednesday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -165,7 +165,7 @@ let dish = Course.create({
     dishName: 'Salmon salad',
     temp: 'cold',
     baseFood: 'meat',
-    daysAvail: 'Thursday',
+    dayAvail: 'Thursday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -173,7 +173,7 @@ let dish = Course.create({
     dishName: 'Green salad',
     temp: 'cold',
     baseFood: 'green',
-    daysAvail: 'Wednesday',
+    dayAvail: 'Wednesday',
 })
 let dish = Course.create({
     category: 'secondCourse',
@@ -181,7 +181,7 @@ let dish = Course.create({
     dishName: 'Marinated coat fish',
     temp: 'cold',
     baseFood: 'fish',
-    daysAvail: 'Monday',
+    dayAvail: 'Monday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -189,7 +189,7 @@ let dish = Course.create({
     dishName: 'Risotto',
     temp: 'hot',
     baseFood: 'rice',
-    daysAvail: 'Wednesday',
+    dayAvail: 'Wednesday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -197,7 +197,7 @@ let dish = Course.create({
     dishName: 'Kinoa salad',
     temp: 'cold',
     baseFood: 'rice',
-    daysAvail: 'Friday',
+    dayAvail: 'Friday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -205,7 +205,7 @@ let dish = Course.create({
     dishName: 'Pomegranate salad',
     temp: 'cold',
     baseFood: 'green',
-    daysAvail: 'Wednesday',
+    dayAvail: 'Wednesday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -213,7 +213,7 @@ let dish = Course.create({
     dishName: 'Macaroni salad',
     temp: 'cold',
     baseFood: 'pasta',
-    daysAvail: 'Tuesday',
+    dayAvail: 'Tuesday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -221,7 +221,7 @@ let dish = Course.create({
     dishName: 'Mango salad',
     temp: 'cold',
     baseFood: 'pasta',
-    daysAvail: 'Tuesday',
+    dayAvail: 'Tuesday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -229,7 +229,7 @@ let dish = Course.create({
     dishName: 'Pesto pasta',
     temp: 'cold',
     baseFood: 'pasta',
-    daysAvail: 'Monday',
+    dayAvail: 'Monday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -237,7 +237,7 @@ let dish = Course.create({
     dishName: 'Gazpacho',
     temp: 'cold',
     baseFood: 'green',
-    daysAvail: 'Monday',
+    dayAvail: 'Monday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -245,7 +245,7 @@ let dish = Course.create({
     dishName: 'Spaghetti salad',
     temp: 'cold',
     baseFood: 'green',
-    daysAvail: 'Tuesday',
+    dayAvail: 'Tuesday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -253,7 +253,7 @@ let dish = Course.create({
     dishName: 'Coat esqueixada',
     temp: 'cold',
     baseFood: 'fish',
-    daysAvail: 'Thursday',
+    dayAvail: 'Thursday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -261,7 +261,7 @@ let dish = Course.create({
     dishName: 'Ensaladilla rusa',
     temp: 'cold',
     baseFood: 'green',
-    daysAvail: 'Friday',
+    dayAvail: 'Friday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -269,7 +269,7 @@ let dish = Course.create({
     dishName: 'Green broad beans',
     temp: 'cold',
     baseFood: 'green',
-    daysAvail: 'Monday',
+    dayAvail: 'Monday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -277,7 +277,7 @@ let dish = Course.create({
     dishName: 'Eggplant & goatcheese',
     temp: 'hot',
     baseFood: 'green',
-    daysAvail: 'Tuesday',
+    dayAvail: 'Tuesday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -285,7 +285,7 @@ let dish = Course.create({
     dishName: 'Green asparagus',
     temp: 'hot',
     baseFood: 'green',
-    daysAvail: 'Friday',
+    dayAvail: 'Friday',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -293,7 +293,16 @@ let dish = Course.create({
     dishName: 'Carpaccio',
     temp: 'cold',
     baseFood: 'meat',
-    daysAvail: 'Thursday',
+    dayAvail: 'Thursday',
+})
+
+let dish = Course.create({
+    category: 'firstCourse',
+    image: '',
+    dishName: '',
+    temp: 'cold',
+    baseFood: 'pasta',
+    dayAvail: '',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -301,7 +310,7 @@ let dish = Course.create({
     dishName: '',
     temp: 'cold',
     baseFood: 'pasta',
-    daysAvail: '',
+    dayAvail: '',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -309,7 +318,7 @@ let dish = Course.create({
     dishName: '',
     temp: 'cold',
     baseFood: 'pasta',
-    daysAvail: '',
+    dayAvail: '',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -317,7 +326,7 @@ let dish = Course.create({
     dishName: '',
     temp: 'cold',
     baseFood: 'pasta',
-    daysAvail: '',
+    dayAvail: '',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -325,7 +334,7 @@ let dish = Course.create({
     dishName: '',
     temp: 'cold',
     baseFood: 'pasta',
-    daysAvail: '',
+    dayAvail: '',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -333,7 +342,7 @@ let dish = Course.create({
     dishName: '',
     temp: 'cold',
     baseFood: 'pasta',
-    daysAvail: '',
+    dayAvail: '',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -341,15 +350,7 @@ let dish = Course.create({
     dishName: '',
     temp: 'cold',
     baseFood: 'pasta',
-    daysAvail: '',
-})
-let dish = Course.create({
-    category: 'firstCourse',
-    image: '',
-    dishName: '',
-    temp: 'cold',
-    baseFood: 'pasta',
-    daysAvail: '',
+    dayAvail: '',
 })
 let dish = Course.create({
     category: 'firstCourse',
@@ -357,7 +358,7 @@ let dish = Course.create({
     dishName: '',
     temp: 'hot',
     baseFood: 'pasta',
-    daysAvail: '',
+    dayAvail: '',
 })
 
 
