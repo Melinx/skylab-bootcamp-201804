@@ -25,13 +25,13 @@ router.post('/eaters', jsonBodyParser, (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
-//SUTCK with 400 error when authenticating eater
 
 router.post('/auth', jsonBodyParser, (req, res) => {
     const { body: { email, password } } = req
 
     logic.authenticateEater(email, password)
         .then(id => {
+            
             const token = jwt.sign({ id }, TOKEN_SECRET, { expiresIn: TOKEN_EXP })
 
             res.status(200)
