@@ -28,7 +28,7 @@ describe('logic (myApp)', () => {
 
     before(() => mongoose.connect(DB_URL))
 
-    beforeEach(() => Eater.remove())
+    beforeEach(() => Eater.remove(), Course.deleteMany())
 
     describe('register eater', () => {
         it('should succeed on correct dada', () =>
@@ -361,223 +361,36 @@ describe('logic (myApp)', () => {
         )
     })
 
-    describe('list courses', () => {
+    describe('list all courses', () => {
         it('should succeed on correct data', () => {
 
-            Promise.all([Course.create(firstCourse1), Course.create(secondCourse1), Course.create(firstCourse2), Course.create(secondCourse2), Course.create(firstCourse3), Course.create(secondCourse3), Course.create(firstCourse4), Course.create(secondCourse4), Course.create(firstCourse5), Course.create(secondCourse5)])
-            
+            Promise.all([
+                Course.create(firstCourse1), Course.create(secondCourse1), Course.create(firstCourse2), Course.create(secondCourse2), Course.create(firstCourse3), Course.create(secondCourse3), Course.create(firstCourse4), Course.create(secondCourse4), Course.create(firstCourse5), Course.create(secondCourse5)])
+                .then(res => {
+                    expect(res.length).to.equal(10)
+
+                    for (let i in res) {
+                        console.log('holaaaaa q ase')
+                        expect(res[i]._id).to.exist
+                        expect(res[i]._image).not.to.equal(res[i+1]._image)
+                        expect(res[i].category['firstCourse']).to.equal('firstCourse')
+                        
+                    }
+                })
+        })
+    })
+
+
+    describe('list course by current day', () => {
+        it('list course', () => {
+
             logic.listCoursesByDay()
-               
-            .then(res => {
-                    logic.listCoursesByDay()
-                        // .then(courses => {
-                        //     return console.log(courses) // is an empty array
-                        // })
+                .then(course => {
+        
+                    return course
                 })
-        })
-
-        // it('should fail on caca de la vaca', () =>
-        //         // .catch(({ message }) => expect(message).to.equal('category is empty or blank'))
-        // )
-
-    })
-
-    
-    true || describe('retrieve order', () => {
-        it('should succeed on correct data', () => {
-            const course = new course(eaterData)
-            const order = new Note({ text: noteText })
-
-            eater.orders.push(order)
-
-            return eater.save()
-                .then(({ id: userId, orders: [{ id: courseId }] }) => {
-                    return logic.retrieveNote(userId, courseId)
-                })
-                .then(({ id, text, _id }) => {
-                    expect(id).to.equal(order.id)
-                    expect(text).to.equal(order.text)
-                    expect(_id).not.to.exist
-                })
-        })
-
-        it('should fail on non eater id', () =>
-            logic.retrieveNote()
-                .catch(({ message }) => expect(message).to.equal('eater id is not a string'))
-        )
-
-        it('should fail on empty eater id', () =>
-            logic.retrieveNote(category, image, dishName, temp, baseFood, dayAvail)
-                .catch(({ message }) => expect(message).to.equal('eater id is empty or blank'))
-        )
-
-        it('should fail on blank eater id', () =>
-            logic.retrieveNote('      ')
-                .catch(({ message }) => expect(message).to.equal('eater id is empty or blank'))
-        )
-
-        it('should fail on wrong eater id', () => {
-            const eater = new Eater(eaterData)
-            const order = new Note({ text: noteText })
-
-            eater.orders.push(order)
-
-            return eater.save()
-                .then(({ orders: [{ id: courseId }] }) => {
-                    return logic.retrieveNote(dummyUserId, courseId)
-                        .catch(({ message }) => expect(message).to.equal(`no eater found with id ${dummyUserId}`))
-                })
-        })
-
-        it('should fail on no order id', () =>
-            logic.retrieveNote(dummyUserId)
-                .catch(({ message }) => expect(message).to.equal('order id is not a string'))
-        )
-
-        it('should fail on empty order id', () =>
-            logic.retrieveNote(dummyUserId, '')
-                .catch(({ message }) => expect(message).to.equal('order id is empty or blank'))
-        )
-
-        it('should fail on blank order id', () =>
-            logic.retrieveNote(dummyUserId, '       ')
-                .catch(({ message }) => expect(message).to.equal('order id is empty or blank'))
-        )
-
-        it('should fail on wrong order id', () => {
-            const eater = new Eater(eaterData)
-            const order = new Note({ text: noteText })
-
-            eater.orders.push(order)
-
-            return eater.save()
-                .then(({ id: userId }) => {
-                    return logic.retrieveNote(userId, dummyNoteId)
-                        .catch(({ message }) => expect(message).to.equal(`no order found with id ${dummyNoteId}`))
-                })
-        })
-    })
-
-    true || describe('list orders', () => {
-        it('should succeed on correct data', () => {
-            const eater = new Eater(eaterData)
-
-            const orders = indexes.map(index => new Note({ text: `${noteText} ${index}` }))
-
-            eater.orders = orders
-
-            return eater.save()
-                .then(({ id: userId, orders }) => {
-                    // const validNoteIds = []
-                    // const validNoteTexts = []
-
-                    // orders.forEach(({ id, text }) => {
-                    //     validNoteIds.push(id)
-                    //     validNoteTexts.push(text)
-                    // })
-                    // or
-                    const validNoteIds = _.map(orders, 'id')
-                    const validNoteTexts = _.map(orders, 'text')
-
-                    return logic.listNotes(userId)
-                        .then(orders => {
-                            expect(orders).to.exist
-                            expect(orders.length).to.equal(indexes.length)
-
-                            orders.forEach(({ id, text, _id }) => {
-                                // expect(validNoteIds.includes(id)).to.be.true
-                                // expect(validNoteTexts.includes(text)).to.be.true
-                                // or
-                                expect(validNoteIds).to.include(id)
-                                expect(validNoteTexts).to.include(text)
-                                expect(_id).not.to.exist
-                            })
-                        })
-                })
-        })
-
-        it('should fail on non eater id', () =>
-            logic.listNotes()
-                .catch(({ message }) => expect(message).to.equal('eater id is not a string'))
-        )
-
-        it('should fail on empty eater id', () =>
-            logic.listNotes('')
-                .catch(({ message }) => expect(message).to.equal('eater id is empty or blank'))
-        )
-
-        it('should fail on blank eater id', () =>
-            logic.listNotes('      ')
-                .catch(({ message }) => expect(message).to.equal('eater id is empty or blank'))
-        )
-    })
-
-    true || describe('update course', () => {
-        it('should succeed on correct data', () =>
-            Course.create(firstCourse)
-                .then(({ id: userId }) =>
-                    Eater.findByIdAndUpdate(userId, { $push: { orders: { text: noteText } } }, { new: true })
-                        .then(eater => {
-                            const orderId = eater.orders[eater.orders.length - 1].id
-
-                            const newNoteText = `${noteText} 2`
-
-                            return logic.updateNote(userId, orderId, newNoteText)
-                                .then(res => {
-                                    expect(res).to.be.true
-
-                                    return Eater.findById(userId)
-                                })
-                                .then(({ orders }) => {
-                                    const [{ id, text }] = orders
-
-                                    expect(id).to.equal(orderId)
-                                    expect(text).to.equal(newNoteText)
-                                })
-                        })
-                )
-        )
-
-        it('should fail on non eater id', () =>
-            logic.updateNote()
-                .catch(({ message }) => expect(message).to.equal('eater id is not a string'))
-        )
-
-        it('should fail on empty eater id', () =>
-            logic.updateNote('')
-                .catch(({ message }) => expect(message).to.equal('eater id is empty or blank'))
-        )
-
-        it('should fail on blank eater id', () =>
-            logic.updateNote('      ')
-                .catch(({ message }) => expect(message).to.equal('eater id is empty or blank'))
-        )
-
-        it('should fail on wrong eater id', () => {
-            const eater = new Eater(eaterData)
-            const order = new Note({ text: noteText })
-
-            eater.orders.push(order)
-
-            return eater.save()
-                .then(({ orders: [{ id: orderId }] }) => {
-                    return logic.updateNote(dummyUserId, orderId, `${noteText} 2`)
-                        .catch(({ message }) => expect(message).to.equal(`no eater found with id ${dummyUserId}`))
-                })
-        })
-
-        it('should fail on wrong order id', () => {
-            const eater = new Eater(eaterData)
-            const order = new Note({ text: noteText })
-
-            eater.orders.push(order)
-
-            return eater.save()
-                .then(({ id: userId }) => {
-                    return logic.updateNote(userId, dummyNoteId, `${noteText} 2`)
-                        .catch(({ message }) => expect(message).to.equal(`no order found with id ${dummyNoteId}`))
-                })
-        })
+                        
+            })
     })
 
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))

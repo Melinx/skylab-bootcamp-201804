@@ -204,16 +204,13 @@ const logic = {
     listCoursesByDay() {
         return Promise.resolve()
             .then(() => {
-
                 const today = new Date()
                 let currentDay = today.getDay()
-                
-                return console.log(Course.find()) // devuelve Query object de mongoose
-//STUCK below here!
-                    .then(courses => {
-                        console.log(courses)
+
+                return Course.find({ dayAvail: currentDay })
+                    .then((courses) => {
                         if (!courses) throw Error(`no courses were found on ${currentDay}`)
-                        return courses.filter(({ dayAvail }) => dayAvail == currentDay  )
+                        return courses
                     })
             })
     }

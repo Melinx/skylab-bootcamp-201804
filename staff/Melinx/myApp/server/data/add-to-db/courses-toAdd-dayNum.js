@@ -1,20 +1,15 @@
 'use strict'
 
 require('dotenv').config()
-const { mongoose, models: { Course } } = require('data')
+//const { mongoose, models: { Course } } = require('data')
+const mongoose = require('mongoose')
+const { Course } = require('../models')
 
 const { env: { DB_URL } } = process
 
-const addAllCoursestoDB = (data) => {
-    return elsgerds.courses.insert([
-    {
-        category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204568/2-20_tuna-tataki.jpg',
-        dishName: 'Tuna tataki',
-        temp: 'cold',
-        baseFood: 'fish',
-        dayAvail: '1'
-    },
+const course1 = { category: 'secondCourse', image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204568/2-20_tuna-tataki.jpg', dishName: 'Tuna tataki', temp: 'cold', baseFood: 'fish', dayAvail: '1' }
+const course2 = { category: 'secondCourse', image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-19_trinxat.jpg', dishName: 'Trinxat', temp: 'hot', baseFood: 'green', dayAvail: '3' }
+const course3 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-19_trinxat.jpg',
@@ -22,7 +17,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'green',
         dayAvail: '3'
-    },
+    }
+const course4 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-12_paella-mar-muntanya.jpg',
@@ -30,7 +26,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'rice',
         dayAvail: '5'
-    },
+    }
+const course5 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-17_salmon-teryaki.jpg',
@@ -38,7 +35,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'fish',
         dayAvail: '3'
-    },
+    }
+const course6 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-10_gall-peix.jpg',
@@ -46,7 +44,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'meat',
         dayAvail: '5'
-    },
+    }
+const course7 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-18_tomato-pasta.jpg',
@@ -54,7 +53,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'pasta',
         dayAvail: '2'
-    },
+    }
+const course8 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-16_romesco-de-conill.jpg',
@@ -62,7 +62,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'meat',
         dayAvail: '4'
-    },
+    }
+const course9 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-15_potaje.jpg',
@@ -70,7 +71,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'bean',
         dayAvail: '2'
-    },
+    }
+const course10 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-14_peus-de-porc.jpg',
@@ -78,7 +80,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'meat',
         dayAvail: '2'
-    },
+    }
+const course11 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-13_pasta-truffle-carbonara.jpg',
@@ -86,7 +89,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'pasta',
         dayAvail: '4'
-    },
+    }
+const course12 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-11_mandonguilles.jpg',
@@ -94,7 +98,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'meat',
         dayAvail: '1'
-    },
+    }
+const course13 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-9_fricando.jpg',
@@ -102,7 +107,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'meat',
         dayAvail: '4'
-    },
+    }
+const course14 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-8_fideua.jpg',
@@ -110,7 +116,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'pasta',
         dayAvail: '3'
-    },
+    }
+const course15 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-6_cargols-a-la-launa.jpg',
@@ -118,7 +125,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'pasta',
         dayAvail: '5'
-    },
+    }
+const course16 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-4_black-rice.jpg',
@@ -126,7 +134,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'rice',
         dayAvail: '1'
-    },
+    }
+const course17 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-7_conil-amb-cargols-allioli.jpg',
@@ -134,7 +143,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'meat',
         dayAvail: '5'
-    },
+    }
+const course18 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-3_bacalla.jpg',
@@ -142,7 +152,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'fish',
         dayAvail: '2'
-    },
+    }
+const course19 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-5_botifarra-mongetes.jpg',
@@ -150,7 +161,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'meat',
         dayAvail: '5'
-    },
+    }
+const course20 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-2_bacalla-amb-samfaina.jpg',
@@ -158,7 +170,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'fish',
         dayAvail: '3'
-    },
+    }
+const course21 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/1-20_salmon-salad-and-sauce.jpg',
@@ -166,7 +179,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'meat',
         dayAvail: '4'
-    },
+    }
+const course22 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-18_salad_plate.jpg',
@@ -174,7 +188,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'green',
         dayAvail: '3'
-    },
+    }
+const course23 =
     {
         category: 'secondCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/2-1_bacalla-amb-escabetx-de-rovellons.jpg',
@@ -182,7 +197,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'fish',
         dayAvail: '1'
-    },
+    }
+const course24 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-17_risotto.png',
@@ -190,7 +206,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'rice',
         dayAvail: '3'
-    },
+    }
+const course25 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-14_kinoa-salad.jpg',
@@ -198,7 +215,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'rice',
         dayAvail: '5'
-    },
+    }
+const course26 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-19_salad-pomegranate.jpg',
@@ -206,7 +224,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'green',
         dayAvail: '3'
-    },
+    }
+const course27 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-15_macaroni-salad.jpg',
@@ -214,7 +233,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'pasta',
         dayAvail: '2'
-    },
+    }
+const course28 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-16_mango-salad.jpg',
@@ -222,7 +242,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'pasta',
         dayAvail: '2'
-    },
+    }
+const course29 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-12_green-pasta.jpg',
@@ -230,7 +251,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'pasta',
         dayAvail: '1'
-    },
+    }
+const course30 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-11_gazpacho.jpg',
@@ -238,7 +260,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'green',
         dayAvail: '1'
-    },
+    }
+const course31 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-13_green-spagetthi-salad.jpg',
@@ -246,7 +269,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'green',
         dayAvail: '2'
-    },
+    }
+const course32 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-9_esqueixada-bacalla.jpg',
@@ -254,7 +278,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'fish',
         dayAvail: '4'
-    },
+    }
+const course33 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-6_ensaladilla-rusa.jpg',
@@ -262,7 +287,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'green',
         dayAvail: '5'
-    },
+    }
+const course34 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-10_faves-ofegades-menta.jpg',
@@ -270,7 +296,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'green',
         dayAvail: '1'
-    },
+    }
+const course35 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-5_eggplant-goatcheese.jpg',
@@ -278,7 +305,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'green',
         dayAvail: '2'
-    },
+    }
+const course36 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-8_esparrecs-verds-al-forn.jpg',
@@ -286,7 +314,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'green',
         dayAvail: '5'
-    },
+    }
+const course37 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-4_carpaccio.jpg',
@@ -294,7 +323,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'meat',
         dayAvail: '4'
-    },
+    }
+const course38 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-3_canelons.jpg',
@@ -302,7 +332,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'meat',
         dayAvail: '4'
-    },
+    }
+const course39 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-7_escudella-carn-olla.jpg',
@@ -310,7 +341,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'hot',
         baseFood: 'pasta',
         dayAvail: '5'
-    },
+    }
+const course40 =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204552/1-1_basmati-salad.jpg',
@@ -318,7 +350,8 @@ const addAllCoursestoDB = (data) => {
         temp: 'cold',
         baseFood: 'rice',
         dayAvail: '1'
-    },
+    }
+const course =
     {
         category: 'firstCourse',
         image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204552/1-2_beetroot-salad.jpg',
@@ -327,4 +360,63 @@ const addAllCoursestoDB = (data) => {
         baseFood: 'green',
         dayAvail: '3'
     }
-])}
+
+
+mongoose.connect(DB_URL)
+.then(() => {
+    Promise.all([
+        Course.create(course1),
+        Course.create(course2),
+        Course.create(course3),
+        Course.create(course4),
+        Course.create(course5),
+        Course.create(course6),
+        Course.create(course7),
+        Course.create(course8),
+        Course.create(course9),
+        Course.create(course10),
+        Course.create(course11),
+        Course.create(course12),
+        Course.create(course13),
+        Course.create(course14),
+        Course.create(course15),
+        Course.create(course16),
+        Course.create(course17),
+        Course.create(course18),
+        Course.create(course19),
+        Course.create(course20),
+        Course.create(course21),
+        Course.create(course22),
+        Course.create(course23),
+        Course.create(course24),
+        Course.create(course25),
+        Course.create(course26),
+        Course.create(course27),
+        Course.create(course28),
+        Course.create(course29),
+        Course.create(course30),
+        Course.create(course31),
+        Course.create(course32),
+        Course.create(course33),
+        Course.create(course34),
+        Course.create(course35),
+        Course.create(course36),
+        Course.create(course37),
+        Course.create(course38),
+        Course.create(course39),
+        Course.create(course40),
+        Course.create(course41),
+        Course.create(course42),
+        Course.create(course43),
+        Course.create(course44),
+        Course.create(course45),
+        Course.create(course46),
+        Course.create(course47),
+        Course.create(course48),
+        Course.create(course49),
+        Course.create(course50) 
+    ])
+})
+
+
+
