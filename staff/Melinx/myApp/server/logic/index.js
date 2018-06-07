@@ -50,7 +50,7 @@ const logic = {
      * 
      * @returns {Promise<string>}
      */
-    authenticateUser(email, password) {
+    authenticateEater(email, password) {
         return Promise.resolve()
             .then(() => {
                 if (typeof email !== 'string') throw Error('eater email is not a string')
@@ -76,7 +76,7 @@ const logic = {
      * 
      * @returns {Promise<Eater>} 
      */
-    retrieveEater(id) {
+    retrieveEater(eaterId) {
         return Promise.resolve()
             .then(() => {
                 if (typeof id !== 'string') throw Error('eater id is not a string')
