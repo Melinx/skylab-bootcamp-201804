@@ -1,4 +1,3 @@
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const logic = require('logic')
@@ -26,6 +25,7 @@ router.post('/eaters', jsonBodyParser, (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
+//SUTCK with 400 error when authenticating eater
 
 router.post('/auth', jsonBodyParser, (req, res) => {
     const { body: { email, password } } = req
@@ -55,7 +55,49 @@ router.get('/eaters/:eaterId', jwtValidator, (req, res) => {
             res.status(400)
             res.json({ status: 'KO', error: message })
         })
+})
 
+
+router.patch('/eaters/:eaterId', [jwtValidator, jsonBodyParser], (req, res) => {
+    const { params: { eaterId }, body: { name, lastName, email, password, newEmail, newPassword } } = req
+
+    logic.updateUser(eaterId, name, lastName, email, password, newEmail, newPassword)
+        .then(() => {
+            res.status(200)
+            res.json({ status: 'OK' })
+        })
+        .catch(({ message }) => {
+            res.status(400)
+            res.json({ status: 'KO', error: message })
+        })
+})
+
+router.delete('/eaters/:eaterId', [jwtValidator, jsonBodyParser], (req, res) => {
+    const { params: { eaterId }, body: { email, password } } = req
+
+    logic.unregisterUser(eaterId, email, password)
+        .then(() => {
+            res.status(200)
+            res.json({ status: 'OK' })
+        })
+        .catch(({ message }) => {
+            res.status(400)
+            res.json({ status: 'KO', error: message })
+        })
+})
+
+
+router.get('/courses', (req, res) => {
+
+    logic.listCoursesByDay()
+        .then(courses => {
+            res.status(200)
+            res.json({ status: 'OK', data: { courses } })
+        })
+        .catch(({ message }) => {
+            res.status(400)
+            res.json({ status: 'KO', error: message })
+        })
 })
 
 module.exports = router
