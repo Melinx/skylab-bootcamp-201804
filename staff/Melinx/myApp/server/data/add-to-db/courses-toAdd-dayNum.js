@@ -11,12 +11,14 @@ const course1 = { category: 'secondCourse', image: 'https://res.cloudinary.com/e
 const course2 = { category: 'secondCourse', image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-19_trinxat.jpg', dishName: 'Trinxat', temp: 'hot', baseFood: 'green', dayAvail: '3' }
 const course3 =
     {
-        category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-19_trinxat.jpg',
-        dishName: 'Trinxat',
-        temp: 'hot',
+
+        category: 'firstCourse',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204552/1-2_beetroot-salad.jpg',
+        dishName: 'Beetroot salad',
+        temp: 'cold',
         baseFood: 'green',
         dayAvail: '3'
+
     }
 const course4 =
     {
@@ -25,7 +27,7 @@ const course4 =
         dishName: 'Paella',
         temp: 'hot',
         baseFood: 'rice',
-        dayAvail: '5'
+        dayAvail: '4'
     }
 const course5 =
     {
@@ -351,72 +353,53 @@ const course40 =
         baseFood: 'rice',
         dayAvail: '1'
     }
-const course =
-    {
-        category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204552/1-2_beetroot-salad.jpg',
-        dishName: 'Beetroot salad',
-        temp: 'cold',
-        baseFood: 'green',
-        dayAvail: '3'
-    }
 
 
 mongoose.connect(DB_URL)
-.then(() => {
-    Promise.all([
-        Course.create(course1),
-        Course.create(course2),
-        Course.create(course3),
-        Course.create(course4),
-        Course.create(course5),
-        Course.create(course6),
-        Course.create(course7),
-        Course.create(course8),
-        Course.create(course9),
-        Course.create(course10),
-        Course.create(course11),
-        Course.create(course12),
-        Course.create(course13),
-        Course.create(course14),
-        Course.create(course15),
-        Course.create(course16),
-        Course.create(course17),
-        Course.create(course18),
-        Course.create(course19),
-        Course.create(course20),
-        Course.create(course21),
-        Course.create(course22),
-        Course.create(course23),
-        Course.create(course24),
-        Course.create(course25),
-        Course.create(course26),
-        Course.create(course27),
-        Course.create(course28),
-        Course.create(course29),
-        Course.create(course30),
-        Course.create(course31),
-        Course.create(course32),
-        Course.create(course33),
-        Course.create(course34),
-        Course.create(course35),
-        Course.create(course36),
-        Course.create(course37),
-        Course.create(course38),
-        Course.create(course39),
-        Course.create(course40),
-        Course.create(course41),
-        Course.create(course42),
-        Course.create(course43),
-        Course.create(course44),
-        Course.create(course45),
-        Course.create(course46),
-        Course.create(course47),
-        Course.create(course48),
-        Course.create(course49),
-        Course.create(course50) 
-    ])
-})
+    .then(() => {
+        Promise.all([
+            Course.create(course1),
+            Course.create(course2),
+            Course.create(course3),
+            Course.create(course4),
+            Course.create(course5),
+            Course.create(course6),
+            Course.create(course7),
+            Course.create(course8),
+            Course.create(course9),
+            Course.create(course10),
+            Course.create(course11),
+            Course.create(course12),
+            Course.create(course13),
+            Course.create(course14),
+            Course.create(course15),
+            Course.create(course16),
+            Course.create(course17),
+            Course.create(course18),
+            Course.create(course19),
+            Course.create(course20),
+            Course.create(course21),
+            Course.create(course22),
+            Course.create(course23),
+            Course.create(course24),
+            Course.create(course25),
+            Course.create(course26),
+            Course.create(course27),
+            Course.create(course28),
+            Course.create(course29),
+            Course.create(course30),
+            Course.create(course31),
+            Course.create(course32),
+            Course.create(course33),
+            Course.create(course34),
+            Course.create(course35),
+            Course.create(course36),
+            Course.create(course37),
+            Course.create(course38),
+            Course.create(course39),
+            Course.create(course40)
+        ])
+    })
 
 
 
