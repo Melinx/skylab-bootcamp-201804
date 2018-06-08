@@ -2,12 +2,17 @@
 
 require('dotenv').config()
 
-const { mongoose, models: { Eater, Order, Course, Payment } } = require('data')
+const { mongoose, models: { Eater, Course, Order, Payment } } = require('data')
+const logic = require('logic')
 const { expect } = require('chai')
-const logic = require('.')
-// const _ = require('lodash')
+const eatersApi = require('.')
+const sinon = require('sinon')
+const axios = require('axios')
+const jwt = require('jsonwebtoken')
 
-const { env: { DB_URL } } = process
+const { env: { DB_URL, API_URL, TOKEN_SECRET } } = process
+
+eatersApi.url = API_URL
 
 describe('logic (myApp)', () => {
     const eaterData = { name: 'John', lastName: 'Doe', email: 'jd@mail.com', password: '123' }
@@ -386,6 +391,7 @@ describe('logic (myApp)', () => {
 
             logic.listCoursesByDay()
                 .then(course => {
+                    
         
                     return course
                 })
