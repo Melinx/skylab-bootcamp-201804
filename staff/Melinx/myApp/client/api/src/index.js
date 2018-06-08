@@ -3,7 +3,7 @@
 const axios = require('axios')
 
 const eatersApi = {
-    url: 'NO-URL',
+    url: 'http://localhost:4000/api',
 
     token: 'NO-TOKEN',
     
