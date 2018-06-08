@@ -3,6 +3,7 @@
 require('dotenv').config()
 
 const { mongoose, models: { Eater, Course, Order, Payment } } = require('data')
+const logic = require('logic')
 const { expect } = require('chai')
 const eatersApi = require('.')
 const sinon = require('sinon')

@@ -32,8 +32,8 @@ const logic = {
                 if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank')
 
                 return Eater.findOne({ email })
-                    .then((email) => {
-                        if (email) throw Error(`Eater with email ${email} already exists`)
+                    .then((res) => {
+                        if (res) throw Error(`Eater with email ${email} already exists`)
 
                         return Eater.create({ name, lastName, email, password })
                             .then(() => true)
@@ -66,7 +66,7 @@ const logic = {
             .then(eater => {
                 if (!eater) throw Error('wrong credentials')
 
-                return eater.id
+                return eater._id
             })
     },
 
@@ -137,8 +137,8 @@ const logic = {
 
                 if (newEmail) {
                     return Eater.findOne({ email: newEmail })
-                        .then(_user => {
-                            if (_user && _user.id !== id) throw Error(`eater with email ${newEmail} already exists`)
+                        .then(eater => {
+                            if (_eater && _eater.id !== id) throw Error(`eater with email ${newEmail} already exists`)
 
                             return eater
                         })
