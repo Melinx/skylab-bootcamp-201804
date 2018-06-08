@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "react": "^16.4.0"
+    "notes-api": "file:../api",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-router-dom": "^4.3.1",
+    "sweetalert2": "^7.22.0"
   }
 }

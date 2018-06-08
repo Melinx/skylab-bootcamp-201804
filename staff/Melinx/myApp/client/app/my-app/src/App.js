@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Register, Login, Landing, Account } from './components'
-import { Link, Route, withRouter } from 'react-router-dom'
 import logic from './logic'
 
 class App extends Component {
