@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
-import Header from '../src/components/Header'
-import Main from '../src/components/Main'
+import Header from '../src/components/header/Header'
+import Main from '../src/components/main/Main'
+import Footer from '../src/components/footer'
 
-//import Main from '../src/components/Main'
-//import Footer from '../src/components/Footer'
 import { HashRouter } from 'react-router-dom'
 
 class App extends Component {
@@ -15,6 +13,7 @@ class App extends Component {
         <div className="App">
           <Header />
           <Main />
+          <Footer />
         </div>
       </HashRouter>
     );

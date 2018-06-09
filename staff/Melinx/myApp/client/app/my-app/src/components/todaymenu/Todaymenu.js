@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import api from 'api'
-
+// import M from "materialize-css/dist/js/materialize.min.js";
+// import "materialize-css/dist/css/materialize.min.css";
 import './index.css'
 
 class Todaymenu extends Component {
@@ -11,6 +12,11 @@ class Todaymenu extends Component {
             courses: []
         }
     }
+
+    // componentDidMount() {
+    //     const sideNav = document.querySelector('.sidenav')
+    //     M.Sidenav.init(sideNav, {})
+    // }
 
     componentWillMount() {
         api.listCoursesByDay()
@@ -33,7 +39,7 @@ class Todaymenu extends Component {
                                     return (
                                         <div className="col s12 m3">
                                             <h6>{course.dishName}</h6>
-                                            <img src={course.image} className='materialboxed responsive-img' width="650" alt="" />
+                                            <img src={course.image} className=' materialboxed responsive-img' alt="" />
                                         </div>
                                     )
                                 }) : undefined}
