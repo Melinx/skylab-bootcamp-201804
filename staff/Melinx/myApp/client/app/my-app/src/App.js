@@ -7,6 +7,8 @@ import Footer from '../src/components/footer'
 import { HashRouter } from 'react-router-dom'
 
 class App extends Component {
+
+  
   render() {
     return (
       <HashRouter>

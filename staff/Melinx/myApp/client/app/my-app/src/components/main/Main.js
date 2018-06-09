@@ -6,11 +6,35 @@ import Follow from '../follow/Follow'
 // import Slider from '../slider'
 
 class Main extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            firstCourse: '',
+            secondCourse: ''
+        }
+    }
+
+    addCourse = (category, courseId) => {
+        this.setState({
+            [category]: courseId
+        })
+    }
+
+
     render() {
+        const { firstCourse, secondCourse } = this.state
+
         return (
             <div>
-            <Todaymenu />
-            <Follow />
+                <Todaymenu
+                    addCourse={this.addCourse}
+                    firstCourse={firstCourse}
+                    secondCourse={secondCourse}
+                />
+
+                <Follow />
             </div>
         );
     }

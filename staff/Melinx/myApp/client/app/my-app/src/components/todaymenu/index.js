@@ -1,60 +1,73 @@
 import React, { Component } from 'react'
 import api from 'api'
-// import M from "materialize-css/dist/js/materialize.min.js";
-// import "materialize-css/dist/css/materialize.min.css";
+import CourseCard from './CourseCard'
 import './index.css'
+
 
 class Todaymenu extends Component {
 
     constructor() {
         super()
         this.state = {
-            courses: []
+            firstCourses: [],
+            secondCourses: [],
+          
         }
     }
 
-    // componentDidMount() {
-    //     const sideNav = document.querySelector('.sidenav')
-    //     M.Sidenav.init(sideNav, {})
-    // }
-
     componentDidMount() {
-        // api.listCoursesByDay()
-        //     .then(({ courses }) => this.setState({ courses }))
+
+        api.listCoursesByDay()
+            .then(({ courses }) => this.setState({ firstCourses: courses }))
+
         api.listCoursesByDay(true)
-            .then(({ courses }) => this.setState({ courses }))
+            .then(({ courses }) => this.setState({ secondCourses: courses }))
+
     }
 
+    // selectCourse = (category, courseId) => {
+    //     this.props.addCourse(category,courseId)
+
+    // }
 
     render() {
+        const { firstCourses, secondCourses } = this.state
+        const { firstCourse, secondCourse } = this.props
+
         return (
             <section id="todaymenu" className="section section-popular scrollspy">
                 <div className="sectiontitle">
                     <h4 className="center">On the Menu
-        <span className="pink-text"> Today</span>
+            <span className="pink-text"> Today</span>
                         <hr />
                     </h4>
 
                     <div className="container">
-                        <p>PRIMEROS</p>
-                        <div className="row s12 m4">
-                            <div className="row">
-                                {this.state.courses.length > 0 ? this.state.courses.map(course => {
-                                    return (
-                                        <div className="col s12 m3">
-                                            <h6>{course.dishName}</h6>
-                                            <img src={course.image} className=' materialboxed responsive-img' alt="" />
-                                        </div>
-                                    )
-                                }) : undefined}
-                            </div>
-                        </div>
+                        <CourseCard
+                          title='FIRSTS'
+                          items={firstCourses}
+                          onClick={this.props.addCourse}
+                          params='firstCourse'
+                          selected={firstCourse}
+                        />   
+
+                        <CourseCard
+                          title='SECONDS'
+                          items={secondCourses}
+                          onClick={this.props.addCourse}
+                          params='secondCourse'
+                          selected={secondCourse}
+                        />       
+
+                     
                     </div>
 
                 </div>
                 <div className="center-btn">
-                    <a className="waves-effect waves-light pink btn-large">Order now</a>
-                </div>
+                    <a className="z-depth-2 waves-effect waves-light pink btn-large">Order now</a>
+                    <br/>
+                    <br/>
+                    </div>
 
             </section>
         );
