@@ -87,9 +87,10 @@ router.delete('/eaters/:eaterId', [jwtValidator, jsonBodyParser], (req, res) => 
 })
 
 
-router.get('/courses', (req, res) => {
+router.get('/courses/:first', (req, res) => {
+    const { params: { first }} = req
 
-    logic.listCoursesByDay()
+    logic.listCoursesByDay(first)
         .then(courses => {
             res.status(200)
             res.json({ status: 'OK', data: { courses } })

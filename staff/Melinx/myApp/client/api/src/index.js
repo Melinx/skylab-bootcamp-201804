@@ -238,13 +238,13 @@ const eatersApi = {
      * @returns {Promise<string>}
      */
 
-    listCoursesByDay() {
+    listCoursesByDay(first = false) {
         return Promise.resolve()
             .then(() => {
                 const today = new Date()
                 let currentDay = today.getDay()
 
-                return axios.get(`${this.url}/courses/`)
+                return axios.get(`${this.url}/courses/${first}`)
                 .then(({ status, data }) => {
                     if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
 

@@ -18,10 +18,13 @@ class Todaymenu extends Component {
     //     M.Sidenav.init(sideNav, {})
     // }
 
-    componentWillMount() {
-        api.listCoursesByDay()
+    componentDidMount() {
+        // api.listCoursesByDay()
+        //     .then(({ courses }) => this.setState({ courses }))
+        api.listCoursesByDay(true)
             .then(({ courses }) => this.setState({ courses }))
     }
+
 
     render() {
         return (
@@ -33,6 +36,7 @@ class Todaymenu extends Component {
                     </h4>
 
                     <div className="container">
+                        <p>PRIMEROS</p>
                         <div className="row s12 m4">
                             <div className="row">
                                 {this.state.courses.length > 0 ? this.state.courses.map(course => {

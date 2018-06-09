@@ -201,19 +201,37 @@ const logic = {
      * @returns {Promise<string>}
      */
 
-    listCoursesByDay() {
+    listCoursesByDay(first = false) {
         return Promise.resolve()
             .then(() => {
                 const today = new Date()
-                let currentDay = today.getDay()
+                let dayAvail = today.getDay()
+                let category = !first ? 'firstCourse' : 'secondCourse';
 
-                return Course.find({ dayAvail: currentDay })
+                return Course.find({ category, dayAvail })
                     .then((courses) => {
                         if (!courses) throw Error(`no courses were found on ${currentDay}`)
                         return courses
                     })
             })
     }
+
+
+    // listSecondCoursesByDay() {
+    //     return Promise.resolve()
+    //         .then(() => {
+    //             const today = new Date()
+    //             let currentDay = today.getDay()
+
+    //             return Course.find({ dayAvail: currentDay })
+    //                 .then((courses) => {
+    //                     if (!courses) throw Error(`no courses were found on ${currentDay}`)
+    //                     return courses
+    //                 })
+    //         })
+    // }
+
+
 }
 module.exports = logic
 
