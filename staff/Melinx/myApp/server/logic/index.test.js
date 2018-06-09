@@ -361,7 +361,7 @@ describe('logic (myApp)', () => {
         )
     })
 
-    describe('list all courses', () => {
+    true || describe('list all courses', () => {
         it('should succeed on correct data', () => {
 
             Promise.all([
@@ -370,29 +370,53 @@ describe('logic (myApp)', () => {
                     expect(res.length).to.equal(10)
 
                     for (let i in res) {
-                        console.log('holaaaaa q ase')
                         expect(res[i]._id).to.exist
-                        expect(res[i]._image).not.to.equal(res[i+1]._image)
+                        expect(res[i].image).not.to.equal(res[i + 1]._image)
                         expect(res[i].category['firstCourse']).to.equal('firstCourse')
-                        
+
                     }
                 })
         })
     })
 
-
-    describe('list course by current day', () => {
+   true ||  describe('list course by current day', () => {
         it('list course', () => {
 
             logic.listCoursesByDay()
                 .then(course => {
-        
+
                     return course
                 })
-                        
-            })
+
+        })
+    })
+
+    describe('retrieve course', () => {
+        it('should succeed on correct data', () =>
+            Course.create(firstCourse1)
+                .then(({ id }) => {
+                    return logic.retrieveCourse(id)
+                })
+                .then(course => {
+                    expect(firstCourse1._id).to.exist
+
+                    const { category, dishName, image, temp, baseFood, dayAvail } = course
+
+                    expect(firstCourse1.category).to.equal(category)
+                    expect(firstCourse1.dishName).to.equal(dishName)
+                    expect(firstCourse1.image).to.equal(image)
+                    expect(firstCourse1.temp).to.equal(temp)
+                    expect(firstCourse1.baseFood).to.equal(baseFood)
+                    expect(firstCourse1.dayAvail).to.equal(dayAvail)
+                })
+        )
+        
+        it('should fail on no course id', () =>
+            logic.retrieveCourse()
+                .catch(({ message }) => expect(message).to.equal('course id is not a string'))
+        )
     })
 
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
-
 })
+

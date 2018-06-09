@@ -31,7 +31,7 @@ router.post('/auth', jsonBodyParser, (req, res) => {
 
     logic.authenticateEater(email, password)
         .then(id => {
-            
+
             const token = jwt.sign({ id }, TOKEN_SECRET, { expiresIn: TOKEN_EXP })
 
             res.status(200)
@@ -88,7 +88,7 @@ router.delete('/eaters/:eaterId', [jwtValidator, jsonBodyParser], (req, res) => 
 
 
 router.get('/courses/:first', (req, res) => {
-    const { params: { first }} = req
+    const { params: { first } } = req
 
     logic.listCoursesByDay(first)
         .then(courses => {
@@ -100,5 +100,20 @@ router.get('/courses/:first', (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
+
+router.get('/courses/:id', (req, res) => {
+    const { params: { id } } = req
+
+    logic.retrieveCourse(id)
+        .then(course => {
+            res.status(200)
+            res.json({ status: 'OK', data: { course } })
+        })
+        .catch(({ message }) => {
+            res.status(400)
+            res.json({ status: 'KO', error: message })
+        })
+})
+
 
 module.exports = router

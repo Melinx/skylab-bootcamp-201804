@@ -196,9 +196,13 @@ const logic = {
     /**
      * DOCUM:
      * 
-     * Should list courses each day of the week; Monday through Friday. 
+     * Should list FIRST and SECOND courses separately, each day of the week. 
      * 
      * @returns {Promise<string>}
+     * 
+     * @param {first<boolean>}
+     * 
+     * @returns{Array} 
      */
 
     listCoursesByDay(first = false) {
@@ -206,7 +210,7 @@ const logic = {
             .then(() => {
                 const today = new Date()
                 let dayAvail = today.getDay()
-                let category = !first ? 'firstCourse' : 'secondCourse';
+                let category = first !== 'true' ? 'firstCourse' : 'secondCourse';
 
                 return Course.find({ category, dayAvail })
                     .then((courses) => {
@@ -214,23 +218,24 @@ const logic = {
                         return courses
                     })
             })
-    }
+    },
 
+    retrieveCourse (id) {
+        return Promise.resolve()
+        .then(() => {
+            if (typeof id !== 'string') throw Error('user id is not a string')
 
-    // listSecondCoursesByDay() {
-    //     return Promise.resolve()
-    //         .then(() => {
-    //             const today = new Date()
-    //             let currentDay = today.getDay()
+            if (!(id = id.trim()).length) throw Error('user id is empty or blank')
 
-    //             return Course.find({ dayAvail: currentDay })
-    //                 .then((courses) => {
-    //                     if (!courses) throw Error(`no courses were found on ${currentDay}`)
-    //                     return courses
-    //                 })
-    //         })
-    // }
+            return Course.findById(id).select({ _id: 0, category: 1, dishName: 1, image: 1})
+        })
+        .then(course => {
+            if (!course) throw Error(`no user found with id ${id}`)
 
+            return course
+        })
+
+    },
 
 }
 module.exports = logic
