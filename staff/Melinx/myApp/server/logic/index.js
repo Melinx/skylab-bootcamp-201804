@@ -76,7 +76,7 @@ const logic = {
      * 
      * @returns {Promise<Eater>} 
      */
-    retrieveEater(eaterId) {
+    retrieveEater(id) {
         return Promise.resolve()
             .then(() => {
                 if (typeof id !== 'string') throw Error('eater id is not a string')
@@ -137,8 +137,8 @@ const logic = {
 
                 if (newEmail) {
                     return Eater.findOne({ email: newEmail })
-                        .then(eater => {
-                            if (_eater && _eater.id !== id) throw Error(`eater with email ${newEmail} already exists`)
+                        .then(_user => {
+                            if (_user && _user.id !== id) throw Error(`eater with email ${newEmail} already exists`)
 
                             return eater
                         })
@@ -220,22 +220,90 @@ const logic = {
             })
     },
 
-    retrieveCourse (id) {
+
+    createCourse(category, image, dishName, temp, baseFood, dayAvail) {
         return Promise.resolve()
-        .then(() => {
-            if (typeof id !== 'string') throw Error('user id is not a string')
+            .then(() => {
+                if (typeof category !== 'string') throw Error('course category is not a string')
 
-            if (!(id = id.trim()).length) throw Error('user id is empty or blank')
+                if (!(category = category.trim()).length) throw Error('course category is empty or blank')
 
-            return Course.findById(id).select({ _id: 0, category: 1, dishName: 1, image: 1})
-        })
-        .then(course => {
-            if (!course) throw Error(`no user found with id ${id}`)
+                if (typeof image !== 'string') throw Error('course image is not a string')
 
-            return course
-        })
+                if (!(image = image.trim()).length) throw Error('course image is empty or blank')
+
+                if (typeof dishName !== 'string') throw Error('course dishName is not a string')
+
+                if (!(dishName = dishName.trim()).length) throw Error('course dishName is empty or blank')
+
+                if (typeof temp !== 'string') throw Error('course temp is not a string')
+
+                if (!(temp = temp.trim()).length) throw Error('course temp is empty or blank')
+
+                if (typeof baseFood !== 'string') throw Error('course baseFood is not a string')
+
+                if (!(baseFood = baseFood.trim()).length) throw Error('course baseFood is empty or blank')
+
+                if (typeof dayAvail !== 'string') throw Error('course dayAvail is not a string')
+
+                if (!(dayAvail = dayAvail.trim()).length) throw Error('course dayAvail is empty or blank')
+
+                return Course.findOne({ dishName })
+                    .then((res) => {
+                        if (res) throw Error(`Course with dishName ${dishName} already exists`)
+
+                        return Course.create({ category, image, dishName, temp, baseFood, dayAvail })
+                            .then(() => true)
+                    })
+            })
+         
 
     },
+
+    // FUNC retrieveCourse allows first and second course selection before proceeding w creating order 
+    retrieveCourse(id) {
+        return Promise.resolve()
+            .then(() => {
+                if (typeof id !== 'string') throw Error('course id is not a string')
+
+                if (!(id = id.trim()).length) throw Error('course id is empty or blank')
+
+                return Course.findById(id).select({ _id: 0, category: 1, dishName: 1, image: 1, temp: 1, baseFood: 1, dayAvail: 1 })
+            })
+            .then(course => {
+                if (!course) throw Error(`no eater found with id ${id}`)
+
+                return course
+            })
+    },
+
+    //property of order meals is an array containing two objects so maybe first group them?
+    // packCourses(firstCourse, secondCourse){
+    //     return Promise.resolve() 
+    //     .then( () => return true )
+    // }
+
+    createOrder(eaterId, date, meals, pickupDate, status = 'processing') {
+        return Promise.resolve()
+            .then(() => {
+                if (typeof id !== 'string') throw Error('eater id is not a string')
+                if (!(id = id.trim()).length) throw Error('eater id is empty or blank')
+                // TODO rest of validations
+
+                return Eater.findById({ eaterId })
+                    .then((res) => {
+                        // if (res) throw Error(`Eater with email ${email} already exists`)
+                        Eater.create({ name, lastName, email, password })
+                            .then((eaterId) => {
+                                return Order.create((eaterId, date, { meals }, pickupDate, status = 'processing'))
+                                    .then((orderId) => {
+                                        if (res) throw Error(`Eater with email ${email} already exists`)
+                                    })
+                            })
+                    })
+
+            })
+    }
 
 }
 module.exports = logic

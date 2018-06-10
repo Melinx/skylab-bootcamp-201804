@@ -113,38 +113,38 @@ describe('logic (myApp)', () => {
         it('should succeed on correct data', () => {
             return Eater.create(eaterData)
                 .then(eater => {
-                    return logic.authenticateUser('jd@mail.com', '123')
+                    return logic.authenticateEater('jd@mail.com', '123')
                         .then(id => expect(id).to.exist)
                 })
         })
 
         it('should fail on no eater email', () =>
-            logic.authenticateUser()
+            logic.authenticateEater()
                 .catch(({ message }) => expect(message).to.equal('eater email is not a string'))
         )
 
         it('should fail on empty eater email', () =>
-            logic.authenticateUser('')
+            logic.authenticateEater('')
                 .catch(({ message }) => expect(message).to.equal('eater email is empty or blank'))
         )
 
         it('should fail on blank eater email', () =>
-            logic.authenticateUser('     ')
+            logic.authenticateEater('     ')
                 .catch(({ message }) => expect(message).to.equal('eater email is empty or blank'))
         )
 
         it('should fail on no eater password', () =>
-            logic.authenticateUser(eaterData.email)
+            logic.authenticateEater(eaterData.email)
                 .catch(({ message }) => expect(message).to.equal('eater password is not a string'))
         )
 
         it('should fail on empty eater password', () =>
-            logic.authenticateUser(eaterData.email, '')
+            logic.authenticateEater(eaterData.email, '')
                 .catch(({ message }) => expect(message).to.equal('eater password is empty or blank'))
         )
 
         it('should fail on blank eater password', () =>
-            logic.authenticateUser(eaterData.email, '     ')
+            logic.authenticateEater(eaterData.email, '     ')
                 .catch(({ message }) => expect(message).to.equal('eater password is empty or blank'))
         )
     })
@@ -361,60 +361,85 @@ describe('logic (myApp)', () => {
         )
     })
 
-    true || describe('list all courses', () => {
+    describe('list all courses', () => {
         it('should succeed on correct data', () => {
 
             Promise.all([
                 Course.create(firstCourse1), Course.create(secondCourse1), Course.create(firstCourse2), Course.create(secondCourse2), Course.create(firstCourse3), Course.create(secondCourse3), Course.create(firstCourse4), Course.create(secondCourse4), Course.create(firstCourse5), Course.create(secondCourse5)])
                 .then(res => {
                     expect(res.length).to.equal(10)
-
-                    for (let i in res) {
-                        expect(res[i]._id).to.exist
-                        expect(res[i].image).not.to.equal(res[i + 1]._image)
-                        expect(res[i].category['firstCourse']).to.equal('firstCourse')
-
-                    }
                 })
         })
+
+        it('should fail on no category', () =>
+            logic.retrieveCourse()
+                .catch(({ message }) => expect(message).to.equal('course id is not a string'))
+        )
+
+        it('should fail on empty category', () =>
+            logic.retrieveCourse('')
+                .catch(({ message }) => expect(message).to.equal('course id is empty or blank'))
+        )
     })
 
-   true ||  describe('list course by current day', () => {
-        it('list course', () => {
+    true || describe('add new course for admin', () => {
+        const firstCourse2 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '1' }
+        it('should succeed on correct data', () => {
+            Course.create(firstCourse2)
+                .then(() => {
+                    return logic.createCourse(firstCourse2)
+                }).then(firstCourse2 => {
+                    const { category, image, dishName, temp, baseFood, dayAvail } = firstCourse2
+                    expect(course._id).to.exist
 
-            logic.listCoursesByDay()
-                .then(course => {
-
-                    return course
+                    // expect(firstCourse2.category).to.equal(category)
+                    expect(firstCourse2.image).to.equal(image)
+                    expect(firstCourse2.dishName).to.equal(dishName)
+                    expect(firstCourse2.temp).to.equal(temp)
+                    expect(firstCourse2.temp).to.equal(temp)
+                    expect(firstCourse2.dayAvail).to.equal(dayAvail)
                 })
-
         })
+
+
+        // .catch((message) => expect(message).to.equal('category is empty or blank'))
     })
 
     describe('retrieve course', () => {
+        const firstCourse1 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '1' }
+
         it('should succeed on correct data', () =>
+
             Course.create(firstCourse1)
+
                 .then(({ id }) => {
+                    console.log('firstCourse1: ', firstCourse1);
+
                     return logic.retrieveCourse(id)
                 })
-                .then(course => {
-                    expect(firstCourse1._id).to.exist
+                .then(course1 => {
+                    expect(course1).to.exist
 
-                    const { category, dishName, image, temp, baseFood, dayAvail } = course
+                    const { category, image, dishName, temp, baseFood, dayAvail } = course1
 
                     expect(firstCourse1.category).to.equal(category)
-                    expect(firstCourse1.dishName).to.equal(dishName)
                     expect(firstCourse1.image).to.equal(image)
+                    expect(firstCourse1.dishName).to.equal(dishName)
                     expect(firstCourse1.temp).to.equal(temp)
-                    expect(firstCourse1.baseFood).to.equal(baseFood)
                     expect(firstCourse1.dayAvail).to.equal(dayAvail)
                 })
         )
-        
+
         it('should fail on no course id', () =>
             logic.retrieveCourse()
                 .catch(({ message }) => expect(message).to.equal('course id is not a string'))
         )
+
+        it('should fail on empty category', () =>
+            logic.retrieveCourse('')
+                .catch(({ message }) => expect(message).to.equal('course id is empty or blank'))
+        )
+
     })
 
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
