@@ -9,10 +9,25 @@ import { Route } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom'
 
 class App extends Component {
+  state = {
+    isLogged: false
+  }
 
   isLogged = () => {
     return localStorage.getItem("token-app") ? true : false
   }
+
+  _handleLogout = () => {
+    localStorage.removeItem("id-app")
+    localStorage.removeItem("token-app")
+    this.setState({ isLogged: false })
+  }
+
+  componentWillMount(){
+
+    this.isLogged() ? this.setState({isLogged:true}):  this.setState({isLogged:false})
+  }
+  
   componentDidMount() {
     this.isLogged 
   }
@@ -21,12 +36,11 @@ class App extends Component {
     return (
       <HashRouter>
         <div className="App">
-          <Header isLogged={this.isLogged()} />
-
+          <Header isLogged={this.state.isLogged} _handleLogout={this._handleLogout} />
           {!this.isLogged() ?
-            <Route path="/login" render={() => (
-              <Login />
-            )} /> : null}
+            <Route path="/login" render={(props) => <Login isLogged={this.isLogged}/>} />
+        
+            : null}
 
           <Route exact path="/" render={() => (
             <Main />

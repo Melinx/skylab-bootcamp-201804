@@ -1,20 +1,40 @@
-
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Login from '../login'
 // import Logout from './Logout'
 
 
-function _handleLogout() {
-  localStorage.removeItem("id-app")
-  localStorage.removeItem("token-app")
-}
 
-function Header(props) {
+
+class Header extends Component {
 
   // isLogged = () => {
   //   return localStorage.getItem("token-app") ? true : false
   // }
+
+  state = {
+    isLogged: false
+  }
+
+  isLogged = () => {
+    console.log('is logged')
+    return localStorage.getItem("token-app") ? true : false
+  }
+
+  componentDidMount(){
+    console.log('didmount')
+    this.isLogged() ? this.setState({isLogged:true}):  this.setState({isLogged:false})
+  }
+
+  _handleLogout = () => {
+   
+    localStorage.removeItem("id-app")
+    localStorage.removeItem("token-app")
+    this.setState({isLogged:false})
+  }
+
+
+  render(){
   return (
     <header>
       <div>
@@ -37,17 +57,14 @@ function Header(props) {
                     <a href="#todaymenu">On the Menu Today</a>
                   </li>
                   <li>
-                    <a href="#weekmenu">Plan your Week</a>
-                  </li>
-                  <li>
                     <a href="#contact">Contact</a>
                   </li>
 
-                  {(!props.isLogged) ?
+                  {!this.state.isLogged ?
                       <li> <Link href="#login" to="/login">Login</Link>
                       </li>
                       :
-                      <li><Link href="#" to="/home" onClick={_handleLogout}>Logout</Link></li>}
+                      <li><Link href="#" to="/" onClick={this._handleLogout}>Logout</Link></li>}
                 </ul>
               </div>
             </div>
@@ -64,15 +81,13 @@ function Header(props) {
             <a href="#todaymenu">On the Menu Today</a>
           </li>
           <li>
-            <a href="#weekmenu">Plan your Week</a>
-          </li>
-          <li>
             <a href="#contact">Contact</a>
           </li>
         </ul>
       </div>
     </header >
   )
+}
 }
 
 export default Header

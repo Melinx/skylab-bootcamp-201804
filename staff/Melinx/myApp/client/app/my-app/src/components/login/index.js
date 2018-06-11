@@ -20,6 +20,7 @@ class Login extends Component {
     }
 
     _handleLogin = e => {
+        
         e.preventDefault()
 
         logic.login(this.state.username, this.state.password)
@@ -33,6 +34,7 @@ class Login extends Component {
 
                     localStorage.setItem('id-app', res.data.id)
                     this.props.history.push('/home')
+                    
                     
                 // } else {
                 //     swal({
@@ -57,7 +59,7 @@ class Login extends Component {
                         <h5 id="title">Log You In</h5>
                         <form onSubmit={this._handleLogin}>
                             <div className="input-field" id="username">
-                                <input value={this.state.username} onChange={this._handleKeepName} type="text" className="validate" />
+                                <input value={this.state.username} onChange={this._handleKeepName} type="text" className="validate" autoFocus />
                                 <label htmlFor="email username">Email username</label>
                             </div>
                             <div className="input-field" id="password">
