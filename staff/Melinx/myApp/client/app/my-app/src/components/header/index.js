@@ -10,7 +10,7 @@ function _handleLogout() {
   localStorage.removeItem("token-app")
 }
 
-function Header() {
+function Header(props) {
 
   // isLogged = () => {
   //   return localStorage.getItem("token-app") ? true : false
@@ -32,15 +32,7 @@ function Header() {
                   <li>
                     <a href="#">Home</a>
                   </li>
-                  {/* {
-                    !this.isLogged ? */}
-                      <li> <Link href="#login" to="/login">Login</Link>
-                      </li>
-                      {/* :
-                      // this should appear in the lOGIN window: <li> <Link href="#account" to="/register">Register</Link></li>
-                      <li> <Link href="#account" to="/account">Logout</Link>
-                      </li>
-                  } */}
+                      
                   <li>
                     <a href="#todaymenu">On the Menu Today</a>
                   </li>
@@ -50,6 +42,12 @@ function Header() {
                   <li>
                     <a href="#contact">Contact</a>
                   </li>
+
+                  {(!props.isLogged) ?
+                      <li> <Link href="#login" to="/login">Login</Link>
+                      </li>
+                      :
+                      <li><Link href="#" to="/home" onClick={_handleLogout}>Logout</Link></li>}
                 </ul>
               </div>
             </div>

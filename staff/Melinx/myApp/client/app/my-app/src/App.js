@@ -13,24 +13,27 @@ class App extends Component {
   isLogged = () => {
     return localStorage.getItem("token-app") ? true : false
   }
+  componentDidMount() {
+    this.isLogged 
+  }
 
   render() {
     return (
       <HashRouter>
         <div className="App">
-          <Header />
+          <Header isLogged={this.isLogged()} />
 
-          {!this.isLogged() ? 
-          <Route path="/login" render={() => (
-            <Login/>
-          )} /> : null}
+          {!this.isLogged() ?
+            <Route path="/login" render={() => (
+              <Login />
+            )} /> : null}
 
           <Route exact path="/" render={() => (
             <Main />
           )} />
           <Footer />
 
-          
+
         </div>
       </HashRouter>
     );

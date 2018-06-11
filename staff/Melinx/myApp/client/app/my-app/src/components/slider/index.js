@@ -2,7 +2,6 @@ import React from 'react'
 
 function Slider() {
 
-
     return (
         <section className="slider">
             <ul className="slides">
@@ -50,6 +49,5 @@ function Slider() {
         </section>
     );
 }
-
 
 export default Slider
