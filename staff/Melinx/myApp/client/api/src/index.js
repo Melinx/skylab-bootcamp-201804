@@ -74,9 +74,6 @@ const eatersApi = {
 
                 if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank')
 
-                return Eater.findOne({ email, password })
-
-
                 return axios.post(`${this.url}/auth`, { email, password })
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
@@ -85,7 +82,7 @@ const eatersApi = {
 
                         this.token = token
 
-                        return id
+                        return data
                     })
                     .catch(err => {
                         if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
@@ -233,7 +230,7 @@ const eatersApi = {
     /**
      * DOCUM:
      * 
-     * Should list courses each day of the week; Monday through Friday. 
+     * Should list courses each day of the week. 
      * 
      * @returns {Promise<string>}
      */

@@ -105,7 +105,6 @@ describe('models (myApp)', () => {
             
                         })
                 })
-
         })
     })
 

@@ -13,9 +13,9 @@ const logic = {
 
     login(email, password) {
         return eatersApi.authenticateEater(email, password)
-            .then(id => {
-                this.eaterId = id
-                return true
+            .then(data => {
+                this.eaterId = data.id
+                return data
             })
     },
 

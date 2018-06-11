@@ -382,17 +382,15 @@ describe('logic (myApp)', () => {
         )
     })
 
-    true || describe('add new course for admin', () => {
+     describe('add new course for admin', () => {
         const firstCourse2 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '1' }
         it('should succeed on correct data', () => {
             Course.create(firstCourse2)
-                .then(() => {
-                    return logic.createCourse(firstCourse2)
-                }).then(firstCourse2 => {
+                .then(firstCourse2 => {
                     const { category, image, dishName, temp, baseFood, dayAvail } = firstCourse2
-                    expect(course._id).to.exist
+                    expect(firstCourse2._id).to.exist
 
-                    // expect(firstCourse2.category).to.equal(category)
+                    expect(firstCourse2.category).to.equal(category)
                     expect(firstCourse2.image).to.equal(image)
                     expect(firstCourse2.dishName).to.equal(dishName)
                     expect(firstCourse2.temp).to.equal(temp)
@@ -422,7 +420,7 @@ describe('logic (myApp)', () => {
 
                     const { category, image, dishName, temp, baseFood, dayAvail } = course1
 
-                    expect(firstCourse1.category).to.equal(category)
+                    expect(category).to.equal(firstCourse1.category)
                     expect(firstCourse1.image).to.equal(image)
                     expect(firstCourse1.dishName).to.equal(dishName)
                     expect(firstCourse1.temp).to.equal(temp)

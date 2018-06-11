@@ -11,7 +11,6 @@ class Todaymenu extends Component {
         this.state = {
             firstCourses: [],
             secondCourses: [],
-          
         }
     }
 
@@ -27,7 +26,6 @@ class Todaymenu extends Component {
 
     // selectCourse = (category, courseId) => {
     //     this.props.addCourse(category,courseId)
-
     // }
 
     render() {
@@ -58,12 +56,17 @@ class Todaymenu extends Component {
                           params='secondCourse'
                           selected={secondCourse}
                         />       
-
-                     
                     </div>
 
                 </div>
+                {/* TODO: function printSelectedCourses() 
+                <section className="list-menu-pop">
+                {firstCourses.length>0 ? return  }
+            </section> */}
+                    
+
                 <div className="center-btn">
+
                     <a className="z-depth-2 waves-effect waves-light pink btn-large">Order now</a>
                     <br/>
                     <br/>

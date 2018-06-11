@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react'
 import Todaymenu from '../todaymenu'
-import Follow from '../follow/Follow'
+import Follow from '../follow'
+
 
 // import Slider from '../slider'
 
@@ -12,7 +13,8 @@ class Main extends Component {
 
         this.state = {
             firstCourse: '',
-            secondCourse: ''
+            secondCourse: '',
+            
         }
     }
 

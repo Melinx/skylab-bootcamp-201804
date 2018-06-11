@@ -78,7 +78,7 @@ const logic = {
      */
     retrieveEater(id) {
         return Promise.resolve()
-            .then(() => {
+            .then(() => {               
                 if (typeof id !== 'string') throw Error('eater id is not a string')
 
                 if (!(id = id.trim()).length) throw Error('eater id is empty or blank')

@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import Header from '../src/components/header/Header'
-import Main from '../src/components/main/Main'
+// import logo from './logo.svg';
+import Header from '../src/components/header'
+import Main from '../src/components/main'
 import Footer from '../src/components/footer'
+import Login from '../src/components/login'
+import { Route } from 'react-router-dom';
 
 import { HashRouter } from 'react-router-dom'
 
 class App extends Component {
 
-  
+  isLogged = () => {
+    return localStorage.getItem("token-app") ? true : false
+  }
+
   render() {
     return (
       <HashRouter>
         <div className="App">
           <Header />
-          <Main />
+
+          {!this.isLogged() ? 
+          <Route path="/login" render={() => (
+            <Login/>
+          )} /> : null}
+
+          <Route exact path="/" render={() => (
+            <Main />
+          )} />
           <Footer />
+
+          
         </div>
       </HashRouter>
     );
