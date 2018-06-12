@@ -5,8 +5,16 @@ const axios = require('axios')
 const eatersApi = {
     url: 'NO-URL',
 
-    token: 'NO-TOKEN',
-    
+    // token: 'NO-TOKEN',
+
+    token(token) {
+        if (token) {
+            this._token = this.token
+            return
+        }
+        return this._token
+    },
+
     /**
      * @param {string} name
      * @param {string} lastName
@@ -80,9 +88,9 @@ const eatersApi = {
 
                         const { data: { id, token } } = data
 
-                        this.token = token
+                        this.token(token)
 
-                        return data
+                        return id
                     })
                     .catch(err => {
                         if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
@@ -112,7 +120,7 @@ const eatersApi = {
 
                 //     return Eater.findById(id).select({ _id: 0, name: 1, lastName: 1, email: 1 })
                 // 
-                return axios.get(`${this.url}/eaters/${id}`, { headers: { authorization: `Bearer ${this.token}` } })
+                return axios.get(`${this.url}/eaters/${id}`, { headers: { authorization: `Bearer ${this.token()}` } })
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
 
@@ -166,7 +174,7 @@ const eatersApi = {
 
                 if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank')
 
-                return axios.patch(`${this.url}/eaters/${id}`, { name, lastName, email, password, newEmail, newPassword }, { headers: { authorization: `Bearer ${this.token}` } })
+                return axios.patch(`${this.url}/eaters/${id}`, { name, lastName, email, password, newEmail, newPassword }, { headers: { authorization: `Bearer ${this.token()}` } })
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
 
@@ -182,7 +190,7 @@ const eatersApi = {
                         } else throw err
                     })
             })
-            
+
     },
 
     /**
@@ -209,7 +217,7 @@ const eatersApi = {
 
                 if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank')
 
-                return axios.delete(`${this.url}/eaters/${id}`, { headers: { authorization: `Bearer ${this.token}` }, data: { email, password } })
+                return axios.delete(`${this.url}/eaters/${id}`, { headers: { authorization: `Bearer ${this.token()}` }, data: { email, password } })
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
 
@@ -224,7 +232,7 @@ const eatersApi = {
                             throw Error(message)
                         } else throw err
                     })
-                })
+            })
     },
 
     /**
@@ -242,20 +250,20 @@ const eatersApi = {
                 let currentDay = today.getDay()
 
                 return axios.get(`${this.url}/courses/${first}`)
-                .then(({ status, data }) => {
-                    if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
-                    return data.data
-                })
-                .catch(err => {
-                    if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
+                    .then(({ status, data }) => {
+                        if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
+                        return data.data
+                    })
+                    .catch(err => {
+                        if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
 
-                    if (err.response) {
-                        const { response: { data: { error: message } } } = err
+                        if (err.response) {
+                            const { response: { data: { error: message } } } = err
 
-                        throw Error(message)
-                    } else throw err
-                })
-                
+                            throw Error(message)
+                        } else throw err
+                    })
+
                 // Course.find({ dayAvail: currentDay })
                 //     .then((courses) => {
                 //         if (!courses) throw Error(`no courses were found on ${currentDay}`)

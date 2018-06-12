@@ -5,7 +5,16 @@ var axios = require('axios');
 var eatersApi = {
     url: 'NO-URL',
 
-    token: 'NO-TOKEN',
+    // token: 'NO-TOKEN',
+
+    token: function token(_token) {
+        if (_token) {
+            this._token = this.token;
+            return;
+        }
+        return this._token;
+    },
+
 
     /**
      * @param {string} name
@@ -88,9 +97,9 @@ var eatersApi = {
                     token = _data$data.token;
 
 
-                _this2.token = token;
+                _this2.token(token);
 
-                return data;
+                return id;
             }).catch(function (err) {
                 if (err.code === 'ECONNREFUSED') throw Error('could not reach server');
 
@@ -122,7 +131,7 @@ var eatersApi = {
 
             //     return Eater.findById(id).select({ _id: 0, name: 1, lastName: 1, email: 1 })
             // 
-            return axios.get(_this3.url + '/eaters/' + id, { headers: { authorization: 'Bearer ' + _this3.token } }).then(function (_ref3) {
+            return axios.get(_this3.url + '/eaters/' + id, { headers: { authorization: 'Bearer ' + _this3.token() } }).then(function (_ref3) {
                 var status = _ref3.status,
                     data = _ref3.data;
 
@@ -180,7 +189,7 @@ var eatersApi = {
 
             if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank');
 
-            return axios.patch(_this4.url + '/eaters/' + id, { name: name, lastName: lastName, email: email, password: password, newEmail: newEmail, newPassword: newPassword }, { headers: { authorization: 'Bearer ' + _this4.token } }).then(function (_ref4) {
+            return axios.patch(_this4.url + '/eaters/' + id, { name: name, lastName: lastName, email: email, password: password, newEmail: newEmail, newPassword: newPassword }, { headers: { authorization: 'Bearer ' + _this4.token() } }).then(function (_ref4) {
                 var status = _ref4.status,
                     data = _ref4.data;
 
@@ -226,7 +235,7 @@ var eatersApi = {
 
             if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank');
 
-            return axios.delete(_this5.url + '/eaters/' + id, { headers: { authorization: 'Bearer ' + _this5.token }, data: { email: email, password: password } }).then(function (_ref5) {
+            return axios.delete(_this5.url + '/eaters/' + id, { headers: { authorization: 'Bearer ' + _this5.token() }, data: { email: email, password: password } }).then(function (_ref5) {
                 var status = _ref5.status,
                     data = _ref5.data;
 
