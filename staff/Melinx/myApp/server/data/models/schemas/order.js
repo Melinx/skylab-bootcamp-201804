@@ -6,15 +6,20 @@ module.exports = new Schema({
 
     eaterId: {
         type: ObjectId,
-        ref: 'Eater'
+        ref: 'Eater',
+        required: true
     },
 
-    date: { type: Date, default: Date.now },
+    date: { 
+        type: Date, 
+        default: Date.now,
+        required: true
+    },
 
     firstCourse: {
         type: ObjectId,
         ref: 'Course',
-        required: true,
+        required: true
     },
 
     secondCourse: {

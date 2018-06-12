@@ -277,36 +277,43 @@ const logic = {
             })
     },
 
-    //property of order meals is an array containing two objects so maybe first group them?
-    // packCourses(firstCourse, secondCourse){
-    //     return Promise.resolve() 
-    //     .then( () => return true )
-    // }
+ 
 
     /**
      * 
+     * Each order must contain only 1 first course and 1 second course. 
+     * Not an option to do only one course or two of the same category, it must be a first and a second.
+     * 
      * @param {string} eaterId 
-     * @param {string} mealId1 
-     * @param {string} mealId2 
-     * @param {Date} pickupDate 
+     * @param {date = Date.now()} date - it works as a timestamp to know if order was placed on time (by 11am)
+     * @param {string} firstCourseId 
+     * @param {string} secondCourseId 
+     * @param {Date} pickupDate - will tell the business which time eater will go pick up their food.
+     * @param {[status = 'processing']} (default order status is processing, other status will be paid)
+     *  
      */
-    createOrder(eaterId, mealId1, mealId2, pickupDate) {
+    createOrder(eaterId, date, firstCourseId, secondCourseId, pickupDate) {
+
         return Promise.resolve()
             .then(() => {
-                if (typeof id !== 'string') throw Error('eater id is not a string')
-                if (!(id = id.trim()).length) throw Error('eater id is empty or blank')
-                // TODO rest of validations
+                if (typeof eaterId !== 'string') throw Error('eater id is not a string')
+                if (!(eaterId = eaterId.trim()).length) throw Error('eater id is empty or blank')
+                if (typeof firstCourseId !== 'string') throw Error('first course id is not a string')
+                if (!(firstCourseId = firstCourseId.trim()).length) throw Error('first course id is empty or blank')
+                if (typeof secondCourseId !== 'string') throw Error('second course id is not a string')
+                if (!(secondCourseId = secondCourseId.trim()).length) throw Error('second course id is empty or blank')
+                if (typeof pickupDate !== 'string') throw Error('eater id is not a string')
+                if (!(pickupDate = pickupDate.trim()).length) throw Error('eater id is empty or blank')
 
-                const date = new Date()
+                const timeOrdered = new Date().getHours()
+                if (timeOrdered > 19) throw Error('cannot proceed with order, too late.')
 
-                if ("hora supera limite") throw Error('cannot proceed order, too late...')
-
-                return Eater.findById({ eaterId })
+                return Order.Create()
                     .then((res) => {
                         // if (res) throw Error(`Eater with email ${email} already exists`)
                         Eater.create({ name, lastName, email, password }) // WARN
                             .then((eaterId) => {
-                                return Order.create((eaterId, firstCourse: ?, secondCourse: ?, pickupDate))
+                                return Order.create((eaterId, firstCourseId, secondCourseId, pickupDate))
                                     .then((orderId) => {
                                         if (res) throw Error(`Eater with email ${email} already exists`)
                                     })

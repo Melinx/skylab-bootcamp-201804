@@ -13,17 +13,18 @@ describe('models (myApp)', () => {
 
     const secondCourse = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: '1' }
 
-    const date = new Date
-
     const john = { name: 'John', lastName: 'Doe', email: 'johndoe@mail.com', password: '123', yearOfBirth: 1988, gender: 'M' }
 
-    const pepeOrder = { date, pickupDate: date, status: 'processing' }
+    const dummyUserId = '123456781234567812345678'
+    const dummyOrderId = '123456781234567812345678'
+    const dummyFirstCourseId = '123456781234657812345678'
+    const dummySecondCourseId = '123456781234567812345678'
 
-    const mariaOrder = { date, pickupDate: date, status: 'paid' }
+    const pepeOrder = { eaterId: '123456781234567812345678', firstCourse: dummySecondCourseId, secondCourse: dummySecondCourseId, pickupDate: 'Tue Jun 12 2018 12:02:37 GMT+0200 (CEST)'}
 
     before(() => mongoose.connect(DB_URL))
 
-    beforeEach(() => Promise.all([Eater.remove(), Order.deleteMany(), Course.deleteMany()]))
+    beforeEach(() => Promise.all([Eater.remove(), Order.deleteMany(), Course.deleteMany(), Eater.create(john)]))
 
     describe('create course', () => {
         it('should succeed on correct data', () => {
@@ -62,47 +63,22 @@ describe('models (myApp)', () => {
 
             return Promise.all([course1.save(), course2.save()])
                 .then(courses => {
-                    const [course1, course2] = courses
 
                     const order1 = new Order(pepeOrder)
-                    const order2 = new Order(mariaOrder)
 
-                    order1.meals.push({
-                        firstCourse: course1._id,
-                        secondCourse: course2._id
-                    })
-
-                    order2.meals.push({
-                        firstCourse: course1._id,
-                        secondCourse: course2._id
-                    })
-
-                    return Promise.all([order1.save(), order2.save()])
+                   
+                    return Promise.all([Order.create(pepeOrder)])
                         .then(orders => {
-                            const [order1, order2] = orders
 
                             expect(order1._id).to.exist
                             expect(order1.date).to.exist
                             expect(order1.pickupDate.toString()).to.equal(pepeOrder.pickupDate.toString())
-                            expect(order1.status).to.equal(pepeOrder.status)
-                            expect(order1.meals.length).to.equal(1)
 
-                            expect(order2._id).to.exist
-                            expect(order2.date).to.exist
-                            expect(order2.pickupDate.toString()).to.equal(mariaOrder.pickupDate.toString())
-                            expect(order2.status).to.equal(mariaOrder.status)
-                            expect(order2.meals.length).to.equal(1)
-
-                            const [{ firstCourse: course1order1, secondCourse: course2order1 }] = order1.meals
-                            const [{ firstCourse: course1order2, secondCourse: course2order2 }] = order2.meals
-                            
-                            //  check course 1 and 2 fields match firstCourse and secondCourse 
-                            expect(order1.meals[0].firstCourse).to.equal(course1order1)
-                            expect(order1.meals[0].secondCourse).to.equal(course2order1)
-                            
-                            expect(order2.meals[0].firstCourse).to.equal(course1order2)
-                            expect(order2.meals[0].secondCourse).to.equal(course2order2)
-            
+                            // expect(order2._id).to.exist
+                            // expect(order2.date).to.exist
+                            // expect(order2.pickupDate.toString()).to.equal(mariaOrder.pickupDate.toString())
+                            // expect(order2.status).to.equal(mariaOrder.status)
+                            // expect(order2.meals.length).to.equal(1)
                         })
                 })
         })

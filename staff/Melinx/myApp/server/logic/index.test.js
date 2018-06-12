@@ -5,7 +5,6 @@ require('dotenv').config()
 const { mongoose, models: { Eater, Order, Course, Payment } } = require('data')
 const { expect } = require('chai')
 const logic = require('.')
-// const _ = require('lodash')
 
 const { env: { DB_URL } } = process
 
@@ -28,7 +27,7 @@ describe('logic (myApp)', () => {
 
     before(() => mongoose.connect(DB_URL))
 
-    beforeEach(() => Eater.remove(), Course.deleteMany())
+    beforeEach(() => Eater.remove(), Course.deleteMany(), Eater.create(eaterData), Course.create(firstCourse1))
 
     describe('register eater', () => {
         it('should succeed on correct dada', () =>
@@ -399,21 +398,16 @@ describe('logic (myApp)', () => {
                     expect(firstCourse2.dayAvail).to.equal(dayAvail)
                 })
         })
-
-
-        // .catch((message) => expect(message).to.equal('category is empty or blank'))
     })
 
     describe('retrieve course', () => {
-        const firstCourse1 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '1' }
+        // const firstCourse1 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '1' }
 
         it('should succeed on correct data', () =>
 
             Course.create(firstCourse1)
 
                 .then(({ id }) => {
-                    //console.log('firstCourse1: ', firstCourse1);
-
                     return logic.retrieveCourse(id)
                 })
                 .then(course1 => {
@@ -438,7 +432,6 @@ describe('logic (myApp)', () => {
             logic.retrieveCourse('')
                 .catch(({ message }) => expect(message).to.equal('course id is empty or blank'))
         )
-
     })
 
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
