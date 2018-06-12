@@ -356,7 +356,7 @@ const course40 =
 
 
 mongoose.connect(DB_URL)
-    .then(() => {
+    .then(() =>
         Promise.all([
             Course.create(course1),
             Course.create(course2),
@@ -399,7 +399,9 @@ mongoose.connect(DB_URL)
             Course.create(course39),
             Course.create(course40)
         ])
-    })
+    )
+    .then(() => mongoose.disconnect())
+    .then(() => console.log('done'))
 
 
 

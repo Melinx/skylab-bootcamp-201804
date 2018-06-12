@@ -90,7 +90,7 @@ var eatersApi = {
 
                 _this2.token = token;
 
-                return id;
+                return data;
             }).catch(function (err) {
                 if (err.code === 'ECONNREFUSED') throw Error('could not reach server');
 
@@ -250,7 +250,7 @@ var eatersApi = {
     /**
      * DOCUM:
      * 
-     * Should list courses each day of the week; Monday through Friday. 
+     * Should list courses each day of the week. 
      * 
      * @returns {Promise<string>}
      */
@@ -258,16 +258,17 @@ var eatersApi = {
     listCoursesByDay: function listCoursesByDay() {
         var _this6 = this;
 
+        var first = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
         return Promise.resolve().then(function () {
             var today = new Date();
             var currentDay = today.getDay();
 
-            return axios.get(_this6.url + '/courses/').then(function (_ref6) {
+            return axios.get(_this6.url + '/courses/' + first).then(function (_ref6) {
                 var status = _ref6.status,
                     data = _ref6.data;
 
                 if (status !== 200 || data.status !== 'OK') throw Error('unexpected response status ' + status + ' (' + data.status + ')');
-
                 return data.data;
             }).catch(function (err) {
                 if (err.code === 'ECONNREFUSED') throw Error('could not reach server');

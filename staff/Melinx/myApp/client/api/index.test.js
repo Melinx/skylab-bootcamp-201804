@@ -2,10 +2,12 @@
 
 require('dotenv').config()
 
+// TODO test api client (not server-side logic)
+
 const { mongoose, models: { Eater, Course, Order, Payment } } = require('data')
 const logic = require('logic')
 const { expect } = require('chai')
-const eatersApi = require('.')
+const eatersApi = require('./index')
 const sinon = require('sinon')
 const axios = require('axios')
 const jwt = require('jsonwebtoken')

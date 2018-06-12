@@ -9,20 +9,19 @@ module.exports = new Schema({
         ref: 'Eater'
     },
 
-    date: { type: Date }, 
+    date: { type: Date, default: Date.now },
 
-    meals: [{
-        firstCourse: {
-            type: ObjectId,
-            ref: 'Course',
-            required: true,
-        },
-        secondCourse: {
-            type: ObjectId,
-            ref: 'Course',
-            required: true,
-        }
-    }],
+    firstCourse: {
+        type: ObjectId,
+        ref: 'Course',
+        required: true,
+    },
+
+    secondCourse: {
+        type: ObjectId,
+        ref: 'Course',
+        required: true,
+    },
 
     pickupDate: { type: Date },
 

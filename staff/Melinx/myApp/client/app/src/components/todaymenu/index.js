@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import api from 'api'
-import CourseCard from './CourseCard'
+import CourseCard from './coursecard'
 import './index.css'
 
 

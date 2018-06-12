@@ -283,19 +283,30 @@ const logic = {
     //     .then( () => return true )
     // }
 
-    createOrder(eaterId, date, meals, pickupDate, status = 'processing') {
+    /**
+     * 
+     * @param {string} eaterId 
+     * @param {string} mealId1 
+     * @param {string} mealId2 
+     * @param {Date} pickupDate 
+     */
+    createOrder(eaterId, mealId1, mealId2, pickupDate) {
         return Promise.resolve()
             .then(() => {
                 if (typeof id !== 'string') throw Error('eater id is not a string')
                 if (!(id = id.trim()).length) throw Error('eater id is empty or blank')
                 // TODO rest of validations
 
+                const date = new Date()
+
+                if ("hora supera limite") throw Error('cannot proceed order, too late...')
+
                 return Eater.findById({ eaterId })
                     .then((res) => {
                         // if (res) throw Error(`Eater with email ${email} already exists`)
-                        Eater.create({ name, lastName, email, password })
+                        Eater.create({ name, lastName, email, password }) // WARN
                             .then((eaterId) => {
-                                return Order.create((eaterId, date, { meals }, pickupDate, status = 'processing'))
+                                return Order.create((eaterId, firstCourse: ?, secondCourse: ?, pickupDate))
                                     .then((orderId) => {
                                         if (res) throw Error(`Eater with email ${email} already exists`)
                                     })

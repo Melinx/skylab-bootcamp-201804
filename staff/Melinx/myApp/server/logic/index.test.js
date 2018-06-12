@@ -367,6 +367,7 @@ describe('logic (myApp)', () => {
             Promise.all([
                 Course.create(firstCourse1), Course.create(secondCourse1), Course.create(firstCourse2), Course.create(secondCourse2), Course.create(firstCourse3), Course.create(secondCourse3), Course.create(firstCourse4), Course.create(secondCourse4), Course.create(firstCourse5), Course.create(secondCourse5)])
                 .then(res => {
+                    // TODO test logic list 
                     expect(res.length).to.equal(10)
                 })
         })
@@ -411,7 +412,7 @@ describe('logic (myApp)', () => {
             Course.create(firstCourse1)
 
                 .then(({ id }) => {
-                    console.log('firstCourse1: ', firstCourse1);
+                    //console.log('firstCourse1: ', firstCourse1);
 
                     return logic.retrieveCourse(id)
                 })
