@@ -1,16 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Login from '../login'
-// import Logout from './Logout'
-
-
 
 
 class Header extends Component {
-
-  // isLogged = () => {
-  //   return localStorage.getItem("token-app") ? true : false
-  // }
 
   state = {
     isLogged: false
@@ -33,7 +25,6 @@ class Header extends Component {
     this.setState({ isLogged: false })
   }
 
-
   render() {
     return (
       <header>
@@ -42,15 +33,15 @@ class Header extends Component {
             <nav className="#ef5350 red lighten-2">
               <div className="container hide-on-small-and-down">
                 <div className="nav-wrapper">
-                  <a href="#" className="brand-logo left">els
+                  <a className="brand-logo left">els
                     <span className="gerds">Gerds</span>
                   </a>
-                  {/* <a href="#" data-target="mobile-nav" className="sidenav-trigger">
+                  {/* <a data-target="mobile-nav" className="sidenav-trigger">
                     <i className="material-icons">menu</i>
                   </a> */}
                   <ul className="right">
                     <li>
-                      <a href="#">Home</a>
+                      <a>Home</a>
                     </li>
 
                     <li>
@@ -67,7 +58,7 @@ class Header extends Component {
                       </li>
                       :
                       <li>
-                        <Link href="#" to="/" onClick={this._handleLogout}>Logout</Link>
+                        <Link to="/" onClick={this._handleLogout}>Logout</Link>
                         <ul id="dropdown1" class="dropdown-content">
                           <li><a href="#!">one</a></li>
                           <li><a href="#!">two</a></li>
@@ -84,7 +75,7 @@ class Header extends Component {
           </div>
           <ul className="sidenav" id="mobile-nav">
             <li>
-              <a href="#">Home</a>
+              <a>Home</a>
             </li>
             <li>
               <a href="#account">Account</a>

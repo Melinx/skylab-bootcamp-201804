@@ -22,7 +22,7 @@ export default ({ title, items, onClick, params, selected }) => {
 
                         <div className={`img_check ${course._id === selected ? 'checked' : ''}`}>
                             <div className="img_center" >
-                                <img className="img_check-img" src='/images/icon_fork.png' />
+                                <img className="img_check-img" src='/images/icon_fork.png' alt="" />
                             </div>
                         </div>
                     </div>

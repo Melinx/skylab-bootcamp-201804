@@ -1,5 +1,3 @@
-'use strict'
-
 const eatersApi = require('api')
 
 eatersApi.url = 'http://localhost:4000/api'

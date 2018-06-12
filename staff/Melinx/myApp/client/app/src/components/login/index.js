@@ -35,17 +35,6 @@ class Login extends Component {
                     localStorage.setItem('id-app', res.data.id)
                     this.props.history.push('/home')
                     
-                    
-                // } else {
-                //     swal({
-                //         type: 'error',
-                //         title: 'Oopsies!',
-                //         text: res.error,
-                //       })
-                //     this.setState({
-                //         loginFailedMessage: res.error
-                //     })
-                // }
             }
         })
             .catch(({ message }) => console.error(message))

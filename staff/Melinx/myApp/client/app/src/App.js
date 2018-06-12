@@ -28,9 +28,9 @@ class App extends Component {
     this.isLogged() ? this.setState({isLogged:true}):  this.setState({isLogged:false})
   }
   
-  componentDidMount() {
-    this.isLogged 
-  }
+  // componentDidMount() {
+  //   this.isLogged 
+  // }
 
   render() {
     return (
