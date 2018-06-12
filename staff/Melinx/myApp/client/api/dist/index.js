@@ -77,8 +77,6 @@ var eatersApi = {
 
             if ((password = password.trim()).length === 0) throw Error('eater password is empty or blank');
 
-            return Eater.findOne({ email: email, password: password });
-
             return axios.post(_this2.url + '/auth', { email: email, password: password }).then(function (_ref2) {
                 var status = _ref2.status,
                     data = _ref2.data;
