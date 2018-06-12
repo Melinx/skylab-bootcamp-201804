@@ -5,10 +5,15 @@ import { withRouter } from 'react-router-dom'
 import './index.css'
 
 class Login extends Component {
-    
-    state = { 
-        username: '',
-        password: '' 
+
+    constructor() {
+        super()
+
+        this.state = {
+            isLogged: '',
+            username: '',
+            password: ''
+        }
     }
 
     _handleKeepName = e => {
@@ -20,24 +25,37 @@ class Login extends Component {
     }
 
     _handleLogin = e => {
-        
+
         e.preventDefault()
 
         logic.login(this.state.username, this.state.password)
-            // .then(() => this.props.isLogged())
 
-            .then(res => {
+        const { email, password } = this.state
+        if (email !== "" || password !== "") {
 
-                if (res.status === 'OK') {
+            logic.login(email, password)
+                .then(res => {
+                    if (res) {
+                        this.props.history.push('/')
 
-                    localStorage.setItem('token-app', res.data.token)
+                    } else {
+                        console.log('Error: Username and/or password are wrong')
+                    }
+                }).catch(err => err.message)
+        }
 
-                    localStorage.setItem('id-app', res.data.id)
-                    this.props.history.push('/home')
-                    
-            }
-        })
-            .catch(({ message }) => console.error(message))
+        //     .then(res => {
+
+        //         if (res.status === 'OK') {
+
+        //             localStorage.setItem('token-app', res.data.token)
+
+        //             localStorage.setItem('id-app', res.data.id)
+        //             this.props.history.push('/home')
+
+        //     }
+        // })
+        //     .catch(({ message }) => console.error(message))
     }
 
     render() {
@@ -60,7 +78,7 @@ class Login extends Component {
                                 <label htmlFor="remember" id="checkbox">(Remember me)</label>
                             </p>
                             <button className="waves-effect pink waves-light btn" id="loginbtn" type=
-                            'submit' onClick={this.state.login}>Login</button>
+                                'submit' onClick={this.state.login}>Login</button>
                         </form>
                     </div>
                 </div>
@@ -69,4 +87,4 @@ class Login extends Component {
     }
 }
 
-export default withRouter (Login)
+export default withRouter(Login)

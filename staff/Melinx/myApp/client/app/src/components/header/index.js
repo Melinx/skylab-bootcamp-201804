@@ -4,22 +4,21 @@ import { Link } from 'react-router-dom'
 
 class Header extends Component {
 
-  state = {
-    isLogged: false
-  }
+  // state = {
+  //   isLogged: false
+  // }
 
-  isLogged = () => {
-    console.log('is logged')
-    return localStorage.getItem("token-app") ? true : false
-  }
+  // isLogged = () => {
+  //   console.log('is logged')
+  //   return localStorage.getItem("token-app") ? true : false
+  // }
 
-  componentDidMount() {
-    console.log('didmount')
-    this.isLogged() ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
-  }
+  // componentDidMount() {
+  //   console.log('didmount')
+  //   this.isLogged() ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
+  // }
 
   _handleLogout = () => {
-
     localStorage.removeItem("id-app")
     localStorage.removeItem("token-app")
     this.setState({ isLogged: false })

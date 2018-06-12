@@ -2,11 +2,10 @@
 import React, { Component } from 'react'
 import Todaymenu from '../todaymenu'
 import Follow from '../follow'
+import Footer from '../footer'
 
 
-// import Slider from '../slider'
-
-class Main extends Component {
+class Landing extends Component {
 
     constructor(props) {
         super(props)
@@ -14,7 +13,6 @@ class Main extends Component {
         this.state = {
             firstCourse: '',
             secondCourse: '',
-            
         }
     }
 
@@ -23,7 +21,6 @@ class Main extends Component {
             [category]: courseId
         })
     }
-
 
     render() {
         const { firstCourse, secondCourse } = this.state
@@ -35,11 +32,11 @@ class Main extends Component {
                     firstCourse={firstCourse}
                     secondCourse={secondCourse}
                 />
-
                 <Follow />
+                <Footer />
             </div>
         );
     }
 }
 
-export default Main
+export default Landing
