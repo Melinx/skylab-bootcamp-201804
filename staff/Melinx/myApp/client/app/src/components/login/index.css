@@ -1,18 +1,18 @@
-/* .container {
-  background-repeat: repeat;
-  background-image: url(./gerd.png);
 
-} */
+.register-q {
+  font-size: 12pt;
+  text-decoration: underline;
+  color: #7e0d88;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
 
 .login-buttons {
-  /* width: 80%; */
-  /* margin-top: 20px; */
-  margin: 30px;
-  font-size: 20px;
-  /* float: right; */
-  margin-bottom: 10px;
-  margin-right: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 40px;
+  margin-left: 10px;
+  margin-right: 20px;
+  border-radius: 20%;
+
 }
 
 .form {
@@ -28,12 +28,6 @@
   padding-bottom: 0px;
 }
 
-#loginbtn {
-  float: right;
-  margin-bottom: 0px;
-  margin-right: 10px;
-  margin-bottom: 0px;
-}
 
 #title {
   background-color: #ff9381;
@@ -45,7 +39,7 @@
 
 form {
   padding: 20px;
-  border-radius: 3px;
+  border-radius: 5px;
   box-sizing: border-box;
 }
 

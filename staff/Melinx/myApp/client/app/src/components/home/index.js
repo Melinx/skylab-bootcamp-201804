@@ -6,8 +6,9 @@ import Follow from '../follow'
 import Footer from '../footer'
 import Header from '../header'
 
+// MY IDEA IS to render isLogged home page here ans not-logged content in Landing. Its a DRAFT idea
 
-class Landing extends Component {
+class Order extends Component {
 
     constructor(props) {
         super(props)
@@ -30,13 +31,11 @@ class Landing extends Component {
         return (
             <div>
                 <Header />
-                
-                <Todaymenu
+                <Order
                     addCourse={this.addCourse}
                     firstCourse={firstCourse}
                     secondCourse={secondCourse}
                 />
-              
                 <Follow />
                 <Footer />
             </div>
@@ -44,4 +43,4 @@ class Landing extends Component {
     }
 }
 
-export default Landing
+export default Order

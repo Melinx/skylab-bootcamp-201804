@@ -32,7 +32,13 @@ const logic = {
             })
     },
 
-    // register()
+    logout(){
+        sessionStorage.clear();
+        this.userId = 'NO-ID'
+        
+        return true
+        // eatersApi.token()
+    }
  
 }
 

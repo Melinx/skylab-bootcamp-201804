@@ -9,7 +9,7 @@ function Footer() {
       <p className="small-text">els Gerds &copy; 2018 </p>
     </footer>
   )
-  
+
 }
 
 export default Footer

@@ -289,12 +289,6 @@ var eatersApi = {
                     throw Error(message);
                 } else throw err;
             });
-
-            // Course.find({ dayAvail: currentDay })
-            //     .then((courses) => {
-            //         if (!courses) throw Error(`no courses were found on ${currentDay}`)
-            //         return courses
-            //     })
         });
     }
 };

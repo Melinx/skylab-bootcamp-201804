@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import api from 'api'
 import CourseCard from './coursecard'
 import './index.css'
+import logic from '../../logic'
 
 
 class Todaymenu extends Component {
@@ -9,7 +10,7 @@ class Todaymenu extends Component {
     constructor() {
         super()
         this.state = {
-            firstCourses: [],
+            firstCourses: [], //change according data model
             secondCourses: [],
         }
     }
@@ -40,37 +41,39 @@ class Todaymenu extends Component {
                         <hr />
                     </h4>
 
+                {!(logic.isLogged()) ?
+                    <div className="center-btn">
+                        <a href="#login" className="z-depth-2 waves-effect waves-light pink btn-large">Login to Order</a>
+                       
+                    </div>
+                    :
+                    <div className="center-btn">
+                        <a href="#login" className="z-depth-2 waves-effect waves-light pink btn-large">GO!</a>
+
+                        <p className="text-1" >(You Can Fork Your Wish Dishes Now)</p>
+                     
+                    </div>
+                }
+
                     <div className="container">
                         <CourseCard
-                          title='FIRSTS'
-                          items={firstCourses}
-                          onClick={this.props.addCourse}
-                          params='firstCourse'
-                          selected={firstCourse}
-                        />   
+                            title='FIRSTS'
+                            items={firstCourses}
+                            onClick={this.props.addCourse}
+                            params='firstCourse'
+                            selected={firstCourse}
+                        />
 
                         <CourseCard
-                          title='SECONDS'
-                          items={secondCourses}
-                          onClick={this.props.addCourse}
-                          params='secondCourse'
-                          selected={secondCourse}
-                        />       
+                            title='SECONDS'
+                            items={secondCourses}
+                            onClick={this.props.addCourse}
+                            params='secondCourse'
+                            selected={secondCourse}
+                        />
                     </div>
 
                 </div>
-                {/* TODO: function printSelectedCourses() 
-                <section className="list-menu-pop">
-                {firstCourses.length>0 ? return  }
-            </section> */}
-                    
-
-                <div className="center-btn">
-
-                    <a href="#login" className="z-depth-2 waves-effect waves-light pink btn-large">Order now</a>
-                    <br/>
-                    <br/>
-                    </div>
 
             </section>
         );

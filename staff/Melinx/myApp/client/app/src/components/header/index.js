@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import Register from '../register'
+import { Link, withRouter } from 'react-router-dom'
 import logic from '../../logic'
+import './header.css'
 
 
 class Header extends Component {
 
-  _handleLogout = () => {
-    localStorage.removeItem("id-app")
-    localStorage.removeItem("token-app")
-    this.setState({ isLogged: false })
+  _handleLogout = (props) => {
+    if(logic.logout() === true){
+      this.props.history.push('/home')
+    } 
   }
 
-  // materialize jquery JS || outside
+  state = {
+    isLogged: '',
+  }
 
   render() {
     return (
-
       <header>
-        {logic.isLogged() ? <div> </div> : null}
-
         {logic.isLogged() ? (
           <nav>
             <div className="container">
@@ -26,58 +27,52 @@ class Header extends Component {
                 <a href="#" className="brand-logo left">els
               <span className="gerds">Gerds</span>
                 </a>
-                <a href="#" data-target="mobile-nav" className="sidenav-trigger">
-                  <i className="material-icons">menu</i>
-                </a>
                 <ul className="right hide-on-small-and-down">
                   <li>
                   </li><li>
                     <a href="#home">Home</a>
                   </li>
                   <li>
-                    <a href="#account">Your Account</a>
-                  </li>
-                  <li>
                     <a href="#todaymenu">On the Menu Today</a>
                   </li>
                   <li>
+                    <a href="#account">Your Account</a>
+                  </li>
+                  <li>
+                  <a href='#' onClick={this._handleLogout} >Logout</a>
+                  </li>
 
-                    <a class='dropdown-trigger' href='' data-target='dropdown1'>Hola, Pepe!</a>
-
-                      <ul id='dropdown1' class='dropdown-content'>
-                      <li><a href="#!">one</a></li>
-                      <li><a href="#!">two</a></li>
-                      <li class="divider" tabindex="-1"></li>
-                      <li><a href="#!">three</a></li>
-                      <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                      <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                    </ul>
-
-
+                  <li className="dropdown">
+                    <a href="javascript:void(0)" className="dropbtn">Hola, Pepe!</a>
+                    <div className="dropdown-content">
+                      <a href="#/home">Account info</a>
+                      <a href="#">My orders</a>
+                      <a href="#">Logout</a>
+                    </div>
                   </li>
                 </ul></div></div></nav>
         ) : (
-
             <nav>
               <div className="container">
                 <div className="nav-wrapper">
-                  <a href="#" className="brand-logo">els
-              <span className="gerds">Gerds</span>
+                  <a href="#" className="brand-logo left">els
+                  <span className="gerds">Gerds</span>
                   </a>
-                  <a href="#" data-target="mobile-nav" className="sidenav-trigger">
-                    <i className="material-icons">menu</i>
-                  </a>
-                  <ul className="right hide-on-med-and-down">
+
+                  <ul className="right hide-on-small-and-down">
                     <li>
                     </li><li>
                       <a href="#home">Home</a>
                     </li>
-                    <li>
-                      <a href="#account">Your Account</a>
-                    </li>
+
                     <li>
                       <a href="#todaymenu">On the Menu Today</a>
                     </li>
+
+                    <li>
+                    <a href="#register">Register</a>
+                    </li>
+
                     <li>
                       <a href="#login">Login</a>
                     </li>
@@ -89,4 +84,4 @@ class Header extends Component {
   }
 }
 
-export default Header
+export default withRouter(Header)
