@@ -67,7 +67,7 @@ class Todaymenu extends Component {
 
                 <div className="center-btn">
 
-                    <a className="z-depth-2 waves-effect waves-light pink btn-large">Order now</a>
+                    <a href="#login" className="z-depth-2 waves-effect waves-light pink btn-large">Order now</a>
                     <br/>
                     <br/>
                     </div>

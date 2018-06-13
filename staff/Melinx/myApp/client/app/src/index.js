@@ -3,15 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import api from 'api'
+import logic from './logic'
 import registerServiceWorker from './registerServiceWorker';
 import HashRouter from 'react-router-dom/HashRouter';
 
 api.token = function(token) {
     if (token) {
-        return sessionStorage.setItem('token', token)
+        return sessionStorage.setItem('app-token', token)
     }
-    return sessionStorage.getItem('token')
+    return sessionStorage.getItem('app-token')
+},
+
+logic.eaterId = function(eaterId) {
+    if (eaterId) {
+        return sessionStorage.setItem('eaterId', eaterId)
+    }
+    return sessionStorage.getItem('eaterId')
 }
+
 
 ReactDOM.render(
    <HashRouter>

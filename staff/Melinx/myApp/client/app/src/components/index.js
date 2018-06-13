@@ -4,7 +4,8 @@ import Footer from '../components/footer'
 import Header from '../components/header'
 import Login from '../components/login'
 import Landing from '../components/landing'
-import Todaymenu from '../components/todaymenu'  // in landing already
+import Todaymenu from '../components/todaymenu'
+import Coursecard from '../components/todaymenu/coursecard'  // in landing already
 
 export {
 
@@ -13,6 +14,7 @@ export {
     Login,
     Landing,
     Todaymenu,
-    Header
+    Header,
+    Coursecard
 
 }

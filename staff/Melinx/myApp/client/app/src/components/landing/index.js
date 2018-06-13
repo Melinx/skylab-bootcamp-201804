@@ -1,8 +1,10 @@
 
 import React, { Component } from 'react'
 import Todaymenu from '../todaymenu'
+// import Coursecard from '../todaymenu/coursecard'
 import Follow from '../follow'
 import Footer from '../footer'
+import Header from '../header'
 
 
 class Landing extends Component {
@@ -27,6 +29,7 @@ class Landing extends Component {
 
         return (
             <div>
+                <Header />
                 <Todaymenu
                     addCourse={this.addCourse}
                     firstCourse={firstCourse}

@@ -5,20 +5,35 @@ eatersApi.url = 'http://localhost:4000/api'
 const logic = {
     userId: 'NO-ID',
 
+    eaterId(eaterId) {
+        if (eaterId) {
+            this._eaterId = this.eaterId
+            return
+        }
+        return this._eaterId
+    },
+    
+    isLogged(){
+        // console.log(eatersApi.token())
+
+        return eatersApi.token() ? true : false
+    },
+
     registerEater(name, surname, email, password) {
         return eatersApi.registerEater(name, surname, email, password)
     },
 
     login(email, password) {
         return eatersApi.authenticateEater(email, password)
-            .then(data => {
-                this.eaterId = data.id
-                return data
+            .then(id => {
+                this.eaterId(id)
+                // eaterId = data.id
+                return id
             })
     },
 
-
-    
+    // register()
+ 
 }
 
 module.exports = logic

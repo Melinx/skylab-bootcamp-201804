@@ -1,22 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import logic from '../../logic'
 
 
 class Header extends Component {
-
-  // state = {
-  //   isLogged: false
-  // }
-
-  // isLogged = () => {
-  //   console.log('is logged')
-  //   return localStorage.getItem("token-app") ? true : false
-  // }
-
-  // componentDidMount() {
-  //   console.log('didmount')
-  //   this.isLogged() ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
-  // }
 
   _handleLogout = () => {
     localStorage.removeItem("id-app")
@@ -24,69 +11,79 @@ class Header extends Component {
     this.setState({ isLogged: false })
   }
 
+  // materialize jquery JS || outside
+
   render() {
     return (
-      <header>
-        <div>
-          <div className="navbar-fixed">
-            <nav className="#ef5350 red lighten-2">
-              <div className="container hide-on-small-and-down">
-                <div className="nav-wrapper">
-                  <a className="brand-logo left">els
-                    <span className="gerds">Gerds</span>
-                  </a>
-                  {/* <a data-target="mobile-nav" className="sidenav-trigger">
-                    <i className="material-icons">menu</i>
-                  </a> */}
-                  <ul className="right">
-                    <li>
-                      <a>Home</a>
-                    </li>
 
+      <header>
+        {logic.isLogged() ? <div> </div> : null}
+
+        {logic.isLogged() ? (
+          <nav>
+            <div className="container">
+              <div className="nav-wrapper">
+                <a href="#" className="brand-logo left">els
+              <span className="gerds">Gerds</span>
+                </a>
+                <a href="#" data-target="mobile-nav" className="sidenav-trigger">
+                  <i className="material-icons">menu</i>
+                </a>
+                <ul className="right hide-on-small-and-down">
+                  <li>
+                  </li><li>
+                    <a href="#home">Home</a>
+                  </li>
+                  <li>
+                    <a href="#account">Your Account</a>
+                  </li>
+                  <li>
+                    <a href="#todaymenu">On the Menu Today</a>
+                  </li>
+                  <li>
+
+                    <a class='dropdown-trigger' href='' data-target='dropdown1'>Hola, Pepe!</a>
+
+                      <ul id='dropdown1' class='dropdown-content'>
+                      <li><a href="#!">one</a></li>
+                      <li><a href="#!">two</a></li>
+                      <li class="divider" tabindex="-1"></li>
+                      <li><a href="#!">three</a></li>
+                      <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                      <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                    </ul>
+
+
+                  </li>
+                </ul></div></div></nav>
+        ) : (
+
+            <nav>
+              <div className="container">
+                <div className="nav-wrapper">
+                  <a href="#" className="brand-logo">els
+              <span className="gerds">Gerds</span>
+                  </a>
+                  <a href="#" data-target="mobile-nav" className="sidenav-trigger">
+                    <i className="material-icons">menu</i>
+                  </a>
+                  <ul className="right hide-on-med-and-down">
+                    <li>
+                    </li><li>
+                      <a href="#home">Home</a>
+                    </li>
+                    <li>
+                      <a href="#account">Your Account</a>
+                    </li>
                     <li>
                       <a href="#todaymenu">On the Menu Today</a>
                     </li>
                     <li>
-                      <a href="#contact">Contact</a>
+                      <a href="#login">Login</a>
                     </li>
+                  </ul></div></div></nav>
+          )}
 
-                    {!this.state.isLogged ?
-                      <li> <Link href="#login" to="/login">Login</Link>
-
-
-                      </li>
-                      :
-                      <li>
-                        <Link to="/" onClick={this._handleLogout}>Logout</Link>
-                        <ul id="dropdown1" class="dropdown-content">
-                          <li><a href="#!">one</a></li>
-                          <li><a href="#!">two</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#!">three</a></li>
-                        </ul>
-
-
-                      </li>}
-                  </ul>
-                </div>
-              </div>
-            </nav>
-          </div>
-          <ul className="sidenav" id="mobile-nav">
-            <li>
-              <a>Home</a>
-            </li>
-            <li>
-              <a href="#account">Account</a>
-            </li>
-            <li>
-              <a href="#todaymenu">On the Menu Today</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
       </header >
     )
   }

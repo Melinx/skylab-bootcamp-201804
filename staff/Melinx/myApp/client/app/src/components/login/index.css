@@ -3,42 +3,58 @@
   background-image: url(./gerd.png);
 
 } */
-.form{
-    margin-top: 100px;
-    padding: 0px;
-    border-radius: 10px;
-    margin-bottom: 100px;
-  }
 
-  .validate{
-    padding-top: 20px;
-    color: rgb(138, 138, 138);
-    padding-bottom: 0px;
-  }
+.login-buttons {
+  /* width: 80%; */
+  /* margin-top: 20px; */
+  margin: 30px;
+  font-size: 20px;
+  /* float: right; */
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
 
-  #loginbtn{
-    float: right;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    margin-bottom: 20px
-  }
-  
-  #title{
-    background-color: #ff9381;
-    color: white;
-    padding: 8px;
-    margin-top: 10px;
-    border-radius: 3px;
-  }
-  form{
-    padding:20px;
-    border-radius: 3px;
-    box-sizing: border-box;
-  }
-  #username,#password{
-   margin-left: 20px;
-   margin-right: 20px;
-  }
-  #checkbox{
-   margin-left: 30px;
-  }
+.form {
+  margin-top: 100px;
+  padding: 0px;
+  border-radius: 10px;
+  margin-bottom: 100px;
+}
+
+.validate {
+  padding-top: 20px;
+  color: rgb(138, 138, 138);
+  padding-bottom: 0px;
+}
+
+#loginbtn {
+  float: right;
+  margin-bottom: 0px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+#title {
+  background-color: #ff9381;
+  color: white;
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+form {
+  padding: 20px;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+#username, #password {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#checkbox {
+  margin-left: 30px;
+}
+

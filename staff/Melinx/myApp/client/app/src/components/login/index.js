@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import Landing from '../landing'
 import logic from '../../logic'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 // import swal from 'sweetalert2' 
 import './index.css'
 
@@ -28,12 +29,12 @@ class Login extends Component {
 
         e.preventDefault()
 
-        logic.login(this.state.username, this.state.password)
+        // logic.login(this.state.username, this.state.password)
 
-        const { email, password } = this.state
-        if (email !== "" || password !== "") {
+        const { username, password } = this.state
+        if (username !== "" || password !== "") {
 
-            logic.login(email, password)
+            logic.login(username, password)
                 .then(res => {
                     if (res) {
                         this.props.history.push('/')
@@ -44,24 +45,15 @@ class Login extends Component {
                 }).catch(err => err.message)
         }
 
-        //     .then(res => {
-
-        //         if (res.status === 'OK') {
-
-        //             localStorage.setItem('token-app', res.data.token)
-
-        //             localStorage.setItem('id-app', res.data.id)
-        //             this.props.history.push('/home')
-
-        //     }
-        // })
-        //     .catch(({ message }) => console.error(message))
     }
 
     render() {
         return (
+            <section>
+         
             <div className="container">
                 <div className="row">
+                
                     <div className="form center col s6 offset-s3 z-depth-1">
                         <h5 id="title">Log You In</h5>
                         <form onSubmit={this._handleLogin}>
@@ -77,12 +69,16 @@ class Login extends Component {
                                 <input type="checkbox" id="remember" />
                                 <label htmlFor="remember" id="checkbox">(Remember me)</label>
                             </p>
-                            <button className="waves-effect pink waves-light btn" id="loginbtn" type=
-                                'submit' onClick={this.state.login}>Login</button>
+                            <div className="login-buttons">
+
+                                <button className="waves-effect pink  waves-light btn" id="loginbtn" type= 'submit' onClick={this.state.isLogged}>Login</button>
+                                <a href="#" component={Landing} className="back-btn btn-floating orange  btn-large"> ← </a>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
+            </section>
         )
     }
 }
