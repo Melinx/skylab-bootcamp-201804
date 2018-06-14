@@ -1,35 +1,42 @@
 import React, { Component } from 'react'
+import Landing from '../landing'
 import Header from '../header'
+import { Link, withRouter } from 'react-router-dom'
+
 import logic from '../../logic'
 import './index.css'
 
-class Register extends Component {
+class Account extends Component {
 
     constructor() {
         super()
         this.state = {
-            isLogged: false,
-            isRegistered: false,
-            name: '',
-            lastName: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
+            user: []
         }
     }
 
-    handleRegister = (e) => {
+    componentDidMount() {
+
+        if (sessionStorage.getItem('token')) {
+            logic.retrieveUser()
+                .then(user => {
+                    this.setState({ user })
+                })
+        }
+    }
+
+    handleUpdate = (e) => {
         e.preventDefault()
 
         const { name, lastName, email, password, confirmPassword } = this.state
         if (password === confirmPassword) {
             if (name !== "" || lastName !== "" || email !== "" || password !== "") {
 
-                logic.registerEater(name, lastName, email, password)
+                logic.updateEater(name, lastName, email, password)
                     .then(res => {
                         console.log(res);
                         if (res) {
-                            this.props.history.push('/login')
+                            this.props.history.push('/')
                         } else {
                             console.log('Error, username and/or password wrong')
                         }
@@ -38,6 +45,7 @@ class Register extends Component {
             }
         }
     }
+
 
     handleName = (e) => {
         this.setState({ name: e.target.value })
@@ -62,12 +70,12 @@ class Register extends Component {
     render() {
         return (
             <section>
-                <Header />
+                <Header/>
                 <div className="container">
                     <div className="row">
                         <div className="form center col s6 offset-s3 z-depth-1">
-                            <h5 id="title">Register</h5>
-                            <form onSubmit={this.handleRegister} button>
+                            <h5 id="title">UPDATE</h5>
+                            <form onSubmit={this.haleUpdatend} button>
 
                                 <div className="input-field" id="name">
                                     <input value={this.state.name} onChange={this.handleName} type="text" className="validate" autoFocus />
@@ -98,14 +106,15 @@ class Register extends Component {
                                     <label htmlFor="password">
                                         Repeat password</label>
                                 </div>
-                              
+
+                                <a href="#/login" className="back-to-login"> Already with us? Sign in here</a >
+                                <hr />
                                 <br />
                                 <div className="login-buttons">
                                     <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit' onClick={this.state.isRegistered}>Register →</button>
-                                </div>
-                                <br />
 
-                                <a href="#/login" className="back-to-login"> Already with us? Sign in here</a>
+                                    <a href="#/" className="waves-effect pink  btn" id="loginbtn" type='submit' component={Landing}>←</a>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -115,4 +124,4 @@ class Register extends Component {
     }
 }
 
-export default Register
+export default withRouter(Account)

@@ -14,13 +14,14 @@ const logic = {
     },
     
     isLogged(){
-        // console.log(eatersApi.token())
-
         return eatersApi.token() ? true : false
     },
 
     registerEater(name, surname, email, password) {
         return eatersApi.registerEater(name, surname, email, password)
+            .then(() => {
+                return true
+            })
     },
 
     login(email, password) {

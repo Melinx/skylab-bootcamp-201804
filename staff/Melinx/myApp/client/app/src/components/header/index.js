@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Register from '../register'
+// import Register from '../register'
 import { Link, withRouter } from 'react-router-dom'
 import logic from '../../logic'
 import './header.css'
@@ -8,9 +8,9 @@ import './header.css'
 class Header extends Component {
 
   _handleLogout = (props) => {
-    if(logic.logout() === true){
+    if (logic.logout() === true) {
       this.props.history.push('/home')
-    } 
+    }
   }
 
   state = {
@@ -39,18 +39,19 @@ class Header extends Component {
                     <a href="#account">Your Account</a>
                   </li>
                   <li>
-                  <a href='#' onClick={this._handleLogout} >Logout</a>
+                    <a href='#' onClick={this._handleLogout} >Logout</a>
                   </li>
 
                   <li className="dropdown">
                     <a href="javascript:void(0)" className="dropbtn">Hola, Pepe!</a>
-                    <div className="dropdown-content">
-                      <a href="#/home">Account info</a>
-                      <a href="#">My orders</a>
-                      <a href="#">Logout</a>
-                    </div>
+                    {/* <div className="dropdown-content">
+                              <a href="#/home">Account info</a>
+                              <a href="#">My orders</a>
+                              <a href="#">Logout</a>
+                            </div> */}
                   </li>
-                </ul></div></div></nav>
+                </ul></div>
+            </div></nav>
         ) : (
             <nav>
               <div className="container">
@@ -70,7 +71,7 @@ class Header extends Component {
                     </li>
 
                     <li>
-                    <a href="#register">Register</a>
+                      <a href="#register">Register</a>
                     </li>
 
                     <li>
@@ -78,7 +79,6 @@ class Header extends Component {
                     </li>
                   </ul></div></div></nav>
           )}
-
       </header >
     )
   }

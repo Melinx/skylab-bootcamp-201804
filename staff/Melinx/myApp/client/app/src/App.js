@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Header, Login, Landing, Register} from '../src/components'
+import { Login, Landing, Register, Account} from '../src/components'
 import { Route, Switch } from 'react-router-dom';
 
 
 class App extends Component {
 
   onRegister = () => {
-    console.log('register')
-
-    this.setState({ isLogged: true })
+    this.setState({ isRegistered: true })
   }
 
+  onLogin = () => {
+    this.setState({ isLogged: true })
+  }
 
   render() {
     return (
@@ -19,6 +20,7 @@ class App extends Component {
           <Route exact path="/" component={Landing} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register}/>
+          <Route path="/account" component={Account}/>
           <Route path="/home" component={Landing} />
 
         </div>

@@ -16,13 +16,11 @@ class Todaymenu extends Component {
     }
 
     componentDidMount() {
-
         api.listCoursesByDay()
             .then(({ courses }) => this.setState({ firstCourses: courses }))
 
         api.listCoursesByDay(true)
             .then(({ courses }) => this.setState({ secondCourses: courses }))
-
     }
 
     // selectCourse = (category, courseId) => {

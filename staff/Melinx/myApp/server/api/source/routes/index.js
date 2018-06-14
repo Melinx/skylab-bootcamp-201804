@@ -104,7 +104,7 @@ router.get('/courses/:first', (req, res) => {
 router.get('/courses/:id', (req, res) => {
     const { params: { id } } = req
 
-    logic.retrieveCourse(id)
+    return logic.retrieveCourse(id)
         .then(course => {
             res.status(200)
             res.json({ status: 'OK', data: { course } })

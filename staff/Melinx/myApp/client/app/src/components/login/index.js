@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Landing from '../landing'
+import Header from '../header'
 import Register from '../register'
 import logic from '../../logic'
 import { withRouter, Link } from 'react-router-dom'
@@ -38,18 +39,17 @@ class Login extends Component {
                 .then(res => {
                     if (res) {
                         this.props.history.push('/')
-
                     } else {
                         console.log('Error: Username and/or password are wrong')
                     }
                 }).catch(err => err.message)
         }
-
     }
 
     render() {
         return (
             <section>
+                <Header />
                 <div className="container">
                     <div className="row">
                         <div className="form center col s6 offset-s3 z-depth-1">
@@ -69,14 +69,15 @@ class Login extends Component {
                                     <input type="checkbox" id="remember" />
                                     <label htmlFor="remember" id="checkbox">(Remember me)</label>
                                 </p>
-                                <a href="#/register" className="register-q" component={Register}> Are you new? Register here</a >
-                                <hr />
-                                <br/>
+                                <br />
+                                <a href="#/register" className="left register-q" component={Register}> Are you new? Register here</a >
+                                <br />
+                                <br />
                                 <div className="login-buttons">
                                     <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit' onClick={this.state.isLogged}>Login →</button>
-
-                                    <a href="#/" className="waves-effect pink  btn" id="loginbtn" type='submit' component={Landing} >← Back</a>
                                 </div>
+                                <br />
+
                             </form>
                         </div>
                     </div>
