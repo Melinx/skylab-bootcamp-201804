@@ -118,7 +118,6 @@ describe('models (myApp)', () => {
         })
     })
 
-
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
 
 })

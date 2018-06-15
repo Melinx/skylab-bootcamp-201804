@@ -30,7 +30,6 @@ class Order extends Component {
 
         return (
             <div>
-                <Header />
                 <Order
                     addCourse={this.addCourse}
                     firstCourse={firstCourse}

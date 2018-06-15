@@ -62,7 +62,6 @@ class Register extends Component {
     render() {
         return (
             <section>
-                <Header />
                 <div className="container">
                     <div className="row">
                         <div className="form center col s6 offset-s3 z-depth-1">

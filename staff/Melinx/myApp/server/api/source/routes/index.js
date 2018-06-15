@@ -115,5 +115,19 @@ router.get('/courses/:id', (req, res) => {
         })
 })
 
+router.post('/eaters/:eaterId/order', jwtValidator, (req, res) => {
+    const { body: {firstCourse, secondCourse, pickupDate, status }, params: { eaterId } } = req
+
+    return logic.createOrder(eaterId, firstCourse, secondCourse, pickupDate, status)
+        .then(order => {
+            res.status(201)
+            res.json({ status: 'OK', data: order})
+        })
+        .catch(({ message }) => {
+            res.status(400)
+            res.json({ status: 'KO', error: message })
+        })
+})
+
 
 module.exports = router

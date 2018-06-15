@@ -8,9 +8,9 @@ import './header.css'
 class Header extends Component {
 
   _handleLogout = (props) => {
-    if (logic.logout() === true) {
-      this.props.history.push('/home')
-    }
+    logic.logout()
+      this.props.history.push('/landing')
+ 
   }
 
   state = {
@@ -30,16 +30,13 @@ class Header extends Component {
                 <ul className="right hide-on-small-and-down">
                   <li>
                   </li><li>
-                    <a href="#home">Home</a>
-                  </li>
-                  <li>
                     <a href="#todaymenu">On the Menu Today</a>
                   </li>
                   <li>
                     <a href="#account">Your Account</a>
                   </li>
                   <li>
-                    <a href='#' onClick={this._handleLogout} >Logout</a>
+                    <a href='#landing' onClick={this._handleLogout} >Logout</a>
                   </li>
 
                   <li className="dropdown">
@@ -63,7 +60,7 @@ class Header extends Component {
                   <ul className="right hide-on-small-and-down">
                     <li>
                     </li><li>
-                      <a href="#home">Home</a>
+                      <a href="#landing">Home</a>
                     </li>
 
                     <li>

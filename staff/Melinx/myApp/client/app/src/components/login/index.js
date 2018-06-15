@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Landing from '../landing'
 import Header from '../header'
 import Register from '../register'
 import logic from '../../logic'
@@ -38,7 +37,7 @@ class Login extends Component {
             logic.login(username, password)
                 .then(res => {
                     if (res) {
-                        this.props.history.push('/')
+                        this.props.history.push('/todaymenu')
                     } else {
                         console.log('Error: Username and/or password are wrong')
                     }
@@ -49,7 +48,6 @@ class Login extends Component {
     render() {
         return (
             <section>
-                <Header />
                 <div className="container">
                     <div className="row">
                         <div className="form center col s6 offset-s3 z-depth-1">

@@ -25,6 +25,8 @@ describe('logic (myApp)', () => {
     const firstCourse5 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '5' }
     const secondCourse5 = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: '5' }
 
+    const pepeOrder = { pickupDate: 'Tue Jun 12 2018 12:02:37 GMT+0200 (CEST)' }
+
     before(() => mongoose.connect(DB_URL))
 
     beforeEach(() => Eater.remove(), Course.deleteMany(), Eater.create(eaterData), Course.create(firstCourse1))
@@ -382,7 +384,7 @@ describe('logic (myApp)', () => {
         )
     })
 
-     describe('add new course for admin', () => {
+    describe('add new course for admin', () => {
         const firstCourse2 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '1' }
         it('should succeed on correct data', () => {
             Course.create(firstCourse2)
@@ -401,7 +403,7 @@ describe('logic (myApp)', () => {
     })
 
     describe('retrieve course', () => {
-     
+
         it('should succeed on correct data', () =>
 
             Course.create(firstCourse1)
@@ -433,6 +435,32 @@ describe('logic (myApp)', () => {
         )
     })
 
+
+    describe('create order', () => {
+        it('should succeed on correct dada', () =>
+
+            Promise.all([
+                Eater.create(eaterData),
+                Course.create(firstCourse1),
+                Course.create(secondCourse1)
+            ]).then(res => {          
+                const eaterId = res[0].id
+                const firstCourse = res[1].id
+                const secondCourse = res[2].id
+                return logic.createOrder(eaterId, firstCourse, secondCourse)
+                    .then(order => {
+                        expect(order.eaterId._id.toString()).to.equal(res[0]._id.toString())
+                        expect(order.firstCourse._id.toString()).to.equal(res[1]._id.toString())
+                
+                    })
+            })
+        )
+    })
+
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
 })
+
+
+
+
 

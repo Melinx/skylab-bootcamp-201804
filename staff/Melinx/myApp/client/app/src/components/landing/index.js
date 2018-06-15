@@ -12,30 +12,25 @@ class Landing extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
+        /*this.state = {
             firstCourse: '',
             secondCourse: '',
-        }
+        }*/
     }
 
-    addCourse = (category, courseId) => {
+    /*addCourse = (category, courseId) => {
         this.setState({
             [category]: courseId
         })
-    }
+    }*/
 
     render() {
-        const { firstCourse, secondCourse } = this.state
+        //const { firstCourse, secondCourse } = this.state
 
         return (
             <div>
-                <Header />
-                
-                <Todaymenu
-                    addCourse={this.addCourse}
-                    firstCourse={firstCourse}
-                    secondCourse={secondCourse}
-                />
+                  
+                landing
               
                 <Follow />
                 <Footer />
