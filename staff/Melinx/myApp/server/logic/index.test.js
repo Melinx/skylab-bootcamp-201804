@@ -401,8 +401,7 @@ describe('logic (myApp)', () => {
     })
 
     describe('retrieve course', () => {
-        // const firstCourse1 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '1' }
-
+     
         it('should succeed on correct data', () =>
 
             Course.create(firstCourse1)

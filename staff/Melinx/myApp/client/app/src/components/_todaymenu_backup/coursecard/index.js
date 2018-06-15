@@ -3,7 +3,6 @@ import React from 'react'
 export default ({ title, items, onClick, params, selected }) => {
 
     if (items.length < 0) return null
-    let selectedMenu
 
     return (
         <div className="row s12 m4">
@@ -11,13 +10,12 @@ export default ({ title, items, onClick, params, selected }) => {
             <div className="row">
                 {
                     items.map(course => (
-                        
                         <div className="col s12 m3 course_card" key={course._id}
                             onClick={() => onClick(params, course._id)}>
                             <h6>{course.dishName}</h6>
                             <img
-                                src={course.image}
-                                className={`${course._id === selected ? "z-depth-5" : ""} materialboxed 
+                            src={course.image}
+                            className={`${course._id === selected ? "z-depth-5" : ""} materialboxed 
                             responsive-img`} alt="" />
 
                             <div className={`img_check ${course._id === selected ? 'checked' : ''}`}>

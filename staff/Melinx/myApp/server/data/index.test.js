@@ -24,7 +24,7 @@ describe('models (myApp)', () => {
 
     before(() => mongoose.connect(DB_URL))
 
-    beforeEach(() => Promise.all([Eater.remove(), Order.deleteMany(), Course.deleteMany(), Eater.create(john)]))
+    beforeEach(() => Promise.all([Eater.remove(), Order.deleteMany(), Course.deleteMany(), Eater.create(john), Course.create(firstCourse)]))
 
     describe('create course', () => {
         it('should succeed on correct data', () => {
@@ -72,6 +72,7 @@ describe('models (myApp)', () => {
 
                             expect(order1._id).to.exist
                             expect(order1.date).to.exist
+                            
                             expect(order1.pickupDate.toString()).to.equal(pepeOrder.pickupDate.toString())
 
                             // expect(order2._id).to.exist

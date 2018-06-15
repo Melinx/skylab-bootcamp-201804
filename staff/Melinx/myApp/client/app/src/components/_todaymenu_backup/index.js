@@ -28,7 +28,6 @@ class Todaymenu extends Component {
     // }
 
     render() {
-
         const { firstCourses, secondCourses } = this.state
         const { firstCourse, secondCourse } = this.props
 
@@ -42,37 +41,35 @@ class Todaymenu extends Component {
 
                 {!(logic.isLogged()) ?
                     <div className="center-btn">
-
                         <a href="#login" className="z-depth-2 waves-effect waves-light pink btn-large">Login to Order</a>
-                       {/* {courses.map = () => this.state.firstCourses} */}
+                       
                     </div>
                     :
-                    (<section>
                     <div className="center-btn">
                         <a href="#login" className="z-depth-2 waves-effect waves-light pink btn-large">GO!</a>
-                        <p className="text-1" >(You Can Fork Your Wish Dishes Now)</p>
-                    </div>
-                    <div className="container">
-                    <CourseCard
-                        title='FIRSTS'
-                        items={firstCourses}
-                        onClick={this.props.addCourse}
-                        params='firstCourse'
-                        selected={firstCourse}
-                    />
 
-                    <CourseCard
-                        title='SECONDS'
-                        items={secondCourses}
-                        onClick={this.props.addCourse}
-                        params='secondCourse'
-                        selected={secondCourse}
-                    />
-                </div>
-                </section>)
+                        <p className="text-1" >(You Can Fork Your Wish Dishes Now)</p>
+                     
+                    </div>
                 }
 
-                    
+                    <div className="container">
+                        <CourseCard
+                            title='FIRSTS'
+                            items={firstCourses}
+                            onClick={this.props.addCourse}
+                            params='firstCourse'
+                            selected={firstCourse}
+                        />
+
+                        <CourseCard
+                            title='SECONDS'
+                            items={secondCourses}
+                            onClick={this.props.addCourse}
+                            params='secondCourse'
+                            selected={secondCourse}
+                        />
+                    </div>
 
                 </div>
 

@@ -59,6 +59,8 @@ class Account extends Component {
         this.setState({ email: e.target.value })
     }
 
+
+
     handlePassword = (e) => {
         this.setState({ password: e.target.value })
     }
@@ -74,7 +76,7 @@ class Account extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="form center col s6 offset-s3 z-depth-1">
-                            <h5 id="title">UPDATE</h5>
+                            <h5 id="title">Update or Add Info about You</h5>
                             <form onSubmit={this.haleUpdatend} button>
 
                                 <div className="input-field" id="name">
@@ -107,13 +109,10 @@ class Account extends Component {
                                         Repeat password</label>
                                 </div>
 
-                                <a href="#/login" className="back-to-login"> Already with us? Sign in here</a >
-                                <hr />
-                                <br />
+                              
                                 <div className="login-buttons">
-                                    <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit' onClick={this.state.isRegistered}>Register →</button>
-
-                                    <a href="#/" className="waves-effect pink  btn" id="loginbtn" type='submit' component={Landing}>←</a>
+                                    <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit' onClick={this.state.isRegistered}>Update →</button>
+                                    <br/>
                                 </div>
                             </form>
                         </div>

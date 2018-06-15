@@ -78,7 +78,7 @@ const logic = {
      */
     retrieveEater(id) {
         return Promise.resolve()
-            .then(() => {               
+            .then(() => {
                 if (typeof id !== 'string') throw Error('eater id is not a string')
 
                 if (!(id = id.trim()).length) throw Error('eater id is empty or blank')
@@ -256,7 +256,7 @@ const logic = {
                             .then(() => true)
                     })
             })
-         
+
 
     },
 
@@ -277,7 +277,7 @@ const logic = {
             })
     },
 
- 
+
 
     /**
      * 
@@ -310,16 +310,12 @@ const logic = {
 
                 return Order.Create()
                     .then((res) => {
-                        // if (res) throw Error(`Eater with email ${email} already exists`)
-                        Eater.create({ name, lastName, email, password }) // WARN
-                            .then((eaterId) => {
-                                return Order.create((eaterId, firstCourseId, secondCourseId, pickupDate))
-                                    .then((orderId) => {
-                                        if (res) throw Error(`Eater with email ${email} already exists`)
-                                    })
+                        if (res) throw Error(`Eater with email ${email} already exists`)
+                        Order.create((eaterId, firstCourseId, secondCourseId, pickupDate))
+                            .then((orderId) => {
+                                if (res) throw Error(`Eater with email ${email} already exists`)
                             })
                     })
-
             })
     }
 
