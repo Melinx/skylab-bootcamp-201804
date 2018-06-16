@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import Register from '../register'
 import { Link, withRouter } from 'react-router-dom'
 import logic from '../../logic'
 import './header.css'
@@ -9,9 +8,8 @@ class Header extends Component {
 
   _handleLogout = () => {
     logic.logout()
-    console.log('this.props: ', this.props);
-      this.props.history.push('/landing')
- 
+      this.props.history.push('#todaymenu')
+
   }
 
   state = {
@@ -25,7 +23,7 @@ class Header extends Component {
           <nav>
             <div className="container">
               <div className="nav-wrapper">
-                <a href="#" className="brand-logo left">els
+                <a className="brand-logo left">els
               <span className="gerds">Gerds</span>
                 </a>
                 <ul className="right hide-on-small-and-down">
@@ -42,7 +40,8 @@ class Header extends Component {
 
                   <li className="dropdown">
                     <a href="javascript:void(0)" className="dropbtn">Hola, Pepe!</a>
-                    {/* <div className="dropdown-content">
+                    {/* SELECT OPTION  X X X 
+                    <div className="dropdown-content">
                               <a href="#/home">Account info</a>
                               <a href="#">My orders</a>
                               <a href="#">Logout</a>
@@ -61,7 +60,7 @@ class Header extends Component {
                   <ul className="right hide-on-small-and-down">
                     <li>
                     </li><li>
-                      <a href="#landing">Home</a>
+                      <a href="#">Home</a>
                     </li>
 
                     <li>

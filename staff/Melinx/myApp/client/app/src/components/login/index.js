@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import Register from '../register'
 import logic from '../../logic'
 import Alert from 'react-s-alert'
-import { Link } from 'react-router-dom'
 import './index.css'
 
 class Login extends Component {
@@ -55,9 +53,7 @@ class Login extends Component {
                     <div className="row">
                         <div className="form center col s6 offset-s3 z-depth-1">
                             <h5 id="title">Log You In</h5>
-                            <form onSubmit={this.handleLogin}
-                                button
-                            >
+                            <form onSubmit={this.handleLogin}>
                                 <div className="input-field" id="username">
                                     <input value={this.state.username} onChange={this.handleKeepName} type="text" className="validate" autoFocus />
                                     <label htmlFor="email username">Email username</label>

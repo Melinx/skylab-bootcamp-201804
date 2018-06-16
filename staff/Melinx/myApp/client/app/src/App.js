@@ -7,18 +7,9 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      isLogged: true,
       firstCourse: '',
       secondCourse: ''
     }
-  }
-
-  // onRegister = () => {
-  //   this.setState({ isRegistered: true })
-  // }
-
-  onLogin = () => {
-    this.setState({ isLogged: true })
   }
 
   addCourse = (category, courseId) => {
@@ -28,10 +19,7 @@ class App extends Component {
     if (category === 'secondCourse') {
       this.setState({ secondCourse: courseId })
     }
-
-    /* this.setState({ [category] : courseId }) // [] links string argument directly to object property from state */
   }
-
 
   render() {
     return (
@@ -39,7 +27,7 @@ class App extends Component {
         <Header />
         <div className="App">
           <Switch>
-            <Route path="/landing" component={Landing} />
+            <Route exact path="/" component={Landing} />
             <Route path="/login" component={Login}  />
             <Route path="/register" component={Register} />
             <Route path="/account" component={Account} />
@@ -56,9 +44,8 @@ class App extends Component {
               <Order
                 firstCourse={this.state.firstCourse}
                 secondCourse={this.state.secondCourse}
-              />
+              /> 
             )} />
-            {/* <Route path="/todaymenu" component={Todaymenu} /> */}
 
           </Switch>
         </div>

@@ -8,7 +8,6 @@ class Register extends Component {
         super()
         this.state = {
             isLogged: false,
-            // isRegistered: false,
             name: '',
             lastName: '',
             email: '',
@@ -65,7 +64,7 @@ class Register extends Component {
                     <div className="row">
                         <div className="form center col s6 offset-s3 z-depth-1">
                             <h5 id="title">Register</h5>
-                            <form onSubmit={this.handleRegister} button>
+                            <form onSubmit={this.handleRegister}>
 
                                 <div className="input-field" id="name">
                                     <input value={this.state.name} onChange={this.handleName} type="text" className="validate" autoFocus />

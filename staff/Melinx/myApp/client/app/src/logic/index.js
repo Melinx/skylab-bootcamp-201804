@@ -28,7 +28,7 @@ const logic = {
         return eatersApi.authenticateEater(email, password)
             .then(id => {
                 this.eaterId(id)
-                // eaterId = data.id
+
                 return id
             })
     },
@@ -36,9 +36,14 @@ const logic = {
     logout(){
         sessionStorage.clear();
         this.userId = 'NO-ID'
-        
+     
         return true
-        // eatersApi.token()
+    },
+
+    retrieveCourse(){
+        
+
+
     }
  
 }

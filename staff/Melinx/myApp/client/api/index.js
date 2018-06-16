@@ -292,7 +292,32 @@ const eatersApi = {
                         } else throw err
                     })
             })
-    }
+    },
 
+    retrieveCourse(id) {
+        return Promise.resolve()
+            .then(() => {
+                if (typeof id !== 'string') throw Error('eater id is not a string')
+                if (!(id = id.trim()).length) throw Error('eater id is empty or blank')
+
+                return axios.get(`${this.url}/eaters/${id}`, { headers: { authorization: `Bearer ${this.token()}` } })
+                    .then(({ status, data }) => {
+                        if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
+
+                        return Course.findById(id).select({ _id: 0, category: 1, dishName: 1, image: 1, temp: 1, baseFood: 1, dayAvail: 1 })
+                    })
+                    .catch(err => {
+                        if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
+
+                        if (err.response) {
+                            const { response: { data: { error: message } } } = err
+
+                            throw Error(message)
+                        } else throw err
+                    })
+            })
+    }
 }
+
+
 module.exports = eatersApi
