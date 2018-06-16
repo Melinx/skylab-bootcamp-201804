@@ -40,9 +40,12 @@ const logic = {
         return true
     },
 
-    retrieveCourse(){
-        
-
+    retrieveCourses(first, second){
+        console.log('retrieveCourses: ', true);
+        return eatersApi.retrieveCourses(first, second)
+        .then(res => {
+            return res
+        })
 
     }
  

@@ -87,6 +87,24 @@ router.delete('/eaters/:eaterId', [jwtValidator, jsonBodyParser], (req, res) => 
 })
 
 
+router.get('/courses/ids/', (req, res) => {
+    const { query: { first, second } } = req
+    const ids = [];
+    if(first && second) {
+        ids.push(first, second)
+    }
+
+    return logic.retrieveCourse(ids)
+        .then(course => {
+            res.status(200)
+            res.json({ status: 'OK', data: { course } })
+        })
+        .catch(({ message }) => {
+            res.status(400)
+            res.json({ status: 'KO', error: message })
+        })
+})
+
 router.get('/courses/:first', (req, res) => {
     const { params: { first } } = req
 
@@ -101,19 +119,6 @@ router.get('/courses/:first', (req, res) => {
         })
 })
 
-router.get('/courses/:id', (req, res) => {
-    const { params: { id } } = req
-
-    return logic.retrieveCourse(id)
-        .then(course => {
-            res.status(200)
-            res.json({ status: 'OK', data: { course } })
-        })
-        .catch(({ message }) => {
-            res.status(400)
-            res.json({ status: 'KO', error: message })
-        })
-})
 
 router.post('/eaters/:eaterId/order', jwtValidator, (req, res) => {
     const { body: {firstCourse, secondCourse, pickupDate, status }, params: { eaterId } } = req

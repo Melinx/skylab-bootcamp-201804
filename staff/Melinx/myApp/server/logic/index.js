@@ -261,22 +261,21 @@ const logic = {
     },
 
     // FUNC retrieveCourse allows first and second course selection before proceeding w creating order 
-    retrieveCourse(id) {
+    retrieveCourses(ids) {
         return Promise.resolve()
             .then(() => {
-                if (typeof id !== 'string') throw Error('course id is not a string')
+                if (!Array.isArray(ids)) throw Error('courses are not an array')
 
-                if (!(id = id.trim()).length) throw Error('course id is empty or blank')
+                if (ids.length < 2) throw Error('should be 2 courses')
 
-                return Course.findById(id).select({ _id: 0, category: 1, dishName: 1, image: 1, temp: 1, baseFood: 1, dayAvail: 1 })
+                return Course.find({ _id: { $in: ids } })
             })
             .then(course => {
                 if (!course) throw Error(`no eater found with id ${id}`)
-
+                
                 return course
             })
     },
-
 
 
     /**
@@ -294,7 +293,7 @@ const logic = {
      */
 
     createOrder(eaterId, firstCourse, secondCourse, pickupDate, status) {
-     
+
         console.log('firstCourse: ', firstCourse);
 
         return Promise.resolve()
@@ -306,8 +305,8 @@ const logic = {
                 if (!(firstCourse = firstCourse.trim()).length) throw Error('first course id is empty or blank')
                 if (typeof secondCourse !== 'string') throw Error('second course id is not a string')
                 if (!(secondCourse = secondCourse.trim()).length) throw Error('second course id is empty or blank')
-                
-                if(pickupDate !== undefined){
+
+                if (pickupDate !== undefined) {
                     //if (typeof pickupDate !== 'date') throw Error('pickUp id is not a string')
                     //if (!(pickupDate = pickupDate.trim()).length) throw Error('eater id is empty or blank')
                 }
