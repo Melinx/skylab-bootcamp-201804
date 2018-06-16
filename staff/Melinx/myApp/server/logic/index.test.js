@@ -451,7 +451,6 @@ describe('logic (myApp)', () => {
                     .then(order => {
                         expect(order.eaterId._id.toString()).to.equal(res[0]._id.toString())
                         expect(order.firstCourse._id.toString()).to.equal(res[1]._id.toString())
-                
                     })
             })
         )

@@ -2,10 +2,11 @@ import React from 'react'
 import './index.css'
 import logic from '../../../logic'
 
-export default ({ title, items, onClick, params, selected }) => {
+//props destructuring: props.title, props.items etc etc = { title, items etc etc}
+
+const CourseCard =  ({ title, items, addCourse, category, selected }) => {
 
     if (items.length < 0) return null
-    let selectedMenu
 
     if (logic.isLogged()) {
         return (
@@ -17,7 +18,7 @@ export default ({ title, items, onClick, params, selected }) => {
                         items.map(course => (
 
                             <div className="col s12 m3 course_card_log" key={course._id}
-                                onClick={() => onClick(params, course._id)}
+                                onClick={() => addCourse(category, course._id)}
                             >
                                 <h6>{course.dishName}</h6>
                                 <img
@@ -51,9 +52,7 @@ export default ({ title, items, onClick, params, selected }) => {
                                 <img
                                     src={course.image}
                                     className="responsive-img" alt="" />
-                                {/*                               
-                                    <div className="img_center" >
-                                    </div> */}
+                            
                             </div>
                         )
                         )
@@ -63,3 +62,5 @@ export default ({ title, items, onClick, params, selected }) => {
         )
     }
 }
+
+export default CourseCard

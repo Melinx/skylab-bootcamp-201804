@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import api from 'api'
 import CourseCard from './coursecard'
+import { Link } from 'react-router-dom'
 import Header from '../header'
+import Pixiflauta from 'react-s-alert'
 import './index.css'
 import logic from '../../logic'
 
@@ -24,6 +26,19 @@ class Todaymenu extends Component {
             .then(({ courses }) => this.setState({ secondCourses: courses }))
     }
 
+    checkDishes = (e) => {
+        e.preventDefault()
+
+        const { firstCourse, secondCourse } = this.props
+        if (!firstCourse || !secondCourse ) {
+            Pixiflauta.info('Please select a first course and a second course')
+
+            return 
+        }
+        console.log(this.props)
+    
+
+    }
 
     render() {
 
@@ -32,6 +47,9 @@ class Todaymenu extends Component {
 
         return (
             <section>
+                <Pixiflauta effect='bouncyflip' offset={150} />
+
+
                 <section id="todaymenu" className="section section-popular scrollspy">
                     <div className="sectiontitle">
                         <h4 className="center">On the Menu<span className="pink-text"> Today</span>
@@ -59,22 +77,21 @@ class Todaymenu extends Component {
                             :
                             (<section>
                                 <div className="center-btn">
-                                    <a href="#order" className="z-depth-2 waves-effect waves-light pink btn-large">Place order!</a>
-                                    <p className="text-1" >(You Can Fork Your Wish Dishes Now)</p>
+                                    <Link to="/order" className="z-depth-2 waves-effect waves-light pink btn-large" onClick={this.checkDishes} >Place order!</Link>
                                 </div>
                                 <div className="container">
                                     <CourseCard
                                         title='FIRSTS'
                                         items={firstCourses}
-                                        onClick={this.props.addCourse}
-                                        params='firstCourse'
+                                        addCourse={this.props.addCourse}
+                                        category='firstCourse'
                                         selected={firstCourse}
                                     />
                                     <CourseCard
                                         title='SECONDS'
                                         items={secondCourses}
-                                        onClick={this.props.addCourse}
-                                        params='secondCourse'
+                                        addCourse={this.props.addCourse}
+                                        category='secondCourse'
                                         selected={secondCourse}
                                     />
                                 </div>

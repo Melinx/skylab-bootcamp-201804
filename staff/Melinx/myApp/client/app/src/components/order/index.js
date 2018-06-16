@@ -1,10 +1,23 @@
+import React, { Component }  from 'react'
+import logic from '../../logic'
 
-import React from 'react'
 
+class Order extends Component {
 
-function Order(props) {
+  constructor(props) {
+    super(props)
+    this.state = {
+      firstCourses: [], //change according data model
+      secondCourses: [],
+    }
+  }
 
-  return (
+  
+  render() {
+    
+    const { firstCourse, secondCourse } = this.props
+
+    return (
     <section>
       <section class="section section-icons grey lighten-4 center">
         <div class="container">
@@ -13,9 +26,9 @@ function Order(props) {
               <div class="card-panel" href="#today">
                 {/* <i class="material-icons large pink-text">shopping-basket</i> */}
                 <h5>You have selected:</h5>
-                <h7>{props.firstCourse}</h7>
-                 <br/>
-                <h7>{props.secondCourse}</h7>
+                <h6>{firstCourse}</h6>
+                <br />
+                <h6>{secondCourse}</h6>
               </div>
             </div>
             <div class="col s12 m4">
@@ -26,19 +39,15 @@ function Order(props) {
               </div>
             </div>
             <div class="col s12 m4">
-             
+
             </div>
           </div>
         </div>
       </section>
     </section>
-    // <div>
 
-    //     <h1>ORDER</h1>
-
-    // </div>
-
-  )
+  );
+  }
 }
 
 export default Order

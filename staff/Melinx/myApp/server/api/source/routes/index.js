@@ -118,9 +118,9 @@ router.get('/courses/:id', (req, res) => {
 router.post('/eaters/:eaterId/order', jwtValidator, (req, res) => {
     const { body: {firstCourse, secondCourse, pickupDate, status }, params: { eaterId } } = req
 
-    return logic.createOrder(eaterId, firstCourse, secondCourse, pickupDate, status)
+    return logic.createOrder(firstCourse, secondCourse, pickupDate, status)
         .then(order => {
-            res.status(201)
+            res.status(200)
             res.json({ status: 'OK', data: order})
         })
         .catch(({ message }) => {

@@ -294,6 +294,8 @@ const logic = {
      */
 
     createOrder(eaterId, firstCourse, secondCourse, pickupDate, status) {
+     
+        console.log('firstCourse: ', firstCourse);
 
         return Promise.resolve()
             .then(() => {

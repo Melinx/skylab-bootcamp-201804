@@ -264,6 +264,35 @@ const eatersApi = {
                         } else throw err
                     })
             })
+    },
+
+    createOrder(eaterId, firstCourse, secondCourse, pickupDate, status) {
+        return Promise.resolve()
+            .then(() => {
+                // TODO Validations
+
+
+                return axios.post(`${this.url}/eaters/${eaterId}/order`, { firstCourse, secondCourse, pickupDate, status }, { headers: { authorization: `Bearer ${this.token()}` } })
+                    .then(({ status, data }) => {
+                        if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
+
+                        const { data: { id, firstCourse, secondCourse, pickupDate, status } } = data
+
+                        this.token(token)
+
+                        return id
+                    })
+                    .catch(err => {
+                        if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
+
+                        if (err.response) {
+                            const { response: { data: { error: message } } } = err
+
+                            throw Error(message)
+                        } else throw err
+                    })
+            })
     }
+
 }
 module.exports = eatersApi

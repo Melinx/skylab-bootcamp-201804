@@ -19,6 +19,7 @@ module.exports = new Schema({
 
     firstCourse: {
         type: ObjectId,
+        
         ref: 'Course',
         required: true
     },
