@@ -317,7 +317,7 @@ const eatersApi = {
 
                         if (err.response) {
                             const { response: { data: { error: message } } } = err
-                            throw Error(message)
+                           return message
                         } else throw err
                     })
             })
