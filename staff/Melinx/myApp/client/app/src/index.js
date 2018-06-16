@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/bouncyflip.css'
+import 'react-s-alert/dist/s-alert-css-effects/genie.css'
 
 import App from './App';
 import api from 'api'

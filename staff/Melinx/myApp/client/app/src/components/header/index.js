@@ -7,8 +7,9 @@ import './header.css'
 
 class Header extends Component {
 
-  _handleLogout = (props) => {
+  _handleLogout = () => {
     logic.logout()
+    console.log('this.props: ', this.props);
       this.props.history.push('/landing')
  
   }

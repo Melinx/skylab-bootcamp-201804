@@ -7,16 +7,15 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      isRegistered: false,
       isLogged: true,
       firstCourse: '',
       secondCourse: ''
     }
   }
 
-  onRegister = () => {
-    this.setState({ isRegistered: true })
-  }
+  // onRegister = () => {
+  //   this.setState({ isRegistered: true })
+  // }
 
   onLogin = () => {
     this.setState({ isLogged: true })
@@ -35,14 +34,13 @@ class App extends Component {
 
 
   render() {
-    
     return (
       <div>
         <Header />
         <div className="App">
           <Switch>
             <Route path="/landing" component={Landing} />
-            <Route path="/login" component={Login} />
+            <Route path="/login" component={Login}  />
             <Route path="/register" component={Register} />
             <Route path="/account" component={Account} />
             <Route path="/todaymenu" render={(props) => (

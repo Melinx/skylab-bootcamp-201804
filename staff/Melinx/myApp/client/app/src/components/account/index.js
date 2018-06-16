@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Landing from '../landing'
-import Header from '../header'
 import { Link, withRouter } from 'react-router-dom'
 
 import logic from '../../logic'
@@ -110,7 +109,7 @@ class Account extends Component {
 
                               
                                 <div className="login-buttons">
-                                    <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit' onClick={this.state.isRegistered}>Update →</button>
+                                    <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit'>Update →</button>
                                     <br/>
                                 </div>
                             </form>

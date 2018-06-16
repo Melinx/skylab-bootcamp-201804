@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import Header from '../header'
 import Register from '../register'
 import logic from '../../logic'
-import { withRouter, Link } from 'react-router-dom'
+import Alert from 'react-s-alert'
+import { Link } from 'react-router-dom'
 import './index.css'
 
 class Login extends Component {
 
     constructor() {
         super()
-
         this.state = {
             isLogged: '',
             username: '',
@@ -29,8 +28,6 @@ class Login extends Component {
 
         e.preventDefault()
 
-        // logic.login(this.state.username, this.state.password)
-
         const { username, password } = this.state
         if (username !== "" || password !== "") {
 
@@ -38,10 +35,16 @@ class Login extends Component {
                 .then(res => {
                     if (res) {
                         this.props.history.push('/todaymenu')
-                    } else {
-                        console.log('Error: Username and/or password are wrong')
                     }
-                }).catch(err => err.message)
+                })
+                .catch(({ message }) => {
+                    Alert.warning(':|  Wrong credentials  :| ', {
+                        position: 'top-right',
+                        timeout: 1000
+                    })
+                })
+            // this.props.onLoginError(message)
+
         }
     }
 
@@ -68,11 +71,14 @@ class Login extends Component {
                                     <label htmlFor="remember" id="checkbox">(Remember me)</label>
                                 </p>
                                 <br />
-                                <a href="#/register" className="left register-q" component={Register}> Are you new? Register here</a >
+
+                                <Alert effect='bouncyflip' offset={150} />
+
+                                <a href="#/register" className="left register-q"> Are you new? Register here</a >
                                 <br />
                                 <br />
                                 <div className="login-buttons">
-                                    <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit' onClick={this.state.isLogged}>Login →</button>
+                                    <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit'>Login →</button>
                                 </div>
                                 <br />
 
@@ -85,4 +91,4 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login)
+export default Login

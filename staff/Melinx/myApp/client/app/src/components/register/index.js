@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Header from '../header'
 import logic from '../../logic'
 import './index.css'
 
@@ -9,7 +8,7 @@ class Register extends Component {
         super()
         this.state = {
             isLogged: false,
-            isRegistered: false,
+            // isRegistered: false,
             name: '',
             lastName: '',
             email: '',
@@ -100,7 +99,7 @@ class Register extends Component {
                               
                                 <br />
                                 <div className="login-buttons">
-                                    <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit' onClick={this.state.isRegistered}>Register →</button>
+                                    <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit'>Register →</button>
                                 </div>
                                 <br />
 
