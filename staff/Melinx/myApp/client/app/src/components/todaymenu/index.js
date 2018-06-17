@@ -12,7 +12,7 @@ class Todaymenu extends Component {
     constructor() {
         super()
         this.state = {
-            firstCourses: [], //change according data model
+            firstCourses: [], 
             secondCourses: [],
         }
     }

@@ -120,7 +120,7 @@ router.get('/courses/:first', (req, res) => {
 })
 
 
-router.post('/eaters/:eaterId/order', jwtValidator, (req, res) => {
+router.post('/eaters/:eaterId/order', [jwtValidator, jsonBodyParser], (req, res) => {
     const { body: {firstCourse, secondCourse, pickupDate, status }, params: { eaterId } } = req
 
     return logic.createOrder(firstCourse, secondCourse, pickupDate, status)

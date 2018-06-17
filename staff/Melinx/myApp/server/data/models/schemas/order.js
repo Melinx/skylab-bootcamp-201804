@@ -32,10 +32,9 @@ module.exports = new Schema({
 
     pickupDate: { type: Date },
 
-    status: {
-        type: String,
-        enum: ['processing', 'paid'],
-        default: 'processing'
+    statusPaid: {
+        type: Boolean,
+        default: false
     }
 
     // would it be possible to push all orders into a history array (pastOrders) once the STATUS is 'paid', tracking date also?

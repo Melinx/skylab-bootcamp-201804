@@ -44,8 +44,9 @@ const logic = {
         console.log('retrieveCourses: ', true);
         return eatersApi.retrieveCourses(first, second)
         .then(res => {
+            console.log('res in LOGIC REACT: ', res);
             return res
-        })
+        })    
 
     }
  

@@ -8,8 +8,6 @@ class Header extends Component {
 
   _handleLogout = () => {
     logic.logout()
-      this.props.history.push('#todaymenu')
-
   }
 
   state = {

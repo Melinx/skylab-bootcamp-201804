@@ -12,31 +12,42 @@ class Order extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      ids: '', // I tried params initializig
+      ids: '',
       firstCourses: [],
       secondCourses: [],
+      firstCourseImage: '',
+      secondCourseImage: '',
+      firstCourseName: '',
+      secondCourseName: '',
+      payment: false
     }
   }
-
   // TODO SELECT PICKUP TIME before placing order
 
-  componentDidMount(){
+  componentDidMount() {
 
     const { firstCourse, secondCourse } = this.props
 
-     logic.retrieveCourses(firstCourse, secondCourse)
+    logic.retrieveCourses(firstCourse, secondCourse)
       .then(res => {
-        console.log('res: ', res);
-        
-      })
 
+        // console.log('res: ', res.course[0]);
+        // console.log('res: ', res.course[1]);
+
+        this.setState({
+          firstCourseName: res.course[0].dishName,
+          firstCourseImage: res.course[0].image,
+          secondCourseName: res.course[1].dishName,
+          secondCourseImage: res.course[1].image,
+        })
+      }).catch(err => console.error(err.message))
+
+    console.log('basket: ', this.state.basket);
   }
 
 
   handleOrder = e => {
     e.preventDefault()
-   
-   
 
       .catch(({ message }) => {
         Alert.success('Order placed correctly! :p ', {
@@ -56,16 +67,28 @@ class Order extends Component {
           <div className="container">
             <div className="row">
               <div className="col s12 m8">
-                <div className="card-panel" href="#today">
-                  {/* <i className="material-icons large pink-text">shopping-basket</i> */}
-                  <h5>You have selected:</h5>
-                  <h6>{firstCourse}</h6>
-                  <br />
-                  <h6>{secondCourse}</h6>
-                </div>
+                <div className="card-panel">
+                    <h5 className="center">You have selected:</h5>
+                    <div className="row">
+                      <div className="col s12 m6">
+                        <h6>{this.state.firstCourseName}</h6>
+                        <img src={this.state.firstCourseImage} className="center materialboxed responsive-img" alt="" />
+                      </div>
+                      <div className="col s12 m6">
+                        <h6>{this.state.secondCourseName}</h6>
+                        <img src={this.state.secondCourseImage} className="center materialboxed responsive-img" alt="" />
+                      </div>
+                   <div>
+                     <hr/>
+                     <br/>
                 <button className="waves-effect pink  waves-light btn"> Proceed with Payment </button>
                 <Alert effect='bouncyflip' offset={150} />
+                </div>
+
+                  </div>
+                </div>
               </div>
+              
               <div className="col s12 m4">
                 <div className="card-panel">
                   {/* <i className="material-icons large pink-text">clock</i> */}

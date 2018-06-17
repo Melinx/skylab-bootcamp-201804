@@ -310,7 +310,7 @@ const eatersApi = {
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
 
-                        return data
+                        return data.data
                     })
                     .catch(err => {
                         if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
