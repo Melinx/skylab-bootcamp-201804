@@ -62,11 +62,8 @@ class Login extends Component {
                                     <input value={this.state.password} onChange={this.handleKeepPassword} type="password" className="validate" />
                                     <label htmlFor="password">Password</label>
                                 </div>
-                                <p>
                                     <input type="checkbox" id="remember" />
                                     <label htmlFor="remember" id="checkbox">(Remember me)</label>
-                                </p>
-                                <br />
 
                                 <Alert effect='bouncyflip' offset={150} />
 

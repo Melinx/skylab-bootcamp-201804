@@ -119,11 +119,10 @@ router.get('/courses/:first', (req, res) => {
         })
 })
 
+router.post('/eaters/order/:eaterId', [jwtValidator, jsonBodyParser],  (req, res) => {
+    const { body: { firstCourse, secondCourse, pickupDate, statusPaid }, params: { eaterId } } = req
 
-router.post('/eaters/:eaterId/order', [jwtValidator, jsonBodyParser], (req, res) => {
-    const { body: {firstCourse, secondCourse, pickupDate, status }, params: { eaterId } } = req
-
-    return logic.createOrder(firstCourse, secondCourse, pickupDate, status)
+    return logic.createOrder(eaterId, firstCourse, secondCourse, pickupDate, statusPaid)
         .then(order => {
             res.status(200)
             res.json({ status: 'OK', data: order})

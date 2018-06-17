@@ -292,9 +292,7 @@ const logic = {
      *  
      */
 
-    createOrder(eaterId, firstCourse, secondCourse, pickupDate, status) {
-
-        console.log('firstCourse: ', firstCourse);
+    createOrder(eaterId, firstCourse, secondCourse, pickupDate, statusPaid) {
 
         return Promise.resolve()
             .then(() => {
@@ -314,8 +312,9 @@ const logic = {
                 const timeOrdered = new Date().getHours()
                 if (timeOrdered > 19) throw Error('cannot proceed with order, too late.')
 
-                return Order.create({ eaterId, firstCourse, secondCourse, status })
+                return Order.create({ eaterId, firstCourse, secondCourse, pickupDate, statusPaid })
                     .then((res) => {
+                        console.log('resssss: ', res);
                         return res
                     })
             })

@@ -6,7 +6,6 @@ module.exports = new Schema({
 
     eaterId: {
         type: ObjectId,
-        // id: string, (alex way, embebiendo lo suyo)
         ref: 'Eater',
         required: true
     },
@@ -30,7 +29,7 @@ module.exports = new Schema({
         required: true,
     },
 
-    pickupDate: { type: Date },
+    pickupDate: { type: String },
 
     statusPaid: {
         type: Boolean,

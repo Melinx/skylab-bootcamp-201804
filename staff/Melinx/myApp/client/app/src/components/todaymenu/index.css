@@ -1,6 +1,10 @@
 /* 
  nav-bar color: #E57373
 } */
+button {
+  position: center;
+    margin-top: 40px;
+}
 
 .text-1{
   color: #ef5350;
