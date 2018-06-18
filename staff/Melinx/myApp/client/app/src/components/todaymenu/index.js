@@ -91,7 +91,6 @@ class Todaymenu extends Component {
                                         selected={secondCourse}
                                     />
                                 </div>
-                                <Link to="/order" className="z-depth-2 waves-effect waves-light pink btn-large" onClick={this.checkDishes} >Place order!</Link>
 
                             </section>)
                         }

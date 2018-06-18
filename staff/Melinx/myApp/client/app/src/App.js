@@ -8,7 +8,8 @@ class App extends Component {
     super()
     this.state = {
       firstCourse: '',
-      secondCourse: ''
+      secondCourse: '',
+      orderId: ''
     }
   }
 
@@ -21,6 +22,20 @@ class App extends Component {
     }
   }
 
+  // orderNumber = (time, orderId) => {
+  //   let d = new Date();
+  //   let time = d.getHours();
+
+  //   if (time > 11) {
+  //     throw Error('')
+  //   }
+  //   if (time < 11) {
+  //     let orderId = 100
+  //     for (let i = 0; i < conf.length; i++)
+  //       return i
+  //   }
+  // }
+
   render() {
     return (
       <div>
@@ -28,7 +43,7 @@ class App extends Component {
         <div className="App">
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route path="/login" component={Login}  />
+            <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/account" component={Account} />
             <Route path="/todaymenu" render={(props) => (
@@ -44,7 +59,7 @@ class App extends Component {
               <Order
                 firstCourse={this.state.firstCourse}
                 secondCourse={this.state.secondCourse}
-              /> 
+              />
             )} />
 
           </Switch>

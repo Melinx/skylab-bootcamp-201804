@@ -48,10 +48,7 @@ const logic = {
         })    
     },
 
-    // createOrder(eaterId, firstCourse, secondCourse, pickupDate, statusPaid){
-    //     return eatersApi.createOrder(eaterId, firstCourse, secondCourse, pickupDate, statusPaid)
-
-    // }
+    
  
 }
 

@@ -314,7 +314,6 @@ const logic = {
 
                 return Order.create({ eaterId, firstCourse, secondCourse, pickupDate, statusPaid })
                     .then((res) => {
-                        console.log('resssss: ', res);
                         return res
                     })
             })

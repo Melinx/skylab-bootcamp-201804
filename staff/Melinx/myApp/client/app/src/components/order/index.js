@@ -13,14 +13,15 @@ class Order extends Component {
     super(props)
     this.state = {
       ids: '',
-      firstCourses: [],
-      secondCourses: [],
+      // firstCourses: [],
+      // secondCourses: [],
       firstCourseImage: '',
       secondCourseImage: '',
       firstCourseName: '',
       secondCourseName: '',
       payment: false,
-      pickupDate: ''
+      pickupDate: '',
+      timeOrdered: ''
     }
   }
 
@@ -55,17 +56,42 @@ class Order extends Component {
     this.setState({ pickupDate })
   }
 
+  orderNumber = () => {
+    // create listOrders. find ORDERS
+
+  }
+
+  checkTime = () => {
+    let d = new Date()
+    let time = d.getHours()
+    if (time < 13) return true
+  }
+
+  // WARNING - The order can ONLY be placed if it's BEFORE 11am. For DEMO, modify checkTime function above to appropriate time number.
   createOrder = () => {
-    const { firstCourse, secondCourse } = this.props
-    const { pickupDate } = this.state
-    const statusPaid = true
-    const eaterId = logic.eaterId()
+    return Promise.resolve()
+      .then(() => this.checkTime())
+      .then(res => {
+        if (res === true) {
+          const { firstCourse, secondCourse } = this.props
+          const { pickupDate } = this.state
+          const statusPaid = true
+          const eaterId = logic.eaterId()
 
-      if (pickupDate === '') {
-        return Alert.info('select a time')
-      }
+          if (pickupDate === '') {
+            return Alert.info('Please select a pick-up time')
+          } else {
+            api.createOrder(eaterId, firstCourse, secondCourse, pickupDate, statusPaid)
+            return Alert.success(`Order placed correctly with number ${this.props.orderNumber}`, {
+              position: 'top-right',
+              timeout: 1000
+            })
+          } 
+        } else {
+          Alert.warning('OH, NO! You were late to place order online. Please come see us directly at our store.')
+        }
+      })
 
-    api.createOrder(eaterId, firstCourse, secondCourse, pickupDate, statusPaid)
   }
 
   render() {
@@ -80,6 +106,7 @@ class Order extends Component {
               <div className="col s12 m8">
                 <div className="card-panel">
                   <h5 className="center">You have selected:</h5>
+                  <hr />
                   <div className="row">
                     <div className="col s12 m6">
                       <h6>{this.state.firstCourseName}</h6>
@@ -90,9 +117,8 @@ class Order extends Component {
                       <img src={this.state.secondCourseImage} className="center materialboxed responsive-img" alt="" />
                     </div>
                     <div>
-                      <hr />
-                      <br />
-                      <button className="waves-effect pink  waves-light btn" onClick={this.createOrder}> Proceed with Payment </button>
+
+                      <Link to="/todaymenu" className="waves-effect pink  waves-light btn" >Back to Menu</Link>
                       <Alert effect='bouncyflip' offset={150} />
                     </div>
                   </div>
@@ -101,22 +127,31 @@ class Order extends Component {
 
               <div className="col s12 m4">
                 <div className="card-panel">
-                  {/* <i className="material-icons large pink-text">clock</i> */}
-                  <h5>What time?</h5>
-
+                  <h5>Pick-up time?</h5>
+                  <hr />
                   <select onChange={this.handlePickup} name="Hours" id="pick-time">
-                    <option value="12:00">12:00</option>
+                    <option value="-">-</option>
                     <option value="12:15">12:15</option>
-                    <option value="b">12:30</option>
-                    <option value="b">12:30</option>
-                    <option value="b">12:30</option>
-                    <option value="b">12:30</option>
-                    <option value="c">c</option>
+                    <option value="12:30">12:30</option>
+                    <option value="12:45">12:45</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:15">13:15</option>
+                    <option value="13:30">13:30</option>
+                    <option value="13:45">13:45</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:15">14:15</option>
+                    <option value="14:30">14:30</option>
+                    <option value="14:45">14:45</option>
                   </select>
                 </div>
               </div>
               <div className="col s12 m4">
-
+                <div className="card-panel">
+                  <h5>Please pay:</h5>
+                  <hr />
+                  <h4>5€</h4>
+                  <button className="waves-effect pink  waves-light btn" onClick={this.createOrder}> Proceed with Payment </button>
+                </div>
               </div>
             </div>
           </div>

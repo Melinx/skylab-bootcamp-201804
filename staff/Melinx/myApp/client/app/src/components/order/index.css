@@ -1,3 +1,9 @@
 select {
     display: block;
 }
+
+h6{
+    position: center;
+    margin-top: 30px;
+
+}

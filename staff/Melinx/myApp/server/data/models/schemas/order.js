@@ -12,13 +12,12 @@ module.exports = new Schema({
 
     // date: { 
     //     type: Date, 
-    //     default: Date.now,
+    //     default: New date(),
     //     required: true
     // },
 
     firstCourse: {
         type: ObjectId,
-        
         ref: 'Course',
         required: true
     },
@@ -35,8 +34,6 @@ module.exports = new Schema({
         type: Boolean,
         default: false
     }
-
-    // would it be possible to push all orders into a history array (pastOrders) once the STATUS is 'paid', tracking date also?
 
 })
 
