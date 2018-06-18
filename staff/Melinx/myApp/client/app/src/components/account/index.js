@@ -33,7 +33,6 @@ class Account extends Component {
 
                 logic.updateEater(name, lastName, email, password)
                     .then(res => {
-                        console.log(res);
                         if (res) {
                             this.props.history.push('/')
                         } else {

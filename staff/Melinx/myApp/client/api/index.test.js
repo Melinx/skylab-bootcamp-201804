@@ -377,7 +377,6 @@ describe('logic (myApp)', () => {
                     expect(res.length).to.equal(10)
 
                     for (let i in res) {
-                        console.log('holaaaaa q ase')
                         expect(res[i]._id).to.exist
                         expect(res[i]._image).not.to.equal(res[i+1]._image)
                         expect(res[i].category['firstCourse']).to.equal('firstCourse')

@@ -9,7 +9,6 @@ class App extends Component {
     this.state = {
       firstCourse: '',
       secondCourse: '',
-      orderId: ''
     }
   }
 
@@ -21,20 +20,6 @@ class App extends Component {
       this.setState({ secondCourse: courseId })
     }
   }
-
-  // orderNumber = (time, orderId) => {
-  //   let d = new Date();
-  //   let time = d.getHours();
-
-  //   if (time > 11) {
-  //     throw Error('')
-  //   }
-  //   if (time < 11) {
-  //     let orderId = 100
-  //     for (let i = 0; i < conf.length; i++)
-  //       return i
-  //   }
-  // }
 
   render() {
     return (

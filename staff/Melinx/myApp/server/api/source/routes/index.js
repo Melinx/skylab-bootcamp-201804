@@ -90,7 +90,7 @@ router.delete('/eaters/:eaterId', [jwtValidator, jsonBodyParser], (req, res) => 
 router.get('/courses/ids/', (req, res) => {
     const { query: { first, second } } = req
     const ids = [];
-    if(first && second) {
+    if (first && second) {
         ids.push(first, second)
     }
 
@@ -119,19 +119,33 @@ router.get('/courses/:first', (req, res) => {
         })
 })
 
-router.post('/eaters/order/:eaterId', [jwtValidator, jsonBodyParser],  (req, res) => {
-    const { body: { firstCourse, secondCourse, pickupDate, statusPaid }, params: { eaterId } } = req
+router.post('/eaters/order/:eaterId', [jwtValidator, jsonBodyParser], (req, res) => {
+    const { body: { firstCourse, secondCourse, pickupTime, statusPaid }, params: { eaterId } } = req
 
-    return logic.createOrder(eaterId, firstCourse, secondCourse, pickupDate, statusPaid)
+    return logic.createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid)
         .then(order => {
             res.status(200)
-            res.json({ status: 'OK', data: order})
+            res.json({ status: 'OK', data: order })
         })
         .catch(({ message }) => {
             res.status(400)
             res.json({ status: 'KO', error: message })
         })
 })
+
+router.get('/todayorders/', (req, res) => {
+
+    return logic.countOrdersByDay()
+        .then(orders => {
+            res.status(200)
+            res.json({ status: 'OK', data: orders })
+        })
+        .catch(({ message }) => {
+            res.status(400)
+            res.json({ status: 'KO', error: message })
+        })
+})
+
 
 
 module.exports = router

@@ -20,7 +20,7 @@ describe('models (myApp)', () => {
     const dummyFirstCourseId = '123456781234657812345678'
     const dummySecondCourseId = '123456781234567812345678'
 
-    const pepeOrder = { eaterId: '123456781234567812345678', firstCourse: dummySecondCourseId, secondCourse: dummySecondCourseId, pickupDate: 'Tue Jun 12 2018 12:02:37 GMT+0200 (CEST)'}
+    const pepeOrder = { eaterId: '123456781234567812345678', firstCourse: dummySecondCourseId, secondCourse: dummySecondCourseId, pickupTime: 'Tue Jun 12 2018 12:02:37 GMT+0200 (CEST)'}
 
     before(() => mongoose.connect(DB_URL))
 
@@ -73,11 +73,11 @@ describe('models (myApp)', () => {
                             expect(order1._id).to.exist
                             expect(order1.date).to.exist
                             
-                            expect(order1.pickupDate.toString()).to.equal(pepeOrder.pickupDate.toString())
+                            expect(order1.pickupTime.toString()).to.equal(pepeOrder.pickupTime.toString())
 
                             // expect(order2._id).to.exist
                             // expect(order2.date).to.exist
-                            // expect(order2.pickupDate.toString()).to.equal(mariaOrder.pickupDate.toString())
+                            // expect(order2.pickupTime.toString()).to.equal(mariaOrder.pickupTime.toString())
                             // expect(order2.status).to.equal(mariaOrder.status)
                             // expect(order2.meals.length).to.equal(1)
                         })

@@ -272,7 +272,7 @@ const logic = {
             })
             .then(course => {
                 if (!course) throw Error(`no eater found with id ${id}`)
-                
+
                 return course
             })
     },
@@ -287,12 +287,13 @@ const logic = {
      * @param {date = Date.now()} date - it works as a timestamp to know if order was placed on time (by 11am)
      * @param {string} firstCourse 
      * @param {string} secondCourse 
-     * @param {Date} pickupDate - will tell the business which time eater will go pick up their food.
+     * @param {Date} pickupTime - will tell the business which time eater will go pick up their food.
      * @param {[status = 'processing']} (default order status is processing, other status will be paid)
      *  
      */
 
-    createOrder(eaterId, firstCourse, secondCourse, pickupDate, statusPaid) {
+    createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid) {
+
 
         return Promise.resolve()
             .then(() => {
@@ -304,18 +305,31 @@ const logic = {
                 if (typeof secondCourse !== 'string') throw Error('second course id is not a string')
                 if (!(secondCourse = secondCourse.trim()).length) throw Error('second course id is empty or blank')
 
-                if (pickupDate !== undefined) {
-                    //if (typeof pickupDate !== 'date') throw Error('pickUp id is not a string')
-                    //if (!(pickupDate = pickupDate.trim()).length) throw Error('eater id is empty or blank')
-                }
+                const today = new Date();
+                const date = today.toLocaleDateString()
 
-                const timeOrdered = new Date().getHours()
-                if (timeOrdered > 19) throw Error('cannot proceed with order, too late.')
-
-                return Order.create({ eaterId, firstCourse, secondCourse, pickupDate, statusPaid })
+                return Order.create({ eaterId, date, firstCourse, secondCourse, pickupTime, statusPaid })
                     .then((res) => {
                         return res
                     })
+            })
+    },
+
+    /**
+     * DOCUM: it returns the amount of orders of current day, allowing a TICKETING number so the customer can have an easy order confirmation.
+     * 
+     * @returns {Promise<number>}
+     * @param {} - none
+     * 
+     * @returns{Array}      
+     */
+    countOrdersByDay() {
+        return Promise.resolve()
+            .then(() => {
+                const date = new Date().toLocaleDateString()
+                return Order.find({ date: date })
+            }).then((orders) => {
+                return orders.length
             })
     }
 

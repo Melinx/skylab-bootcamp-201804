@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './index.css'
 import logic from '../../../logic'
 
 //props destructuring: props.title, props.items etc etc = { title, items etc etc}
 
-const CourseCard =  ({ title, items, addCourse, category, selected }) => {
+const CourseCard = ({ title, items, addCourse, category, selected }) => {
 
     if (items.length < 0) return null
 
@@ -40,25 +41,28 @@ const CourseCard =  ({ title, items, addCourse, category, selected }) => {
         )
     } else {
         return (
-            <div className="row s12 m4">
-                <h4 className="center">{title}</h4>
-                <div className="row">
-                    {
-                        items.map(course => (
+            <section>
+                <Link to="/login" className="waves-effect pink  waves-light btn" >Login To ORDER</Link>
+                <div className="row s12 m4">
+                    <h4 className="center">{title}</h4>
+                    <div className="row">
+                        {
+                            items.map(course => (
 
-                            <div className="col s12 m3 course_card_nolog" key={course._id}>
+                                <div className="col s12 m3 course_card_nolog" key={course._id}>
 
-                                <h6>{course.dishName}</h6>
-                                <img
-                                    src={course.image}
-                                    className="responsive-img" alt="" />
-                            
-                            </div>
-                        )
-                        )
-                    }
+                                    <h6>{course.dishName}</h6>
+                                    <img
+                                        src={course.image}
+                                        className="responsive-img" alt="" />
+
+                                </div>
+                            )
+                            )
+                        }
+                    </div>
                 </div>
-            </div>
+            </section>
         )
     }
 }

@@ -13,8 +13,6 @@ class Landing extends Component {
     }
 
     render() {
-        //const { firstCourse, secondCourse } = this.state
-        console.log(this.props);
         return (
             <div>
                 landing

@@ -43,12 +43,17 @@ const logic = {
     retrieveCourses(first, second){
         return eatersApi.retrieveCourses(first, second)
         .then(res => {
-            console.log('res in LOGIC REACT: ', res);
             return res
         })    
     },
 
-    
+    getTicket(){
+        return eatersApi.countOrdersByDay()
+        .then(res => {
+            const ticket = new Date().getDate() + '-00' + res
+            return ticket
+        })
+    }
  
 }
 

@@ -52,7 +52,7 @@ class Login extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="form center col s6 offset-s3 z-depth-1">
-                            <h5 id="title">Log You In</h5>
+                            <h5 id="title">Log on in!</h5>
                             <form onSubmit={this.handleLogin}>
                                 <div className="input-field" id="username">
                                     <input value={this.state.username} onChange={this.handleKeepName} type="text" className="validate" autoFocus />

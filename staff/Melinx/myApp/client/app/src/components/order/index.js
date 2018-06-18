@@ -13,15 +13,16 @@ class Order extends Component {
     super(props)
     this.state = {
       ids: '',
-      // firstCourses: [],
-      // secondCourses: [],
+      firstCourse: [],
+      secondCourse: [],
       firstCourseImage: '',
       secondCourseImage: '',
       firstCourseName: '',
       secondCourseName: '',
       payment: false,
-      pickupDate: '',
-      timeOrdered: ''
+      pickupTime: '',
+      timeOrdered: '',
+      ticket: ''
     }
   }
 
@@ -36,35 +37,39 @@ class Order extends Component {
           firstCourseImage: res.course[0].image,
           secondCourseName: res.course[1].dishName,
           secondCourseImage: res.course[1].image,
+
         })
       }).catch(err => console.error(err.message))
   }
 
-  handleOrder = e => {
-    e.preventDefault()
+  // handleOrder = e => {
+  //   e.preventDefault()
 
-      .catch(({ message }) => {
-        Alert.success('Order placed correctly! :p ', {
-          position: 'top-right',
-          timeout: 1000
-        })
-      })
-  }
+  //     .catch(({ message }) => {
+  //       Alert.success('Order placed correctly!', {
+  //         position: 'top-right',
+  //         timeout: 1000,
+  //         effect: 'genie'
+  //       })
+  //     })
+  // }
 
   handlePickup = (e) => {
-    const pickupDate = e.target.value
-    this.setState({ pickupDate })
-  }
-
-  orderNumber = () => {
-    // create listOrders. find ORDERS
-
+    const pickupTime = e.target.value
+    this.setState({ pickupTime })
   }
 
   checkTime = () => {
     let d = new Date()
     let time = d.getHours()
     if (time < 13) return true
+  }
+
+  getTicket = () => {
+    logic.getTicket()
+      .then(ticket => {
+        this.setState({ ticket })
+      })
   }
 
   // WARNING - The order can ONLY be placed if it's BEFORE 11am. For DEMO, modify checkTime function above to appropriate time number.
@@ -74,24 +79,27 @@ class Order extends Component {
       .then(res => {
         if (res === true) {
           const { firstCourse, secondCourse } = this.props
-          const { pickupDate } = this.state
+          const { pickupTime } = this.state
           const statusPaid = true
           const eaterId = logic.eaterId()
+          const ticket = this.getTicket()
 
-          if (pickupDate === '') {
-            return Alert.info('Please select a pick-up time')
+          if (pickupTime === '') {
+            return Alert.info('Please select a pick-up time ')
           } else {
-            api.createOrder(eaterId, firstCourse, secondCourse, pickupDate, statusPaid)
-            return Alert.success(`Order placed correctly with number ${this.props.orderNumber}`, {
+            api.createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid)
+
+            return Alert.success(`Order placed CORRECTLY 👅`, {
               position: 'top-right',
-              timeout: 1000
+              timeout: 1500,
+              effect: 'genie',
+              position: 'bottom'
             })
-          } 
+          }
         } else {
-          Alert.warning('OH, NO! You were late to place order online. Please come see us directly at our store.')
+          Alert.warning('OH, NO! You were late to place your order online. Please come see us directly at our store.')
         }
       })
-
   }
 
   render() {
@@ -150,9 +158,22 @@ class Order extends Component {
                   <h5>Please pay:</h5>
                   <hr />
                   <h4>5€</h4>
-                  <button className="waves-effect pink  waves-light btn" onClick={this.createOrder}> Proceed with Payment </button>
+                  <button className="waves-effect pink  waves-light btn" onClick={this.createOrder}> Proceed </button>
                 </div>
               </div>
+              {
+                this.state.ticket ?
+                  <div className="col s12 m16">
+                    <div className="card-panel">
+                      <h4>Confirmation Number: <span className="conf"> {this.state.ticket}</span> </h4>
+                      <hr/>
+                      <h4>Pick-up Time: <span className="time">{this.state.pickupTime}</span> </h4>
+                    </div>
+                  </div>
+                  :
+                  null
+              }
+
             </div>
           </div>
         </section>

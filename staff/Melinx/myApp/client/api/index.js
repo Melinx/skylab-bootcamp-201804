@@ -265,24 +265,18 @@ const eatersApi = {
             })
     },
 
-    createOrder(eaterId, firstCourse, secondCourse, pickupDate, statusPaid) {
-        console.log('eaterId: ', eaterId);
+    createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid) {
         return Promise.resolve()
             .then(() => {
                 // TODO Validations
-
-                return axios.post(`${this.url}/eaters/order/${eaterId}`, { firstCourse, secondCourse, pickupDate, statusPaid }, { headers: { authorization: `Bearer ${this.token()}` } })
+                return axios.post(`${this.url}/eaters/order/${eaterId}`, { firstCourse, secondCourse, pickupTime, statusPaid }, { headers: { authorization: `Bearer ${this.token()}` } })
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
-
-                        // const { data: { eaterId, firstCourse, secondCourse, pickupDate, statusPaid } } = data
-
 
                         return data
                     })
                     .catch(err => {
                         if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
-                        console.log('err: ', err.response);
 
                         if (err.response) {
                             const { response: { data: { error } } } = err
@@ -310,6 +304,26 @@ const eatersApi = {
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
 
+                        return data.data
+                    })
+                    .catch(err => {
+                        if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
+
+                        if (err.response) {
+                            const { response: { data: { error: message } } } = err
+                            return message
+                        } else throw err
+                    })
+            })
+    },
+
+    countOrdersByDay() {
+        return Promise.resolve()
+            .then(() => {
+                return axios.get(`${this.url}/todayorders`)
+                    .then(({ status, data }) => {
+                        if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
+                        
                         return data.data
                     })
                     .catch(err => {

@@ -10,11 +10,10 @@ module.exports = new Schema({
         required: true
     },
 
-    // date: { 
-    //     type: Date, 
-    //     default: New date(),
-    //     required: true
-    // },
+    date: { 
+        type: String, 
+        required: true
+    },
 
     firstCourse: {
         type: ObjectId,
@@ -28,7 +27,7 @@ module.exports = new Schema({
         required: true,
     },
 
-    pickupDate: { type: String },
+    pickupTime: { type: String },
 
     statusPaid: {
         type: Boolean,
