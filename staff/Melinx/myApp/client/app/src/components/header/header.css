@@ -3,7 +3,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #E57373;
+    /* background-color: #E57373; */
 }
 
 li {
@@ -18,10 +18,6 @@ li a, .dropbtn {
     margin-left: 10px;
     text-decoration: none;
 }   
-
-li a:hover, .dropdown:hover .dropbtn {
-    background-color: rgb(146, 118, 118);
-}
 
 li.dropdown {
     display: inline-block;

@@ -22,9 +22,9 @@ class Header extends Component {
           <nav>
             <div className="container">
               <div className="nav-wrapper">
-                <a className="brand-logo left">els
-              <span className="gerds">Gerds</span>
-                </a>
+              <a href="#landing" className="brand-logo left">els
+                  <span className="gerds">Gerds</span>
+                  </a>
                 <ul className="right hide-on-small-and-down">
                   <li>
                   </li><li>
@@ -47,7 +47,7 @@ class Header extends Component {
             <nav>
               <div className="container">
                 <div className="nav-wrapper">
-                  <a href="#" className="brand-logo left">els
+                  <a href="#landing" className="brand-logo left">els
                   <span className="gerds">Gerds</span>
                   </a>
 

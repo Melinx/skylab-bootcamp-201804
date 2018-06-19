@@ -37,6 +37,14 @@ class Todaymenu extends Component {
             this.props.history.push('/order')
         }
     }
+    noLeft = ()=> {
+        Alert.error('Sorry, none of this left! :(', {
+            position: 'top-right',
+            timeout: 1500,
+            effect: 'slide',
+            position: 'bottom-left'
+          })
+    }
 
     render() {
 
@@ -58,12 +66,14 @@ class Todaymenu extends Component {
                                 <div className="container">
                                     <CourseCard
                                         title='FIRSTS'
+                                        noLeft={this.noLeft}
                                         items={firstCourses}
                                         params='firstCourse'
 
                                     />
                                     <CourseCard
                                         title='SECONDS'
+                                        noLeft={this.noLeft}
                                         items={secondCourses}
                                         params='secondCourse'
 
@@ -80,6 +90,7 @@ class Todaymenu extends Component {
                                         title='FIRSTS'
                                         items={firstCourses}
                                         addCourse={this.props.addCourse}
+                                        noLeft={this.noLeft}
                                         category='firstCourse'
                                         selected={firstCourse}
                                     />
@@ -87,6 +98,7 @@ class Todaymenu extends Component {
                                         title='SECONDS'
                                         items={secondCourses}
                                         addCourse={this.props.addCourse}
+                                        noLeft={this.noLeft}
                                         category='secondCourse'
                                         selected={secondCourse}
                                     />

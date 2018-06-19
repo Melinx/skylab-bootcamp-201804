@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logic from '../../logic'
 import './index.css'
+import Alert from 'react-s-alert'
 
 class Register extends Component {
 
@@ -20,12 +21,14 @@ class Register extends Component {
         e.preventDefault()
 
         const { name, lastName, email, password, confirmPassword } = this.state
+
+        if (password !== confirmPassword) { Alert.error('Passwords are not matching') }
+
         if (password === confirmPassword) {
             if (name !== "" || lastName !== "" || email !== "" || password !== "") {
 
                 logic.registerEater(name, lastName, email, password)
                     .then(res => {
-                        console.log(res);
                         if (res) {
                             this.props.history.push('/login')
                         } else {
@@ -95,7 +98,7 @@ class Register extends Component {
                                     <label htmlFor="password">
                                         Repeat password</label>
                                 </div>
-                              
+
                                 <br />
                                 <div className="login-buttons">
                                     <button className="waves-effect pink  waves-light btn" id="loginbtn" type='submit'>Register →</button>
