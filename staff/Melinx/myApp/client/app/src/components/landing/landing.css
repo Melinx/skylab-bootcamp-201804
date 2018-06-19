@@ -1,0 +1,18 @@
+.indicator-item, active {
+    list-style: none;
+    color: black;
+}
+
+.slider .indicators {
+    margin-left: 500px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.slider .indicators .indicator-item.active {
+    background-color: rgb(235, 32, 116);
+}
+
+.bottomm {
+    margin-top: 300px;
+}

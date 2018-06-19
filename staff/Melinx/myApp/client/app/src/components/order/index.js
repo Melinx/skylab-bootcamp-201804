@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import api from 'api'
 import { Link } from 'react-router-dom'
 import Alert from 'react-s-alert'
+
 import './index.css'
 import logic from '../../logic'
 
@@ -85,13 +86,13 @@ class Order extends Component {
 
             return Alert.success(`Order placed CORRECTLY. We'll see you real soon! 👅`, {
               position: 'top-right',
-              timeout: 1500,
+              timeout: 1000,
               effect: 'genie',
               position: 'bottom'
             })
           }
         } else {
-          Alert.warning('OH, NO! You were late to place your order online. Please come see us directly at our store.')
+          Alert.warning('OH, NO! You were late.')
         }
       })
   }
@@ -116,8 +117,8 @@ class Order extends Component {
 
                   <Link to="/todaymenu" className=" btn-large waves-effect waves-light red hola">get more food?</Link>
                 </div>
+              </div>
             </div>
-          </div>
           </div>
         </section>
 
@@ -177,12 +178,6 @@ class Order extends Component {
                     <button className="waves-effect pink  waves-light btn" onClick={this.createOrder}> Proceed </button>
                   </div>
                 </div>
-                
-                {
-
-                  null
-                }
-
               </div>
             </div>
           </section>

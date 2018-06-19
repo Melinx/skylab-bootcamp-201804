@@ -23,10 +23,7 @@ describe('logic (myApp)', () => {
     const firstCourse4 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '4' }
     const secondCourse4 = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: '4' }
     const firstCourse5 = { category: 'firstCourse', image: 'img1', dishName: 'macarrones', temp: 'cold', baseFood: 'green', dayAvail: '5' }
-    const secondCourse5 = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: '5' }
-
-    const pepeOrder = { pickupTime: 'Tue Jun 12 2018 12:02:37 GMT+0200 (CEST)' }
-    
+    const secondCourse5 = { category: 'secondCourse', image: 'img2', dishName: 'pollo', temp: 'hot', baseFood: 'meat', dayAvail: '5' }    
 
     before(() => mongoose.connect(DB_URL))
 

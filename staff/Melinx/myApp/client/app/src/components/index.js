@@ -1,5 +1,5 @@
 
-import Follow from '../components/follow' // in landing already
+import Follow from '../components/follow' 
 import Footer from '../components/footer' 
 import Header from '../components/header'
 import Login from '../components/login'
@@ -8,7 +8,7 @@ import Order from '../components/order'
 import Account from '../components/account'
 import Register from '../components/register'
 import Todaymenu from '../components/todaymenu'
-import Coursecard from '../components/todaymenu/coursecard'  // in landing already
+import Coursecard from '../components/todaymenu/coursecard'
 
 export {
 

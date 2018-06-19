@@ -40,7 +40,7 @@ class Todaymenu extends Component {
     noLeft = ()=> {
         Alert.error('Sorry, none of this left! :(', {
             position: 'top-right',
-            timeout: 1500,
+            timeout: 1000,
             effect: 'slide',
             position: 'bottom-left'
           })

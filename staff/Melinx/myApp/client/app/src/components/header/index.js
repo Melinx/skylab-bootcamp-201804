@@ -22,7 +22,7 @@ class Header extends Component {
           <nav>
             <div className="container">
               <div className="nav-wrapper">
-              <a href="#landing" className="brand-logo left">els
+              <a href="#" className="brand-logo left">els
                   <span className="gerds">Gerds</span>
                   </a>
                 <ul className="right hide-on-small-and-down">
@@ -34,7 +34,7 @@ class Header extends Component {
                     <a href="#account">Your Account</a>
                   </li>
                   <li>
-                    <a href='#landing' onClick={this._handleLogout} >Logout</a>
+                    <a href='#' onClick={this._handleLogout} >Logout</a>
                   </li>
 
                   <li className="dropdown">
@@ -47,7 +47,7 @@ class Header extends Component {
             <nav>
               <div className="container">
                 <div className="nav-wrapper">
-                  <a href="#landing" className="brand-logo left">els
+                  <a href="#" className="brand-logo left">els
                   <span className="gerds">Gerds</span>
                   </a>
 
