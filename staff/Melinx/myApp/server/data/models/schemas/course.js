@@ -26,12 +26,17 @@ module.exports = new Schema ({
 
     baseFood: {
         type: String, 
-        enum: ['meat', 'fish', 'green', 'pasta', 'rice', 'bean']
+        enum: ['meat', 'fish', 'green', 'pasta', 'rice', 'beans']
     },
     
     dayAvail: {
         type: String,
         enum: ['1', '2', '3', '4', '5', '6', '0'],
         required: true
+    }, 
+
+    amount: {
+        type: Number,
+        default: 10,
     }
 })

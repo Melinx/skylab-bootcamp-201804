@@ -42,17 +42,6 @@ class Order extends Component {
       }).catch(err => console.error(err.message))
   }
 
-  // handleOrder = e => {
-  //   e.preventDefault()
-
-  //     .catch(({ message }) => {
-  //       Alert.success('Order placed correctly!', {
-  //         position: 'top-right',
-  //         timeout: 1000,
-  //         effect: 'genie'
-  //       })
-  //     })
-  // }
 
   handlePickup = (e) => {
     const pickupTime = e.target.value
@@ -66,10 +55,13 @@ class Order extends Component {
   }
 
   getTicket = () => {
-    logic.getTicket()
-      .then(ticket => {
-        this.setState({ ticket })
-      })
+    this.state.pickupTime ?
+      logic.getTicket()
+        .then(ticket => {
+          this.setState({ ticket })
+        })
+      :
+      null
   }
 
   // WARNING - The order can ONLY be placed if it's BEFORE 11am. For DEMO, modify checkTime function above to appropriate time number.
@@ -88,8 +80,11 @@ class Order extends Component {
             return Alert.info('Please select a pick-up time ')
           } else {
             api.createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid)
+            .then(order => {
+              Promise.all([api.getCourseAmountLeftByDay(order.firstCourse),api.getCourseAmountLeftByDay(order.secondCourse)])
+            })
 
-            return Alert.success(`Order placed CORRECTLY 👅`, {
+            return Alert.success(`Order placed CORRECTLY. We'll see you real soon! 👅`, {
               position: 'top-right',
               timeout: 1500,
               effect: 'genie',
@@ -166,7 +161,7 @@ class Order extends Component {
                   <div className="col s12 m16">
                     <div className="card-panel">
                       <h4>Confirmation Number: <span className="conf"> {this.state.ticket}</span> </h4>
-                      <hr/>
+                      <hr />
                       <h4>Pick-up Time: <span className="time">{this.state.pickupTime}</span> </h4>
                     </div>
                   </div>

@@ -220,6 +220,30 @@ const logic = {
             })
     },
 
+    /**
+     * DOCUM: this function returns the amount left for a given course. The default amount per day is 10, each order confirmation containing the courseID will subtract 1 from the counter.
+     * 
+     * @returns {Promise<string>}
+     * 
+     * @param {id<boolean>}
+     * 
+     * @returns{Number} 
+     * 
+     */
+
+    getCourseAmountLeftByDay(id) {
+
+        return Promise.resolve()
+            .then(() => {
+                return Course.findByIdAndUpdate({ _id: id }, { $inc: { "amount": -1 } }, { new: true })
+                    .then((amount) => {
+
+                        if (!amount) throw Error(`no courses are left for ${amount.dishName}}`)
+
+                        return amount
+                    })
+            })
+    },
 
     createCourse(category, image, dishName, temp, baseFood, dayAvail) {
         return Promise.resolve()
@@ -256,8 +280,6 @@ const logic = {
                             .then(() => true)
                     })
             })
-
-
     },
 
     // FUNC retrieveCourse allows first and second course selection before proceeding w creating order 
@@ -294,7 +316,6 @@ const logic = {
 
     createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid) {
 
-
         return Promise.resolve()
             .then(() => {
 
@@ -319,10 +340,11 @@ const logic = {
      * DOCUM: it returns the amount of orders of current day, allowing a TICKETING number so the customer can have an easy order confirmation.
      * 
      * @returns {Promise<number>}
-     * @param {} - none
+     * @param {id<String>} 
      * 
-     * @returns{Array}      
+     * @returns {amount<Number>}    
      */
+
     countOrdersByDay() {
         return Promise.resolve()
             .then(() => {

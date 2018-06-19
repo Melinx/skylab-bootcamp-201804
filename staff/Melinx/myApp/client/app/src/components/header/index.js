@@ -17,7 +17,8 @@ class Header extends Component {
   render() {
     return (
       <header>
-        {logic.isLogged() ? (
+        {logic.isLogged() ? 
+        (
           <nav>
             <div className="container">
               <div className="nav-wrapper">
@@ -38,12 +39,7 @@ class Header extends Component {
 
                   <li className="dropdown">
                     <a href="javascript:void(0)" className="dropbtn">Hola, Pepe!</a>
-                    {/* SELECT OPTION  X X X 
-                    <div className="dropdown-content">
-                              <a href="#/home">Account info</a>
-                              <a href="#">My orders</a>
-                              <a href="#">Logout</a>
-                            </div> */}
+                   
                   </li>
                 </ul></div>
             </div></nav>

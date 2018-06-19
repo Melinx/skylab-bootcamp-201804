@@ -53,7 +53,9 @@ const logic = {
             const ticket = new Date().getDate() + '-00' + res
             return ticket
         })
-    }
+    },
+
+  
  
 }
 

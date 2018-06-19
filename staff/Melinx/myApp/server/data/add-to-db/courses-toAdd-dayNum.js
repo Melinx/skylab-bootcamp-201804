@@ -7,13 +7,13 @@ const { Course } = require('../models')
 
 const { env: { DB_URL } } = process
 
-const course1 = { category: 'secondCourse', image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204568/2-20_tuna-tataki.jpg', dishName: 'Tuna tataki', temp: 'cold', baseFood: 'fish', dayAvail: '1' }
-const course2 = { category: 'secondCourse', image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-19_trinxat.jpg', dishName: 'Trinxat', temp: 'hot', baseFood: 'green', dayAvail: '3' }
+const course1 = { category: 'secondCourse', image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204568/2-20_tuna-tataki.jpg', dishName: 'Tuna tataki', temp: 'cold', baseFood: 'fish', dayAvail: '1' }
+const course2 = { category: 'secondCourse', image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204567/2-19_trinxat.jpg', dishName: 'Trinxat', temp: 'hot', baseFood: 'green', dayAvail: '3' }
 const course3 =
     {
 
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204552/1-2_beetroot-salad.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204552/1-2_beetroot-salad.jpg',
         dishName: 'Beetroot salad',
         temp: 'cold',
         baseFood: 'green',
@@ -23,7 +23,7 @@ const course3 =
 const course4 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-12_paella-mar-muntanya.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204567/2-12_paella-mar-muntanya.jpg',
         dishName: 'Paella',
         temp: 'hot',
         baseFood: 'rice',
@@ -32,7 +32,7 @@ const course4 =
 const course5 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-17_salmon-teryaki.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204567/2-17_salmon-teryaki.jpg',
         dishName: 'Teriyaki Salmon',
         temp: 'hot',
         baseFood: 'fish',
@@ -41,7 +41,7 @@ const course5 =
 const course6 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-10_gall-peix.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204567/2-10_gall-peix.jpg',
         dishName: 'Chicken',
         temp: 'hot',
         baseFood: 'meat',
@@ -50,7 +50,7 @@ const course6 =
 const course7 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-18_tomato-pasta.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204567/2-18_tomato-pasta.jpg',
         dishName: 'Pasta tomato',
         temp: 'hot',
         baseFood: 'pasta',
@@ -59,7 +59,7 @@ const course7 =
 const course8 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-16_romesco-de-conill.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204567/2-16_romesco-de-conill.jpg',
         dishName: 'Rabbit romesco',
         temp: 'hot',
         baseFood: 'meat',
@@ -68,16 +68,16 @@ const course8 =
 const course9 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-15_potaje.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204567/2-15_potaje.jpg',
         dishName: 'Garbanzos & meatballs ',
         temp: 'hot',
-        baseFood: 'bean',
+        baseFood: 'beans',
         dayAvail: '2'
     }
 const course10 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-14_peus-de-porc.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204567/2-14_peus-de-porc.jpg',
         dishName: 'Pork feet',
         temp: 'hot',
         baseFood: 'meat',
@@ -86,7 +86,7 @@ const course10 =
 const course11 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-13_pasta-truffle-carbonara.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204567/2-13_pasta-truffle-carbonara.jpg',
         dishName: 'Truffle carbonara',
         temp: 'hot',
         baseFood: 'pasta',
@@ -95,7 +95,7 @@ const course11 =
 const course12 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204567/2-11_mandonguilles.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204567/2-11_mandonguilles.jpg',
         dishName: 'Meatballs & peas',
         temp: 'hot',
         baseFood: 'meat',
@@ -104,7 +104,7 @@ const course12 =
 const course13 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-9_fricando.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204566/2-9_fricando.jpg',
         dishName: 'Fricandó',
         temp: 'hot',
         baseFood: 'meat',
@@ -113,7 +113,7 @@ const course13 =
 const course14 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-8_fideua.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204566/2-8_fideua.jpg',
         dishName: 'Fideuà',
         temp: 'hot',
         baseFood: 'pasta',
@@ -122,7 +122,7 @@ const course14 =
 const course15 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-6_cargols-a-la-launa.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204566/2-6_cargols-a-la-launa.jpg',
         dishName: '"Canned" snails',
         temp: 'hot',
         baseFood: 'pasta',
@@ -131,7 +131,7 @@ const course15 =
 const course16 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-4_black-rice.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204566/2-4_black-rice.jpg',
         dishName: 'Black rice',
         temp: 'hot',
         baseFood: 'rice',
@@ -140,16 +140,16 @@ const course16 =
 const course17 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-7_conil-amb-cargols-allioli.jpg',
-        dishName: 'Rabbit & snails',
-        temp: 'hot',
-        baseFood: 'meat',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1529348752/chickpea-potato-salad.jpg',
+        dishName: 'Cheakpea salad',
+        temp: 'cold',
+        baseFood: 'beans',
         dayAvail: '5'
     }
 const course18 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-3_bacalla.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204566/2-3_bacalla.jpg',
         dishName: 'Coat fish',
         temp: 'hot',
         baseFood: 'fish',
@@ -158,7 +158,7 @@ const course18 =
 const course19 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-5_botifarra-mongetes.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204566/2-5_botifarra-mongetes.jpg',
         dishName: 'Botifarra & white beans',
         temp: 'hot',
         baseFood: 'meat',
@@ -167,7 +167,7 @@ const course19 =
 const course20 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/2-2_bacalla-amb-samfaina.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204566/2-2_bacalla-amb-samfaina.jpg',
         dishName: 'Coat fish & veggies',
         temp: 'hot',
         baseFood: 'fish',
@@ -176,7 +176,7 @@ const course20 =
 const course21 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204566/1-20_salmon-salad-and-sauce.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204566/1-20_salmon-salad-and-sauce.jpg',
         dishName: 'Salmon salad',
         temp: 'cold',
         baseFood: 'meat',
@@ -185,7 +185,7 @@ const course21 =
 const course22 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-18_salad_plate.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204565/1-18_salad_plate.jpg',
         dishName: 'Green salad',
         temp: 'cold',
         baseFood: 'green',
@@ -194,7 +194,7 @@ const course22 =
 const course23 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/2-1_bacalla-amb-escabetx-de-rovellons.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204565/2-1_bacalla-amb-escabetx-de-rovellons.jpg',
         dishName: 'Marinated coat fish',
         temp: 'cold',
         baseFood: 'fish',
@@ -203,7 +203,7 @@ const course23 =
 const course24 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-17_risotto.png',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204565/1-17_risotto.png',
         dishName: 'Risotto',
         temp: 'hot',
         baseFood: 'rice',
@@ -212,7 +212,7 @@ const course24 =
 const course25 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-14_kinoa-salad.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204565/1-14_kinoa-salad.jpg',
         dishName: 'Kinoa salad',
         temp: 'cold',
         baseFood: 'rice',
@@ -221,7 +221,7 @@ const course25 =
 const course26 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-19_salad-pomegranate.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204565/1-19_salad-pomegranate.jpg',
         dishName: 'Pomegranate salad',
         temp: 'cold',
         baseFood: 'green',
@@ -230,7 +230,7 @@ const course26 =
 const course27 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-15_macaroni-salad.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204565/1-15_macaroni-salad.jpg',
         dishName: 'Macaroni salad',
         temp: 'cold',
         baseFood: 'pasta',
@@ -239,7 +239,7 @@ const course27 =
 const course28 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204565/1-16_mango-salad.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204565/1-16_mango-salad.jpg',
         dishName: 'Mango salad',
         temp: 'cold',
         baseFood: 'pasta',
@@ -248,7 +248,7 @@ const course28 =
 const course29 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-12_green-pasta.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204564/1-12_green-pasta.jpg',
         dishName: 'Pesto pasta',
         temp: 'cold',
         baseFood: 'pasta',
@@ -257,7 +257,7 @@ const course29 =
 const course30 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-11_gazpacho.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204564/1-11_gazpacho.jpg',
         dishName: 'Gazpacho',
         temp: 'cold',
         baseFood: 'green',
@@ -266,7 +266,7 @@ const course30 =
 const course31 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-13_green-spagetthi-salad.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204564/1-13_green-spagetthi-salad.jpg',
         dishName: 'Spaghetti salad',
         temp: 'cold',
         baseFood: 'green',
@@ -275,7 +275,7 @@ const course31 =
 const course32 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-9_esqueixada-bacalla.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204564/1-9_esqueixada-bacalla.jpg',
         dishName: 'Coat esqueixada',
         temp: 'cold',
         baseFood: 'fish',
@@ -284,7 +284,7 @@ const course32 =
 const course33 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-6_ensaladilla-rusa.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/ar_1:1,c_fill,g_auto,e_art:hokusai/v1529391222/1-6_ensaladilla-rusa.jpg',
         dishName: 'Ensaladilla rusa',
         temp: 'cold',
         baseFood: 'green',
@@ -293,7 +293,7 @@ const course33 =
 const course34 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-10_faves-ofegades-menta.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204564/1-10_faves-ofegades-menta.jpg',
         dishName: 'Green broad beans',
         temp: 'cold',
         baseFood: 'green',
@@ -302,7 +302,7 @@ const course34 =
 const course35 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-5_eggplant-goatcheese.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204564/1-5_eggplant-goatcheese.jpg',
         dishName: 'Eggplant & goatcheese',
         temp: 'hot',
         baseFood: 'green',
@@ -311,7 +311,7 @@ const course35 =
 const course36 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-8_esparrecs-verds-al-forn.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204564/1-8_esparrecs-verds-al-forn.jpg',
         dishName: 'Green asparagus',
         temp: 'hot',
         baseFood: 'green',
@@ -320,7 +320,7 @@ const course36 =
 const course37 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-4_carpaccio.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204564/1-4_carpaccio.jpg',
         dishName: 'Carpaccio',
         temp: 'cold',
         baseFood: 'meat',
@@ -329,7 +329,7 @@ const course37 =
 const course38 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-3_canelons.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204564/1-3_canelons.jpg',
         dishName: 'Canelonni',
         temp: 'hot',
         baseFood: 'meat',
@@ -338,7 +338,7 @@ const course38 =
 const course39 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204564/1-7_escudella-carn-olla.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204564/1-7_escudella-carn-olla.jpg',
         dishName: 'Escudella',
         temp: 'hot',
         baseFood: 'pasta',
@@ -347,7 +347,7 @@ const course39 =
 const course40 =
     {
         category: 'firstCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1528204552/1-1_basmati-salad.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204552/1-1_basmati-salad.jpg',
         dishName: 'Basmati rice salad',
         temp: 'cold',
         baseFood: 'rice',
