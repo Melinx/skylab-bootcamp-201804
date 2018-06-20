@@ -115,7 +115,7 @@ class Order extends Component {
                 </div>
                 <div className="center row">
 
-                  <Link to="/todaymenu" className=" btn-large waves-effect waves-light red hola">get more food?</Link>
+                  <Link to="/todaymenu" className=" btn-large waves-effect waves-light orange hola">get more food?</Link>
                 </div>
               </div>
             </div>

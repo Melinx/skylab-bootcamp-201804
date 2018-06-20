@@ -1,9 +1,3 @@
-/* .section-search input {
-  padding: 5px !important;
-  font-size: 18px !important;
-  width: 90% !important;
-  border: #f4f4f4 3px solid !important;
-} */
 
 .responsive-img {
   border-radius: 5px
@@ -32,6 +26,3 @@ hr {
   text-align: center;
 
 }
-
-
-/*  color #26a69a is the default color in SASS __varaibles that cannot change. WANT COLOR #f95959  */

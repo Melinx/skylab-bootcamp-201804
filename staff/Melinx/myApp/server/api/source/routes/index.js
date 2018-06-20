@@ -151,7 +151,6 @@ router.get('/courses/amount/:id', (req, res) => {
 
     logic.getCourseAmountLeftByDay(id)
         .then(amount => {
-            console.log('amount: ', amount);
             res.status(200)
             res.json({ status: 'OK', data: { amount } })
         })

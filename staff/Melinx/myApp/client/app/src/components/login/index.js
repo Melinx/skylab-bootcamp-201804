@@ -41,14 +41,12 @@ class Login extends Component {
                         timeout: 1000
                     })
                 })
-            // this.props.onLoginError(message)
-
         }
     }
 
     render() {
         return (
-            <section>
+            <section className="gerds-bckg">
                 <div className="container">
                     <div className="row">
                         <div className="form center col s6 offset-s3 z-depth-1">

@@ -66,35 +66,29 @@ class Order extends Component {
 
   // WARNING - The order can ONLY be placed if it's BEFORE 11am. For DEMO, modify checkTime function above to appropriate time number.
   createOrder = () => {
-    
-        if ( this.checkTime() === true) {
-          const { firstCourse, secondCourse } = this.props
-          const { pickupTime } = this.state
-          const statusPaid = true
-          const eaterId = logic.eaterId()
-          const ticket = this.getTicket()
 
-          if (pickupTime === '') {
-            return Alert.info('Please select a pick-up time ')
-          } else {
-            api.createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid)
-              .then(order => {
-                return Promise.all([api.getCourseAmountLeftByDay(order.data.firstCourse), api.getCourseAmountLeftByDay(order.data.secondCourse)])
-              }).then((res)=>{
+    if (this.checkTime() === true) {
+      const { firstCourse, secondCourse } = this.props
+      const { pickupTime } = this.state
+      const statusPaid = true
+      const eaterId = logic.eaterId()
+      const ticket = this.getTicket()
 
-                console.log(res)
-                // return Alert.success(`Order placed CORRECTLY. We'll see you real soon! 👅`, {
-                //   position: 'top-right',
-                //   timeout: 1000,
-                //   effect: 'genie',
-                //   position: 'bottom'
-              })
-            
-          }
-        } else {
-          Alert.warning('OH, NO! You were late.')
-        }
-     
+      if (pickupTime === '') {
+        return Alert.info('Please select a pick-up time ')
+      } else {
+        api.createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid)
+          .then(order => {
+            return Promise.all([api.getCourseAmountLeftByDay(order.data.firstCourse), api.getCourseAmountLeftByDay(order.data.secondCourse)])
+          }).then((res) => {
+            return res
+          })
+
+      }
+    } else {
+      Alert.warning('OH, NO! You were late.')
+    }
+
   }
 
   render() {
@@ -115,10 +109,18 @@ class Order extends Component {
                 </div>
                 <div className="center row">
 
-                  <Link to="/todaymenu" className=" btn-large waves-effect waves-light red hola">get more food?</Link>
+                  <Link to="/todaymenu" className=" btn-large waves-effect waves-light orange hola">get more food?</Link>
                 </div>
               </div>
             </div>
+            <section className="thankyou">
+              <div className="animated slideInLeft ty-txt ">Thank
+              <img className=' thanks-image' src="http://res.cloudinary.com/elsgerds/image/upload/o_63/v1529495503/gerd.png" alt="" />
+                <div className="animated slideInRight ty-txt ">You :)</div>
+              </div>
+              <hr />
+            </section>
+
           </div>
         </section>
 
@@ -155,7 +157,7 @@ class Order extends Component {
                     <h5>Pick-up time?</h5>
                     <hr />
                     <select onChange={this.handlePickup} name="Hours" id="pick-time">
-                      <option value="-">-</option>
+                      <option value="" disabled selected>-</option>
                       <option value="12:15">12:15</option>
                       <option value="12:30">12:30</option>
                       <option value="12:45">12:45</option>

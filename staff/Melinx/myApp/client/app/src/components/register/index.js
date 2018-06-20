@@ -62,7 +62,7 @@ class Register extends Component {
 
     render() {
         return (
-            <section>
+            <section className="gerds-bckg">
                 <div className="container">
                     <div className="row">
                         <div className="form center col s6 offset-s3 z-depth-1">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Dropdown, Button, NavItem } from 'react-materialize'
+// import { Dropdown, Button, NavItem } from 'react-materialize'
 import logic from '../../logic'
 import './header.css'
 
@@ -32,22 +32,11 @@ class Header extends Component {
                       <a href="#todaymenu">On the Menu Today</a>
                     </li>
                     <li>
-                      <a href="#account">Your Account</a>
+                      <a href="#">[Your orders]</a>
                     </li>
                     <li>
                       <a href='#' onClick={this._handleLogout} >Logout</a>
-                    </li>
 
-                    <li className="dropdown">
-
-                      <Dropdown trigger={
-                        <Button>Hola, </Button>
-                      }>
-                        <NavItem>one</NavItem>
-                        <NavItem>two</NavItem>
-                        <NavItem divider />
-                        <NavItem>three</NavItem>
-                      </Dropdown>
 
                     </li>
                   </ul></div>

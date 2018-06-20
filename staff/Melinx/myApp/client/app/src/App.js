@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Login, Landing, Header, Register, Account, Order, Todaymenu } from '../src/components'
+import { Login, Landing, Header, Register, Order, Todaymenu } from '../src/components'
 import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
@@ -37,7 +37,6 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/account" component={Account} />
             <Route path="/todaymenu" render={(props) => (
               <Todaymenu
                 resetState={this.resetState}

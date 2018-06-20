@@ -237,10 +237,7 @@ const logic = {
             .then(() => {
                 return Course.findByIdAndUpdate({ _id: id }, { $inc: { "amount": -1 } }, { new: true })
                     .then((amount) => {
-                        console.log('amount: ', amount);
                         
-                        // if (!amount) throw Error(`no courses are left for ${amount.dishName}}`)
-
                         return amount
                     })
             })
@@ -287,7 +284,7 @@ const logic = {
     retrieveCourses(ids) {
         return Promise.resolve()
             .then(() => {
-                if (!Array.isArray(ids)) throw Error('courses are not an array')
+                // if (!Array.isArray(ids)) throw Error('courses are not an array')
 
                 if (ids.length < 2) throw Error('should be 2 courses')
 
