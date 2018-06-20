@@ -92,7 +92,7 @@ router.get('/courses/ids/', (req, res) => {
     const ids = [];
     if (first && second) {
         ids.push(first, second)
-    }
+    }   
 
     return logic.retrieveCourses(ids)
         .then(course => {

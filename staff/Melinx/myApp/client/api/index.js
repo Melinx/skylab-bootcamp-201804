@@ -340,11 +340,12 @@ const eatersApi = {
     getCourseAmountLeftByDay(id) {
         return Promise.resolve()
             .then(() => {
+
                 return axios.get(`${this.url}/courses/amount/${id}`)
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
                         
-                        return data.data.amount
+                        return data.data
                     })
                     .catch(err => {
                         if (err.code === 'ECONNREFUSED') throw Error('could not reach server')

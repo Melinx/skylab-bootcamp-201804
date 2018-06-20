@@ -66,8 +66,10 @@ class Order extends Component {
 
   // WARNING - The order can ONLY be placed if it's BEFORE 11am. For DEMO, modify checkTime function above to appropriate time number.
   createOrder = () => {
-    
-        if ( this.checkTime() === true) {
+    return Promise.resolve()
+      .then(() => this.checkTime())
+      .then(res => {
+        if (res === true) {
           const { firstCourse, secondCourse } = this.props
           const { pickupTime } = this.state
           const statusPaid = true
@@ -79,22 +81,20 @@ class Order extends Component {
           } else {
             api.createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid)
               .then(order => {
-                return Promise.all([api.getCourseAmountLeftByDay(order.data.firstCourse), api.getCourseAmountLeftByDay(order.data.secondCourse)])
-              }).then((res)=>{
-
-                console.log(res)
-                // return Alert.success(`Order placed CORRECTLY. We'll see you real soon! 👅`, {
-                //   position: 'top-right',
-                //   timeout: 1000,
-                //   effect: 'genie',
-                //   position: 'bottom'
+                Promise.all([api.getCourseAmountLeftByDay(order.data.firstCourse), api.getCourseAmountLeftByDay(order.data.secondCourse)])
               })
-            
+
+            return Alert.success(`Order placed CORRECTLY. We'll see you real soon! 👅`, {
+              position: 'top-right',
+              timeout: 1000,
+              effect: 'genie',
+              position: 'bottom'
+            })
           }
         } else {
           Alert.warning('OH, NO! You were late.')
         }
-     
+      })
   }
 
   render() {

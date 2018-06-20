@@ -237,15 +237,16 @@ const logic = {
             .then(() => {
                 return Course.findByIdAndUpdate({ _id: id }, { $inc: { "amount": -1 } }, { new: true })
                     .then((amount) => {
-
-                        if (!amount) throw Error(`no courses are left for ${amount.dishName}}`)
+                        console.log('amount: ', amount);
+                        
+                        // if (!amount) throw Error(`no courses are left for ${amount.dishName}}`)
 
                         return amount
                     })
             })
     },
 
-    createCourse(category, image, dishName, temp, baseFood, dayAvail) {
+    createCourse(category, image, dishName, temp, baseFood, dayAvail, amount) {
         return Promise.resolve()
             .then(() => {
                 if (typeof category !== 'string') throw Error('course category is not a string')
@@ -276,7 +277,7 @@ const logic = {
                     .then((res) => {
                         if (res) throw Error(`Course with dishName ${dishName} already exists`)
 
-                        return Course.create({ category, image, dishName, temp, baseFood, dayAvail })
+                        return Course.create({ category, image, dishName, temp, baseFood, dayAvail, amount })
                             .then(() => true)
                     })
             })

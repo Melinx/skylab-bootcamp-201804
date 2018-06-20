@@ -372,12 +372,12 @@ describe('logic (myApp)', () => {
         })
 
         it('should fail on no category', () =>
-            logic.retrieveCourse()
+            logic.retrieveCourses()
                 .catch(({ message }) => expect(message).to.equal('course id is not a string'))
         )
 
         it('should fail on empty category', () =>
-            logic.retrieveCourse('')
+            logic.retrieveCourses('')
                 .catch(({ message }) => expect(message).to.equal('course id is empty or blank'))
         )
     })
@@ -387,7 +387,7 @@ describe('logic (myApp)', () => {
         it('should succeed on correct data', () => {
             Course.create(firstCourse2)
                 .then(firstCourse2 => {
-                    const { category, image, dishName, temp, baseFood, dayAvail } = firstCourse2
+                    const { category, image, dishName, temp, baseFood, dayAvail, amount } = firstCourse2
                     expect(firstCourse2._id).to.exist
 
                     expect(firstCourse2.category).to.equal(category)
@@ -407,12 +407,12 @@ describe('logic (myApp)', () => {
             Course.create(firstCourse1)
 
                 .then(({ id }) => {
-                    return logic.retrieveCourse(id)
+                    return logic.retrieveCourses(id)
                 })
                 .then(course1 => {
                     expect(course1).to.exist
 
-                    const { category, image, dishName, temp, baseFood, dayAvail } = course1
+                    const { category, image, dishName, temp, baseFood, dayAvail, amount } = course1
 
                     expect(category).to.equal(firstCourse1.category)
                     expect(firstCourse1.image).to.equal(image)
@@ -423,12 +423,12 @@ describe('logic (myApp)', () => {
         )
 
         it('should fail on no course id', () =>
-            logic.retrieveCourse()
+            logic.retrieveCourses()
                 .catch(({ message }) => expect(message).to.equal('course id is not a string'))
         )
 
         it('should fail on empty category', () =>
-            logic.retrieveCourse('')
+            logic.retrieveCourses('')
                 .catch(({ message }) => expect(message).to.equal('course id is empty or blank'))
         )
     })
@@ -456,8 +456,3 @@ describe('logic (myApp)', () => {
 
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
 })
-
-
-
-
-
