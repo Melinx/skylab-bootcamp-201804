@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { Slider, Slide, MediaBox } from 'react-materialize'
+import { Slider, Slide } from 'react-materialize'
 import Follow from '../follow'
 import Footer from '../footer'
 import './landing.css'
@@ -17,22 +17,24 @@ class Landing extends Component {
         return (
             <div>
                 <section>
-                    {/* <MediaBox src="images/food1.jpg" caption="A demo media box1" width="350"/> */}
                     <Slider>
                         <Slide
                             src="images/food5.jpg"
+                            className="slider-img"
                             title="Hungry for a Good Meal?"
                             placement="right">
                             We like to take good care of you and your stomach.
                 </Slide>
                         <Slide
                             src="images/food1.jpg"
+                            className="slider-img"
                             title="Home-Cooked Meals, Ready to Go"
                             placement="left">
                             We serve you with a variety of healty balanced meals.
                           </Slide>
                         <Slide
                             src="images/food2.jpg"
+                            className="slider-img"
                             title="Enjoy Fresh Ingredients, Every Day"
                             placement="right">
                             All meals are cooked the same day, always delivering fresh ingredients.

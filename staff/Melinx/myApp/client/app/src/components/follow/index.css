@@ -10,7 +10,10 @@
     border: 0;
     border-top: 1px solid #ef5350;
   }
-  
+  .red.lighten-2 {
+    background-color: #ee6e73 !important;
+}
+
   .section-follow .fa-4x {
     margin: 5px 10px;
   }

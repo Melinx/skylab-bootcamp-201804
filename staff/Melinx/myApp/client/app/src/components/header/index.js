@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Dropdown } from 'react-materialize'
+import { Dropdown, Button, NavItem } from 'react-materialize'
 import logic from '../../logic'
 import './header.css'
 
@@ -12,7 +12,7 @@ class Header extends Component {
   }
 
   state = {
-    isLogged: '',
+    isLogged: ''
   }
 
   render() {
@@ -41,7 +41,7 @@ class Header extends Component {
                     <li className="dropdown">
 
                       <Dropdown trigger={
-                        <Button>Hola, pep</Button>
+                        <Button>Hola, </Button>
                       }>
                         <NavItem>one</NavItem>
                         <NavItem>two</NavItem>

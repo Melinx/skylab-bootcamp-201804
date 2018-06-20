@@ -3,10 +3,23 @@
     color: black;
 }
 
+ul {
+    list-style: none;
+    margin-left: 300 vw;
+}
+.slider-img {
+
+opacity: 0.5;
+filter: alpha(opacity=50); 
+}
+
 .slider .indicators {
-    margin-left: 500px;
     margin-bottom: 20px;
     position: relative;
+}
+
+.slider {
+    background-color:  #f5f5f5 !important
 }
 
 .slider .indicators .indicator-item.active {

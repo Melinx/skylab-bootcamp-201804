@@ -18,11 +18,15 @@ class Todaymenu extends Component {
     }
 
     componentDidMount() {
+
+        this.props.resetState()
+
         api.listCoursesByDay()
             .then(({ courses }) => this.setState({ firstCourses: courses }))
 
         api.listCoursesByDay(true)
             .then(({ courses }) => this.setState({ secondCourses: courses }))
+           
     }
 
     checkDishes = (e) => {

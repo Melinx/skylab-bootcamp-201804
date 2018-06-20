@@ -8,7 +8,7 @@ class App extends Component {
     super()
     this.state = {
       firstCourse: '',
-      secondCourse: '',
+      secondCourse: ''
     }
   }
 
@@ -19,6 +19,13 @@ class App extends Component {
     if (category === 'secondCourse') {
       this.setState({ secondCourse: courseId })
     }
+  }
+
+  resetState = () => {
+    this.setState({
+      firstCourse: '',
+      secondCourse: ''
+    })
   }
 
   render() {
@@ -33,6 +40,7 @@ class App extends Component {
             <Route path="/account" component={Account} />
             <Route path="/todaymenu" render={(props) => (
               <Todaymenu
+                resetState={this.resetState}
                 history={props.history}
                 addCourse={this.addCourse}
                 firstCourse={this.state.firstCourse}
