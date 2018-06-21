@@ -368,17 +368,18 @@ describe('logic (myApp)', () => {
                 .then(res => {
                     // TODO test logic list 
                     expect(res.length).to.equal(10)
+                    console.log('resssss: ', res);
                 })
         })
 
-        it('should fail on no category', () =>
-            logic.retrieveCourses()
-                .catch(({ message }) => expect(message).to.equal('course id is not a string'))
-        )
+        // it('should fail on no category', () =>
+        //     logic.retrieveCourses()
+        //         .catch(({ message }) => expect(message).to.equal('course id is not a string'))
+        // )
 
-        it('should fail on empty category', () =>
+        it('should fail on no course id', () =>
             logic.retrieveCourses('')
-                .catch(({ message }) => expect(message).to.equal('course id is empty or blank'))
+                .catch(({ message }) => expect(message).to.equal('should be 2 courses'))
         )
     })
 
@@ -423,14 +424,14 @@ describe('logic (myApp)', () => {
                 })
         )
 
-        it('should fail on no course id', () =>
-            logic.retrieveCourses()
-                .catch(({ message }) => expect(message).to.equal('course id is not a string'))
-        )
+        // it('should fail on no course id', () =>
+        //     logic.retrieveCourses()
+        //         .catch(({ message }) => expect(message).to.equal('course id is not a string'))
+        // )
 
-        it('should fail on empty category', () =>
+        it('should fail on missing course id', () =>
             logic.retrieveCourses('')
-                .catch(({ message }) => expect(message).to.equal('course id is empty or blank'))
+                .catch(({ message }) => expect(message).to.equal('should be 2 courses'))
         )
     })
 

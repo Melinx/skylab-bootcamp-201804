@@ -18,7 +18,6 @@ module.exports = new Schema({
     email: {
         type: String,
         lowercase: true,
-        // TODO match regex
     },
 
     password: {
@@ -38,8 +37,8 @@ module.exports = new Schema({
     },
 
     payment: {
-        type: Payment,
-
+        type: ObjectId,
+        ref: 'Payment'
     },
 
     orders: [{
