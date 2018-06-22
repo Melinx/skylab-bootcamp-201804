@@ -118,8 +118,6 @@ const eatersApi = {
 
                 if (!(id = id.trim()).length) throw Error('eater id is empty or blank')
 
-                //     return Eater.findById(id).select({ _id: 0, name: 1, lastName: 1, email: 1 })
-                // 
                 return axios.get(`${this.url}/eaters/${id}`, { headers: { authorization: `Bearer ${this.token()}` } })
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)

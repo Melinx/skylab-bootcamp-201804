@@ -1,6 +1,6 @@
 const eatersApi = require('api')
 
-eatersApi.url = 'http://localhost:4000/api'
+eatersApi.url = 'https://thawing-ocean-95909.herokuapp.com/api'
 
 const logic = {
     userId: 'NO-ID',

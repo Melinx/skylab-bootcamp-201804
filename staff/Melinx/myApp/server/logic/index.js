@@ -4,10 +4,15 @@ const { mongoose, models: { Eater, Course, Order, Payment } } = require('data')
 
 const logic = {
     /**
+     * 
+     * @description - registers a user. Users are called 'eaters' in this app.
+     * 
      * @param {string} name
      * @param {string} lastName
-     * @param {string} gmail
+     * @param {string} email
      * @param {string} password
+     * @param {(string)} age
+     * @param {(string)} yearOfBirth
      *
      * @returns {Promise<boolean>}
      */
@@ -39,11 +44,11 @@ const logic = {
                             .then(() => true)
                     })
             })
-
     },
 
 
     /**
+     * @description - authentication will return a user id and their token.
      * 
      * @param {string} email 
      * @param {string} password 
@@ -72,6 +77,8 @@ const logic = {
 
     /**
      * 
+     * @description - retrieves an eater.
+     * 
      * @param {string} id
      * 
      * @returns {Promise<Eater>} 
@@ -93,6 +100,7 @@ const logic = {
     },
 
     /**
+     * @description - updates existing eater info and/or adds new optional fields.
      * 
      * @param {string} id 
      * @param {string} name 
@@ -102,7 +110,7 @@ const logic = {
      * @param {string} newEmail 
      * @param {string} newPassword 
      * 
-     * @returns {Promise<boolean>}
+     * @returns {Promise<Boolean>}
      */
 
     updateEater(id, name, lastName, email, password, newEmail, newPassword) {
@@ -158,6 +166,7 @@ const logic = {
     },
 
     /**
+     * @description -  unregisters eater.
      * 
      * @param {string} id 
      * @param {string} email 
@@ -194,15 +203,12 @@ const logic = {
     },
 
     /**
-     * DOCUM:
      * 
-     * Should list FIRST and SECOND courses separately, each day of the week. 
+     * @description - lists FIRST and SECOND courses (dishes) separately for each DAY, according to "first" condition being true or false. Current day is determined and returned by "dayAvail" property of Course.
      * 
-     * @returns {Promise<string>}
-     * 
-     * @param {first<boolean>}
-     * 
-     * @returns{Array} 
+     * @param {boolean} first
+     *
+     * @returns {Promise<Array>} - array with all Courses that belong to selected category for current day.
      */
 
     listCoursesByDay(first = false) {
@@ -221,13 +227,14 @@ const logic = {
     },
 
     /**
-     * DOCUM: this function returns the amount left for a given course. The default amount per day is 10, each order confirmation containing the courseID will subtract 1 from the counter.
+     * 
+     * @description - updates the amount of courses left. The default amount of every dish per day is 10, and each order confirmation will subtract 1 from the counter.
      * 
      * @returns {Promise<string>}
      * 
-     * @param {id<boolean>}
+     * @param {id<String>} - id of the course contained by the order.
      * 
-     * @returns{Number} 
+     * @returns {Promise<Number>} 
      * 
      */
 
@@ -237,11 +244,26 @@ const logic = {
             .then(() => {
                 return Course.findByIdAndUpdate({ _id: id }, { $inc: { "amount": -1 } }, { new: true })
                     .then((amount) => {
-                        
+
                         return amount
                     })
             })
     },
+
+    /**
+     * 
+     * @description - creates new course
+     * 
+     * @param {<String>} category - firstCourse || secondCourse
+     * @param {<String>} image
+     * @param {<String>} dishName
+     * @param {<(String)>} temp - optional; could determine suitability of dishes according to season of the year. ie, in summer, less hot and more cold for firstCourse.
+     * @param {<(String)>} baseFood - optional; could be useful to determine whether a combination of first and second course is appropriate. Suggesting menus according to customer's food priorities (vegetarian friendly, etc) 
+     * @param {<Number>} amount - function getCourseAmountLeftByDay() updated this field
+     * 
+     * @returns {Promise<Boolean>} 
+     * 
+     */
 
     createCourse(category, image, dishName, temp, baseFood, dayAvail, amount) {
         return Promise.resolve()
@@ -280,7 +302,15 @@ const logic = {
             })
     },
 
-    // FUNC retrieveCourse allows first and second course selection before proceeding w creating order 
+    /**
+     * 
+     * @description - returns first and second course selection before proceeding w creating order.
+     * 
+     * @param {<String>} - ids (of first or second course)
+     * 
+     * @returns {Promise<Object>} 
+     */
+    
     retrieveCourses(ids) {
         return Promise.resolve()
             .then(() => {
@@ -300,16 +330,15 @@ const logic = {
 
     /**
      * 
-     * Each order must contain only 1 first course and 1 second course. 
-     * Not an option to do only one course or two of the same category, it must be a first and a second.
+     * @description - creates an order containing ONLY 1 first course and ONLY 1 second course. 
      * 
-     * @param {string} eaterId 
-     * @param {date = Date.now()} date - it works as a timestamp to know if order was placed on time (by 11am)
-     * @param {string} firstCourse 
-     * @param {string} secondCourse 
-     * @param {Date} pickupTime - will tell the business which time eater will go pick up their food.
-     * @param {[status = 'processing']} (default order status is processing, other status will be paid)
+     * @param {<String>} eaterId 
+     * @param {<String>} date - it works as a timestamp to know if order was placed on time (by 11am). DEMO modified to a later time to show functionality.
+     * @param {<String>} firstCourse 
+     * @param {<String>} secondCourse 
+     * @param {<String>} pickupTime - will tell the business which time eater will go pick up their food.
      *  
+     * @returns {Promise<Object>}
      */
 
     createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid) {
@@ -335,12 +364,12 @@ const logic = {
     },
 
     /**
-     * DOCUM: it returns the amount of orders of current day, allowing a TICKETING number so the customer can have an easy order confirmation.
+     * @description - it returns the amount of orders submitted on the current day, allowing a TICKETING system, so the customer can have an easy order confirmation.
      * 
      * @returns {Promise<number>}
      * @param {id<String>} 
      * 
-     * @returns {amount<Number>}    
+     * @returns {Promise<Number>}    
      */
 
     countOrdersByDay() {

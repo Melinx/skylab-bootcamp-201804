@@ -158,7 +158,7 @@ const course18 =
 const course19 =
     {
         category: 'secondCourse',
-        image: 'https://res.cloudinary.com/elsgerds/image/upload/ar_1:1,c_fill,g_auto,e_art:hokusai/v1528204566/2-5_botifarra-mongetes.jpg',
+        image: 'https://res.cloudinary.com/elsgerds/image/upload/v1529656116/botifarra.jpg',
         dishName: 'Botifarra & white beans',
         temp: 'hot',
         baseFood: 'meat',
