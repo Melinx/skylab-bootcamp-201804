@@ -63,7 +63,7 @@ START REACT APP on browser from client/app. Command: npm start
 
 ## APP URL 
 
-http://elsgerds.surge.sh/#/
+https://elsgerds.surge.sh/#/
 
 -----------
                             Indra Roura, June 2018
