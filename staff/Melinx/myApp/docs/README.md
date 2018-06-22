@@ -1,5 +1,5 @@
 
-# 'els Gerds' Project App
+# els Gerds - Project App
 
 # ![](./images/skylab-coders-logo.png)
 
@@ -66,6 +66,6 @@ START REACT APP on browser from client/app. Command: npm start
 http://elsgerds.surge.sh/#/
 
 -----------
-Indra Roura, June 2018
+                            Indra Roura, June 2018
 
 
