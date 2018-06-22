@@ -5,8 +5,6 @@ const axios = require('axios')
 const eatersApi = {
     url: 'NO-URL',
 
-    // token: 'NO-TOKEN',
-
     token(token) {
         if (token) {
             this._token = this.token
@@ -16,12 +14,17 @@ const eatersApi = {
     },
 
     /**
-     * @param {string} name
-     * @param {string} lastName
-     * @param {string} gmail
-     * @param {string} password
+     * 
+     * @description - registers a user. Users are called 'eaters' in this app.
+     * 
+     * @param {String} name
+     * @param {String} lastName
+     * @param {String} gmail
+     * @param {String} password
+     * @param {(String)} age
+     * @param {(String)} yearOfBirth
      *
-     * @returns {Promise<boolean>}
+     * @returns {Promise<Boolean>}
      */
 
     registerEater(name, lastName, email, password) {
@@ -65,10 +68,12 @@ const eatersApi = {
 
     /**
      * 
-     * @param {string} email 
-     * @param {string} password 
+     * @description - authentication will return a user id and their token.
      * 
-     * @returns {Promise<string>}
+     * @param {String} email 
+     * @param {String} password 
+     * 
+     * @returns {Promise<String>}
      */
 
     authenticateEater(email, password) {
@@ -106,9 +111,11 @@ const eatersApi = {
 
     /**
      * 
-     * @param {string} id
+     * @description - retrieves an eater.
      * 
-     * @returns {Promise<Eater>} 
+     * @param {String} id
+     * 
+     * @returns {Promise<Object>} 
      */
 
     retrieveEater(eaterId) {
@@ -138,15 +145,17 @@ const eatersApi = {
 
     /**
      * 
-     * @param {string} id 
-     * @param {string} name 
-     * @param {string} lastName 
-     * @param {string} email 
-     * @param {string} password 
-     * @param {string} newEmail 
-     * @param {string} newPassword 
+     * @description - updates existing eater info and/or adds new optional fields.
      * 
-     * @returns {Promise<boolean>}
+     * @param {String} id 
+     * @param {String} name 
+     * @param {String} lastName 
+     * @param {String} email 
+     * @param {String} password 
+     * @param {String} newEmail 
+     * @param {String} newPassword 
+     * 
+     * @returns {Promise<Boolean>}
      */
 
     updateEater(id, name, lastName, email, password, newEmail, newPassword) {
@@ -192,11 +201,13 @@ const eatersApi = {
 
     /**
      * 
-     * @param {string} id 
-     * @param {string} email 
-     * @param {string} password 
+     * @description -  unregisters eater.
      * 
-     * @returns {Promise<boolean>}
+     * @param {String} id 
+     * @param {String} email 
+     * @param {String} password 
+     * 
+     * @returns {Promise<Boolean>}
      */
 
     unregisterEater(id, email, password) {
@@ -233,11 +244,11 @@ const eatersApi = {
     },
 
     /**
-     * DOCUM:
+     * @description - lists FIRST and SECOND courses (dishes) separately for each day, according to "first" condition being true or false.
      * 
-     * Should list courses each day of the week. 
-     * 
-     * @returns {Promise<string>}
+     * @param {boolean} first
+     *
+     * @returns {Promise<Array>} - returns Object array with all Courses that belong to selected category for dayAvail (current) day.
      */
 
     listCoursesByDay(first = false) {
@@ -263,6 +274,52 @@ const eatersApi = {
             })
     },
 
+    /**
+     * 
+     * @description - updates the amount of courses left. The default amount of every dish per day is 10, and each order confirmation will subtract 1 from the counter.
+     * 
+     * @returns {Promise<string>}
+     * 
+     * @param {id<String>} - id of the course contained by the order.
+     * 
+     * @returns {Promise<Number>} 
+     * 
+     */
+
+    getCourseAmountLeftByDay(id) {
+        return Promise.resolve()
+            .then(() => {
+
+                return axios.get(`${this.url}/courses/amount/${id}`)
+                    .then(({ status, data }) => {
+                        if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
+                        
+                        return data.data
+                    })
+                    .catch(err => {
+                        if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
+
+                        if (err.response) {
+                            const { response: { data: { error: message } } } = err
+                            return message
+                        } else throw err
+                    })
+            })
+    },
+
+    /**
+     * 
+     * @description - creates an order containing ONLY 1 first course and ONLY 1 second course. 
+     * 
+     * @param {<String>} eaterId 
+     * @param {<String>} date - it works as a timestamp to know if order was placed on time (by 11am). DEMO modified to a later time to show functionality.
+     * @param {<String>} firstCourse 
+     * @param {<String>} secondCourse 
+     * @param {<String>} pickupTime - will tell the business which time eater will go pick up their food.
+     *  
+     * @returns {Promise<Object>}
+     */
+
     createOrder(eaterId, firstCourse, secondCourse, pickupTime, statusPaid) {
         return Promise.resolve()
             .then(() => {
@@ -286,11 +343,12 @@ const eatersApi = {
     },
 
     /**
+     * @description - retrieves course id to pass it to create Order
      * 
-     * @params { array } - ids
+     * @param { <String> } - firstCourseId
+     * @param { <String> } - secondCourseId
      * @returns {Promise<Courses>} - two course objects, one for first course and the other for second course.
      * 
-     * Will pass the ids to createOrder.
      */
 
     retrieveCourses(firstCourseId, secondCourseId) {
@@ -315,6 +373,14 @@ const eatersApi = {
             })
     },
 
+     /**
+     * @description - it returns the amount of orders submitted on the current day, allowing a TICKETING system, so the customer can have an easy order confirmation.
+     * 
+     * @param {id<String>} 
+     * 
+     * @returns {Promise<Number>}    
+     */
+
     countOrdersByDay() {
         return Promise.resolve()
             .then(() => {
@@ -333,29 +399,7 @@ const eatersApi = {
                         } else throw err
                     })
             })
-    },
-
-    getCourseAmountLeftByDay(id) {
-        return Promise.resolve()
-            .then(() => {
-
-                return axios.get(`${this.url}/courses/amount/${id}`)
-                    .then(({ status, data }) => {
-                        if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
-                        
-                        return data.data
-                    })
-                    .catch(err => {
-                        if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
-
-                        if (err.response) {
-                            const { response: { data: { error: message } } } = err
-                            return message
-                        } else throw err
-                    })
-            })
     }
-
 
 }
 

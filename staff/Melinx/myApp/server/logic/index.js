@@ -81,7 +81,7 @@ const logic = {
      * 
      * @param {string} id
      * 
-     * @returns {Promise<Eater>} 
+     * @returns {Promise<Object>} 
      */
     retrieveEater(id) {
         return Promise.resolve()
@@ -102,13 +102,13 @@ const logic = {
     /**
      * @description - updates existing eater info and/or adds new optional fields.
      * 
-     * @param {string} id 
-     * @param {string} name 
-     * @param {string} lastName 
-     * @param {string} email 
-     * @param {string} password 
-     * @param {string} newEmail 
-     * @param {string} newPassword 
+     * @param {String} id 
+     * @param {String} name 
+     * @param {String} lastName 
+     * @param {String} email 
+     * @param {String} password 
+     * @param {String} newEmail 
+     * @param {String} newPassword 
      * 
      * @returns {Promise<Boolean>}
      */
@@ -168,11 +168,11 @@ const logic = {
     /**
      * @description -  unregisters eater.
      * 
-     * @param {string} id 
-     * @param {string} email 
-     * @param {string} password 
+     * @param {String} id 
+     * @param {String} email 
+     * @param {String} password 
      * 
-     * @returns {Promise<boolean>}
+     * @returns {Promise<Boolean>}
      */
 
     unregisterEater(id, email, password) {
@@ -204,11 +204,11 @@ const logic = {
 
     /**
      * 
-     * @description - lists FIRST and SECOND courses (dishes) separately for each DAY, according to "first" condition being true or false. Current day is determined and returned by "dayAvail" property of Course.
+     * @description - lists FIRST and SECOND courses (dishes) separately for each day, according to "first" condition being true or false.
      * 
      * @param {boolean} first
      *
-     * @returns {Promise<Array>} - array with all Courses that belong to selected category for current day.
+     * @returns {Promise<Array>} - returns Object array with all Courses that belong to selected category for dayAvail (current) day.
      */
 
     listCoursesByDay(first = false) {
@@ -366,7 +366,6 @@ const logic = {
     /**
      * @description - it returns the amount of orders submitted on the current day, allowing a TICKETING system, so the customer can have an easy order confirmation.
      * 
-     * @returns {Promise<number>}
      * @param {id<String>} 
      * 
      * @returns {Promise<Number>}    
